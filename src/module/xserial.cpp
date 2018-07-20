@@ -148,7 +148,7 @@ bool XSerial::get_poleSpeed(int * speed)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-	Description	: 控制云台
+    Description	: 控制云台
  *****************************************************************************/
 bool XSerial::set_cradleSpeed(int * speed)
 {

@@ -1,14 +1,22 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-07-20T10:25:37
+# Project created by QtCreator 2018-07-20T15:51:33
 #
 #-------------------------------------------------
 
-QT       += core gui
+#
+# Add by Mark
+# 用于Summer类单元测试
+#
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += testlib serialport
 
-TARGET = Summer
+QT       -= gui
+
+TARGET = tst_testsummer
+CONFIG   += console
+CONFIG   -= app_bundle
+
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -22,22 +30,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH += \
-    src/ui/ \
-    src
 
 SOURCES += \
-    src/ui/summer.cpp \
-    src/main.cpp \
+    src/module/test_summer.cpp \
     src/module/xserial.cpp \
-    src/module/xserial.cpp \
-    src/module/test_summery.cpp
+    src/module/xdev.cpp
+
+DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+INCLUDEPATH += include
 
 HEADERS += \
-    src/ui/summer.h \
     src/module/xserial.h \
-    src/module/xserial.h \
-    src/module/test_summery.h
+    src/module/test_summer.h \
+    src/module/xdev.h \
 
-FORMS += \
-    src/ui/summer.ui
+win32: LIBS += -L$$PWD/lib/ -lThermoGroupSDKLib
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include

@@ -17,22 +17,25 @@ class XDev : public QObject
 	Q_OBJECT
 
 public:
-	XDev();
+    static XDev * Get();
 	~XDev();
 	//红外摄像头 - 数据
 	int channelIndex = 0;
 	int ip = 192 | 168 << 8 | 1 << 16 | 118 << 24;
 	int timeout = 500;
-	//巨哥SDK
-	struct_CamInfo m_CamInfo;
-	struct_CeRegContent m_RegContent;
+
+    void newFrame(UINT intChannelIndex, int intCameraTemperature,
+                  DWORD dwFFCCounterdown, DWORD dwCamState,
+                  DWORD dwStreamType, void * dwUser);
+
+    struct_CamInfo get_cameraInfo();
 
 public slots:
 	//红外摄像头 - 图传
 	bool create_irDev();
-	void refresh_irDev();
-	void connect_irDev();
-	void play_irDev();
+    bool refresh_irDev();
+    bool connect_irDev();
+    bool play_irDev();
 	void photo_irDev();
 	void stop_irDev();
 	void disconnect_irDev();
@@ -43,4 +46,14 @@ public slots:
 	void far_focus();
 	void up_cradle();
 	void down_cradle();
+
+signals:
+    void devList(QStringList list);
+    void magFrame(int intCameraTemperature, DWORD dwCamState);
+
+private:
+    XDev();
+    //巨哥SDK
+    struct_CamInfo m_CamInfo;
+    struct_CeRegContent m_RegContent;
 };
