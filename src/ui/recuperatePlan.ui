@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>recuperatePlan</class>
+ <widget class="QWidget" name="recuperatePlan">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1440</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTextBrowser" name="textBrowser_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>1351</width>
+     <height>641</height>
+    </rect>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;1. 调理方案&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;（根据选择调理方案生成）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;2.  注意事项&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;调理前应淋浴。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;不宜在过饱和空腹时调理。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;蒸舱后&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:10.5pt;&quot;&gt;6&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;小时内不宜淋浴，避免受风寒，&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:10.5pt;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;小时内不宜吃冷饮。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;蒸舱过程中不可擦搓身体，汗液可用毛巾沾拭。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;每天根据需要，饮茶量&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:10.5pt;&quot;&gt;2000&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;到&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:10.5pt;&quot;&gt;2500&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;毫升。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;适度运动、素食。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;多注意休息，放松心情，充足睡眠&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;3.  饮食建议&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌食生冷&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌食辛辣&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌肥甘&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌饮酒&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌甜食&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌酸涩&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□忌过敏食物&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□凉性水果&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;西红柿、苹果、香瓜、奇异果、香蕉、甜瓜、柚子、柿子、椰子&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□热性水果&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;大枣、山楂、樱桃、石榴、荔枝、青果、榴莲、木瓜、柑&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□滋阴食物&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;藕、黑木耳、银耳、梨、百合、山药&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□补阳食物&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;羊肉、公鸡、韭菜、香菜、生姜、大蒜&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□行气食物&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;橙子、柑皮、韭菜、玫瑰花、荞麦、茴香菜、大蒜&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□益气食物&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;莲子、薏苡仁、白扁豆、粳米&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□养血食物&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;桑椹、猪肉、红糖、红枣、桂圆、葡萄酒&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;□祛湿食物&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;绿豆、冬瓜、丝瓜、赤小豆、西瓜、绿茶、花茶&lt;/span&gt;&lt;span style=&quot; font-family:'Calibri'; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:12pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;4.  好转反应&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;非常疲倦、想睡、多屁&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;溶解血液、体液中的脂肪、胆固醇、化学物、西药，血液处于混浊状态。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;全身发热、发烧&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;重新调整免疫系统。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;便秘&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;调节大肠机能。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;肚泻&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;调节小肠机能或排出肠内积存物。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;肚泻（水便）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;排出体内、肠内的积水。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;突然失眠或睡的很少但没有困意或睡意，也不觉的累&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt;&quot;&gt;调整神经过敏或神经紧张的状态。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;5.  补充意见&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'宋体'; font-size:10.5pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

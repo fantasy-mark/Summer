@@ -10,7 +10,14 @@
 #include <stdlib.h>
 #endif
 
+#include <QMutex>
+#include <QTimer>
+#include <QThread>
 #include <QObject>
+#include <QThread>
+#include "opencv2/opencv.hpp"
+
+using namespace cv;
 
 class XDev : public QObject
 {
@@ -24,16 +31,18 @@ public:
 	int ip = 192 | 168 << 8 | 1 << 16 | 118 << 24;
 	int timeout = 500;
 
-    void newFrame(UINT intChannelIndex, int intCameraTemperature,
-                  DWORD dwFFCCounterdown, DWORD dwCamState,
-                  DWORD dwStreamType, void * dwUser);
+    QMutex mutex;
+    QThread * m_pThread = NULL;
+    QTimer * m_pTimer = NULL;
 
     struct_CamInfo get_cameraInfo();
 
 public slots:
-	//ºìÍâÉãÏñÍ· - Í¼´«
+    void run();
+    void timeOutSlot();
+    //ºìÍâÉãÏñÍ· - Í¼´«
 	bool create_irDev();
-    bool refresh_irDev();
+    QStringList refresh_irDev();
     bool connect_irDev();
     bool play_irDev();
 	void photo_irDev();
@@ -45,15 +54,18 @@ public slots:
 	void near_focus();
 	void far_focus();
 	void up_cradle();
+    void stop_cradle();
 	void down_cradle();
 
 signals:
     void devList(QStringList list);
-    void magFrame(int intCameraTemperature, DWORD dwCamState);
+    void magFrame(cv::Mat);
 
 private:
     XDev();
     //¾Þ¸çSDK
     struct_CamInfo m_CamInfo;
     struct_CeRegContent m_RegContent;
+    int button_state = 0;     // 0 stop / 1 up / 2 down
+    int cradle_speed = 0x00;
 };

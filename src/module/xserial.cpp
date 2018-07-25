@@ -1,6 +1,11 @@
 #include "xserial.h"
 #include <qDebug>
 
+XSerial::XSerial()
+{
+    open_serial();
+}
+
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
@@ -110,18 +115,22 @@ void XSerial::close_serial()
  *****************************************************************************/
 bool XSerial::get_poleSpeed(int * speed)
 {
-	if (! poleSerial->isOpen()) {
+    if (cradleSerial == NULL)
+        return false;
+    if (! poleSerial->isOpen()) {
 		return false;
 	}
 	QByteArray data;
 	//1 等待读
-	poleSerial->waitForReadyRead(10);
+    poleSerial->waitForReadyRead(10);
 	//最长合成帧需要2*9-1=17,舍弃多余数据
 	int len = poleSerial->bytesAvailable();
 	if (len > 17) {
 		poleSerial->read(len - 17);
 	}
 	data = poleSerial->readAll();
+    if (data.size() < 17)
+        return false;
 	int begin;
 	//找到完整帧的字节头 0xff
 	for (int i = 8; i >= 0; i--) {
@@ -150,31 +159,36 @@ bool XSerial::get_poleSpeed(int * speed)
 	Date		: 2018.07.19
     Description	: 控制云台
  *****************************************************************************/
-bool XSerial::set_cradleSpeed(int * speed)
+bool XSerial::set_cradleSpeed(int *speed)
 {
-	if (! cradleSerial->isOpen()) {
+    if (cradleSerial == NULL)
+        return false;
+    if (! cradleSerial->isOpen()) {
 		return false;
 	}
-	//默认反转\静止
+    //默认反转\静止
 	static const char rdata[] = { 0xff, 0x1f, 0x10, 0x08, 0x20, 0x00, 0x56 };
 	QByteArray data = QByteArray::fromRawData(rdata, sizeof(rdata));
 	//正转,速度0x10,校验
-	if (*speed > 0 && *speed < 0x40) {
-		data[3] = 0x10;
-		data[5] = 0x10;
-		data[6] = 0x6e;
-	}
-	//反转,速度0x10,校验
-	if (*speed > 0 && *speed < 0x40) {
-		data[3] = 0x08;
-		data[5] = 0x10;
-		data[6] = 0x66;
-	}
+    if (*speed > 0x100 && *speed < 0x200) {
+        data[3] = 0x08;
+        data[5] = 0x10;
+        data[6] = 0x66;
+    } else  if (*speed > -0x200 && *speed < -0x100) {
+    //反转,速度0x10,校验
+        data[3] = 0x10;
+        data[5] = 0x10;
+        data[6] = 0x6e;
+    } else {
+        data[3] = 0x08;
+        data[5] = 0x00;
+        data[6] = 0x56;
+    }
+
 	if (data.size() == cradleSerial->write(data)) {
 		//立即生效?
 		//cradleSerial->flush();
 		return true;
 	}
-
 	return false;
 }

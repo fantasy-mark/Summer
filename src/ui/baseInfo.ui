@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>baseInfo</class>
+ <widget class="QWidget" name="baseInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1440</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>100</y>
+     <width>1331</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="8">
+     <widget class="QLineEdit" name="age"/>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>性    别：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QLineEdit" name="name"/>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>年    龄：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLineEdit" name="sex"/>
+    </item>
+    <item row="2" column="4">
+     <widget class="QLineEdit" name="id"/>
+    </item>
+    <item row="2" column="5">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>电    话：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="6">
+     <widget class="QLineEdit" name="tel"/>
+    </item>
+    <item row="1" column="2" rowspan="2">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>客户信息</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>姓    名：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>身份证号：</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>220</y>
+     <width>1331</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="1" column="8">
+     <widget class="QLineEdit" name="bmi"/>
+    </item>
+    <item row="1" column="10">
+     <widget class="QLineEdit" name="temp"/>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>体    重：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QLineEdit" name="height"/>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>B M I：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLineEdit" name="weight"/>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>身    高：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="7">
+     <widget class="QLabel" name="label_69">
+      <property name="text">
+       <string>内脏脂肪等级</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLabel" name="label_67">
+      <property name="text">
+       <string>脂肪率</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="9">
+     <widget class="QLabel" name="label_70">
+      <property name="text">
+       <string>基础代谢量</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5">
+     <widget class="QLabel" name="label_68">
+      <property name="text">
+       <string>皮下脂肪率</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLabel" name="label_71">
+      <property name="text">
+       <string>骨量</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="5">
+     <widget class="QLabel" name="label_72">
+      <property name="text">
+       <string>体水分</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="7">
+     <widget class="QLabel" name="label_73">
+      <property name="text">
+       <string>体年龄</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="9">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>血    糖：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="10">
+     <widget class="QLineEdit" name="bloodSugar"/>
+    </item>
+    <item row="2" column="4">
+     <widget class="QLineEdit" name="fatR"/>
+    </item>
+    <item row="3" column="4">
+     <widget class="QLineEdit" name="boneMass"/>
+    </item>
+    <item row="2" column="6">
+     <widget class="QLineEdit" name="subFatR"/>
+    </item>
+    <item row="3" column="6">
+     <widget class="QLineEdit" name="bodyMoisture"/>
+    </item>
+    <item row="2" column="8">
+     <widget class="QLineEdit" name="viscuFatR"/>
+    </item>
+    <item row="3" column="8">
+     <widget class="QLineEdit" name="bodyAge"/>
+    </item>
+    <item row="2" column="10">
+     <widget class="QLineEdit" name="metabolicR"/>
+    </item>
+    <item row="1" column="9">
+     <widget class="QLabel" name="label_74">
+      <property name="text">
+       <string>体     温</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" rowspan="3">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>基础信息</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>320</y>
+     <width>1331</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="2" column="4">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>左高压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="5">
+     <widget class="QLineEdit" name="armPulseL"/>
+    </item>
+    <item row="4" column="7">
+     <widget class="QLineEdit" name="armPulseR"/>
+    </item>
+    <item row="5" column="5">
+     <widget class="QLineEdit" name="armPulseLH"/>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLineEdit" name="wristPulseR"/>
+    </item>
+    <item row="2" column="6">
+     <widget class="QLabel" name="label_18">
+      <property name="text">
+       <string>右高压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLineEdit" name="wristPulseL"/>
+    </item>
+    <item row="5" column="6">
+     <widget class="QLabel" name="label_25">
+      <property name="text">
+       <string>右高压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="7">
+     <widget class="QLineEdit" name="armPulseRH"/>
+    </item>
+    <item row="1" column="4">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>左心率</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="6">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>右低压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5">
+     <widget class="QLineEdit" name="wristPulseLH"/>
+    </item>
+    <item row="5" column="4">
+     <widget class="QLabel" name="label_21">
+      <property name="text">
+       <string>左高压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>左低压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="6">
+     <widget class="QLabel" name="label_26">
+      <property name="text">
+       <string>右心率</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>右心率</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="4">
+     <widget class="QLabel" name="label_22">
+      <property name="text">
+       <string>左低压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="7">
+     <widget class="QLineEdit" name="wristPulseRL"/>
+    </item>
+    <item row="3" column="6">
+     <widget class="QLabel" name="label_23">
+      <property name="text">
+       <string>右低压</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="7">
+     <widget class="QLineEdit" name="wristPulseRH"/>
+    </item>
+    <item row="3" column="5">
+     <widget class="QLineEdit" name="wristPulseLL"/>
+    </item>
+    <item row="4" column="4">
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>左心率</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="5">
+     <widget class="QLineEdit" name="armPulseLL"/>
+    </item>
+    <item row="6" column="7">
+     <widget class="QLineEdit" name="armPulseRL"/>
+    </item>
+    <item row="1" column="2" rowspan="6">
+     <widget class="QLabel" name="label_19">
+      <property name="text">
+       <string>脉诊信息</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" rowspan="3">
+     <widget class="QLabel" name="label_20">
+      <property name="text">
+       <string>寸口</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3" rowspan="3">
+     <widget class="QLabel" name="label_17">
+      <property name="text">
+       <string>臂部</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

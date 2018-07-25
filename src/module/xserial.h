@@ -33,13 +33,13 @@ public slots:
 
 public slots:
 	bool get_poleSpeed(int * speed);
-	bool set_cradleSpeed(int *speed);
+    bool set_cradleSpeed(int * speed);
 
 signals:
 	void test();
 
 private:
-	XSerial() {};
+    XSerial();
 	QSerialPort * poleSerial = NULL;
 	QSerialPort * cradleSerial = NULL;
 	/* 摇杆 -0x200~0x200 云台-3f~3f, TODO : 可自定义划分为16速 */

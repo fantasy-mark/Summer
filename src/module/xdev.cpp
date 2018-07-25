@@ -1,4 +1,5 @@
 #include "xdev.h"
+#include "xserial.h"
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -8,6 +9,16 @@
  *****************************************************************************/
 XDev::XDev()
 {
+    create_irDev();
+
+    m_pThread = new QThread(this);
+    m_pTimer = new QTimer();
+    m_pTimer->moveToThread(m_pThread);
+    m_pTimer->setInterval(100);
+    connect(m_pThread, SIGNAL(started()), m_pTimer, SLOT(start()));
+    connect(m_pTimer, &QTimer::timeout, this, &XDev::timeOutSlot, Qt::DirectConnection);
+    //begin thread to run
+    m_pThread->start();
 }
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -17,6 +28,40 @@ XDev::XDev()
  *****************************************************************************/
 XDev::~XDev()
 {
+    m_pThread->quit();
+    m_pThread->wait();
+    //m_pThread->destroyed();
+
+    MAG_StopProcessImage(channelIndex);
+    MAG_DisLinkCamera(channelIndex);
+    MAG_Free(channelIndex);
+    MAG_DelChannel(channelIndex);
+}
+
+void XDev::run()
+{
+    m_pTimer->start(1000);
+}
+
+
+void XDev::timeOutSlot()
+{
+    if (XSerial::Get()->get_poleSpeed(&cradle_speed)) {
+        if (cradle_speed > 0x100 || cradle_speed < -0x100) {
+                XSerial::Get()->set_cradleSpeed(&cradle_speed);
+                return;
+        }
+    }
+    if (button_state == 1) {
+        cradle_speed = 0x180;
+        XSerial::Get()->set_cradleSpeed(&cradle_speed);
+    } else if (button_state == 2) {
+        cradle_speed = -0x180;
+        XSerial::Get()->set_cradleSpeed(&cradle_speed);
+    } else {
+        cradle_speed = 0x0;
+        XSerial::Get()->set_cradleSpeed(&cradle_speed);
+    }
 }
 
 /*****************************************************************************
@@ -31,6 +76,12 @@ XDev * XDev::Get()
     return &xd;
 }
 
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.18
+    Description	:
+ *****************************************************************************/
 struct_CamInfo XDev::get_cameraInfo()
 {
     return m_CamInfo;
@@ -64,33 +115,33 @@ bool XDev::create_irDev()
 	Date		: 2018.07.17
 	Description	: 刷新红外图传
  *****************************************************************************/
-bool XDev::refresh_irDev()
+QStringList XDev::refresh_irDev()
 {
+    QStringList list = {};
     std::vector<struct_TerminalList> m_vTermList;
 
     if (!MAG_IsInitialized(channelIndex)) {
-        return false;
+        return { "No Init" };
     }
+#if 0
     if (!MAG_IsLinked(channelIndex)) {
         if(!MAG_LinkCamera(channelIndex, ip, timeout)) {
-            return false;
+            return { "No Link" };
         }
     }
+#endif
     if (!MAG_EnumCameras()) {
-        return false;
+        return { "No Enum" };
     }
     Sleep(200);
     int n = MAG_GetTerminalList(NULL, 0);
     m_vTermList.resize(n);
 
-    QStringList list;
     for (int i = 0; i < n; i++) {
+        MAG_GetTerminalList(&m_vTermList[i], sizeof(m_vTermList[i]));
         list << QString(m_vTermList[i].charTerminalName);
     }
-
-    emit devList(list);
-
-    return true;
+    return list;
 }
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -116,17 +167,38 @@ bool XDev::connect_irDev()
     Date		: 2018.06.06
     Description	: 用于发送图像帧
  *****************************************************************************/
-void CALLBACK XDev::newFrame(UINT intChannelIndex, int intCameraTemperature,
+void CALLBACK newFrame(UINT intChannelIndex, int intCameraTemperature,
     DWORD dwFFCCounterdown, DWORD dwCamState,
     DWORD dwStreamType, void * dwUser)
 {
     Q_UNUSED(intChannelIndex);
+    Q_UNUSED(intCameraTemperature);
     Q_UNUSED(dwFFCCounterdown);
+    Q_UNUSED(dwCamState);
     Q_UNUSED(dwStreamType);
     Q_UNUSED(dwUser);
 
+    MAG_LockFrame(XDev::Get()->channelIndex);
+
+    const UCHAR * pData = NULL;
+    const BITMAPINFO * pInfo = NULL;
+
+    BOOL isBMPData = MAG_GetOutputBMPdata(XDev::Get()->channelIndex, &pData, &pInfo);
+
+    MAG_UnLockFrame(XDev::Get()->channelIndex);
+
     //TODO 此处开始处理显示帧
-    emit magFrame(intCameraTemperature, dwCamState);
+    if (isBMPData) {
+        struct_CamInfo cameraInfo = XDev::Get()->get_cameraInfo();
+        Mat postMat = Mat(cameraInfo.intVideoHeight, cameraInfo.intVideoWidth, CV_8UC1);
+        memcpy(postMat.data, pData, cameraInfo.intVideoWidth * cameraInfo.intVideoHeight);
+        //原始图像
+        rotate(postMat, postMat, ROTATE_180);
+        emit XDev::Get()->magFrame(postMat);
+    }
+
+    //处理下一帧
+    MAG_TransferPulseImage(XDev::Get()->channelIndex);
 }
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -142,16 +214,16 @@ bool XDev::play_irDev()
     if (!MAG_IsLinked(channelIndex)) {
         return false;
     }
+    if (MAG_IsProcessingImage(channelIndex))
+        return true;
 
-    //TODO
-    //MAG_GetCamInfo(channelIndex, &m_CamInfo, sizeof(&m_CamInfo));
-    //const struct_CamInfo camInfo = Get_CamInfo();
-    //OutputPara paraOut = { m_CamInfo->intFPAWidth, m_CamInfo->intFPAHeight, m_CamInfo->intVideoWidth,
-               //            m_CamInfo->intVideoHeight, 16, m_CamInfo->intVideoHeight  };	//参数5\6为色卡条的宽高
+    MAG_GetCamInfo(channelIndex, &m_CamInfo, sizeof(m_CamInfo));
+    OutputPara paraOut = { m_CamInfo.intFPAWidth, m_CamInfo.intFPAHeight, m_CamInfo.intVideoWidth,
+                           m_CamInfo.intVideoHeight, 16, m_CamInfo.intVideoHeight  };	//参数5\6为色卡条的宽高
 
-    //DWORD streamType = STREAM_TEMPERATURE;
-    //return MAG_StartProcessImage(channelIndex, &paraOut, newFrame, streamType, (void *)this);
-    return true;
+    DWORD streamType = STREAM_TEMPERATURE;
+
+    return MAG_StartProcessImage(channelIndex, &paraOut, newFrame, streamType, (void *)this);
 }
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -187,7 +259,10 @@ void XDev::free_irDev() {}
 	Date		: 2018.07.17
 	Description	: 销毁红外图传实例
  *****************************************************************************/
-void XDev::auto_focus() {}
+void XDev::auto_focus()
+{
+    MAG_SetPTZCmd(channelIndex, PTZFocusAuto, 0);
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
@@ -208,11 +283,27 @@ void XDev::far_focus() {}
 	Date		: 2018.07.17
 	Description	: 销毁红外图传实例
  *****************************************************************************/
-void XDev::up_cradle() {}
+void XDev::up_cradle()
+{
+    button_state = 1;
+}
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.17
+    Description	: 销毁红外图传实例
+ *****************************************************************************/
+void XDev::stop_cradle()
+{
+    button_state = 0;
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
 	Description	: 销毁红外图传实例
  *****************************************************************************/
-void XDev::down_cradle() {}
+void XDev::down_cradle()
+{
+    button_state = 2;
+}

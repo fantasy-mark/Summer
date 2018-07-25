@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui serialport printsupport network webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,20 +24,48 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += \
     src/ui/ \
+    src/module/ \
     src
 
 SOURCES += \
     src/ui/summer.cpp \
     src/main.cpp \
     src/module/xserial.cpp \
-    src/module/xserial.cpp \
-    src/module/test_summery.cpp
+    src/module/xdev.cpp \
+    src/module/xreport.cpp \
+    src/module/logsys.cpp \
+    src/module/xview.cpp \
+    src/module/xpro.cpp \
+    src/module/xsec.cpp
 
 HEADERS += \
     src/ui/summer.h \
     src/module/xserial.h \
-    src/module/xserial.h \
-    src/module/test_summery.h
+    src/module/xdev.h \
+    src/module/xreport.h \
+    src/module/logsys.h \
+    src/module/xview.h \
+    src/module/xpro.h \
+    src/module/xsec.h \
+    src/kitconfig.h
 
 FORMS += \
-    src/ui/summer.ui
+    src/ui/summer.ui \
+    src/ui/irExam.ui \
+    src/ui/assessReport.ui \
+    src/ui/baseInfo.ui \
+    src/ui/customerSearch.ui \
+    src/ui/recuperatePlan.ui \
+    src/ui/selfCheck.ui \
+    src/ui/userManager.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340d
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include
+
+win32: LIBS += -L$$PWD/lib/ -lThermoGroupSDKLib
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include

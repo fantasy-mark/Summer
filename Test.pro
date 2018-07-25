@@ -45,6 +45,12 @@ HEADERS += \
     src/module/test_summer.h \
     src/module/xdev.h \
 
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340d
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include
+
 win32: LIBS += -L$$PWD/lib/ -lThermoGroupSDKLib
 
 INCLUDEPATH += $$PWD/include

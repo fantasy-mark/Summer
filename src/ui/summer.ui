@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>684</width>
-    <height>326</height>
+    <width>1440</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,173 +16,95 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QWidget" name="gridLayoutWidget">
+  <widget class="QPushButton" name="customerSearchB">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>43</y>
-     <width>661</width>
-     <height>271</height>
+     <x>106</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" rowstretch="1,1,1,1,1,1,1">
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="l2">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>git clone https://github.com/fantasy-mark/Summery.git</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="clone">
-      <property name="text">
-       <string>clone</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="pull">
-      <property name="text">
-       <string>pull</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QPushButton" name="commit">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(177, 157, 255);</string>
-      </property>
-      <property name="text">
-       <string>commit</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLineEdit" name="l5">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>git commit -m &quot;your commit info&quot;</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="l3">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>git pull origin master</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>create</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="l1">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(222, 230, 255);</string>
-      </property>
-      <property name="text">
-       <string>git init</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(177, 157, 255);</string>
-      </property>
-      <property name="text">
-       <string>add</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QLineEdit" name="l4">
-      <property name="text">
-       <string>git add *</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="text">
-       <string>git push -u origin master</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QPushButton" name="push">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(177, 157, 255);</string>
-      </property>
-      <property name="text">
-       <string>push</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>add remote</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(222, 230, 255);</string>
-      </property>
-      <property name="text">
-       <string>git remote add origin https://github.com/fantasy-mark/Summer.git</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <property name="text">
+    <string>客户搜索</string>
+   </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QPushButton" name="userManagerB">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>641</width>
-     <height>28</height>
+     <x>26</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(222, 230, 255);</string>
+   <property name="text">
+    <string>管理员登录</string>
    </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;tips : 必须在 https://github.com/fantasy-mark 建立repo&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </widget>
+  <widget class="QPushButton" name="irExamB">
+   <property name="geometry">
+    <rect>
+     <x>349</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>影像拍摄</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="baseInfoRecordB">
+   <property name="geometry">
+    <rect>
+     <x>187</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>基本信息</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="selfCheckRecordB">
+   <property name="geometry">
+    <rect>
+     <x>268</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>信息咨询</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="recuperatePlanB">
+   <property name="geometry">
+    <rect>
+     <x>511</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>调理方案</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="assessReportB">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>20</y>
+     <width>75</width>
+     <height>75</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>测评报告</string>
    </property>
   </widget>
  </widget>
@@ -190,125 +112,125 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>irExamB</sender>
    <signal>clicked()</signal>
    <receiver>Summer</receiver>
-   <slot>git_create()</slot>
+   <slot>create_irExamPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
+     <x>384</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>376</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customerSearchB</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>create_customerSearchPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>66</x>
+     <y>118</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseInfoRecordB</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>create_baseInfoPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>225</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>244</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selfCheckRecordB</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>create_selfCheckPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>315</x>
+     <y>60</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>309</x>
+     <y>180</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>assessReportB</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>create_assessReportPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>458</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>458</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>recuperatePlanB</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>create_recuperatePlanPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>545</x>
      <y>56</y>
     </hint>
     <hint type="destinationlabel">
-     <x>6</x>
-     <y>61</y>
+     <x>545</x>
+     <y>155</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>clone</sender>
+   <sender>userManagerB</sender>
    <signal>clicked()</signal>
    <receiver>Summer</receiver>
-   <slot>git_clone()</slot>
+   <slot>create_userManagerPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>42</x>
-     <y>97</y>
+     <x>67</x>
+     <y>75</y>
     </hint>
     <hint type="destinationlabel">
-     <x>7</x>
-     <y>98</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pull</sender>
-   <signal>clicked()</signal>
-   <receiver>Summer</receiver>
-   <slot>git_pull()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>30</x>
-     <y>127</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>7</x>
-     <y>132</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
-   <signal>clicked()</signal>
-   <receiver>Summer</receiver>
-   <slot>git_add()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>44</x>
-     <y>171</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>5</x>
-     <y>173</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>commit</sender>
-   <signal>clicked()</signal>
-   <receiver>Summer</receiver>
-   <slot>git_commit()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>32</x>
-     <y>226</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>7</x>
-     <y>208</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>push</sender>
-   <signal>clicked()</signal>
-   <receiver>Summer</receiver>
-   <slot>git_push()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>26</x>
-     <y>302</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>0</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_3</sender>
-   <signal>clicked()</signal>
-   <receiver>Summer</receiver>
-   <slot>git_addRemote()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>71</x>
-     <y>251</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>6</x>
-     <y>241</y>
+     <x>73</x>
+     <y>229</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>git_create()</slot>
-  <slot>git_clone()</slot>
-  <slot>git_pull()</slot>
-  <slot>git_add()</slot>
-  <slot>git_commit()</slot>
-  <slot>git_push()</slot>
-  <slot>git_addRemote()</slot>
+  <slot>create_irExamPage()</slot>
+  <slot>create_customerSearchPage()</slot>
+  <slot>create_baseInfoPage()</slot>
+  <slot>create_selfCheckPage()</slot>
+  <slot>create_assessReportPage()</slot>
+  <slot>create_recuperatePlanPage()</slot>
+  <slot>create_userManagerPage()</slot>
  </slots>
 </ui>
