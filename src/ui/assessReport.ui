@@ -228,14 +228,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <layout class="QGridLayout" name="gridLayout_11">
     <item row="1" column="4">
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="commitB">
       <property name="text">
-       <string>打印预览</string>
+       <string>提交</string>
       </property>
      </widget>
     </item>
     <item row="1" column="5">
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="printB">
       <property name="text">
        <string>打印并上传</string>
       </property>
@@ -277,7 +277,32 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
+  <widget class="QWebEngineView" name="reportView">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>1361</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="url">
+    <url>
+     <string>about:blank</string>
+    </url>
+   </property>
+   <property name="zoomFactor">
+    <double>1.900000000000000</double>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

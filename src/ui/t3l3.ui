@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>T3L3</class>
+ <widget class="QWidget" name="T3L3">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1331</width>
+    <height>23</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1331</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,0,0,0,0">
+    <item row="1" column="2">
+     <widget class="QLineEdit" name="s12"/>
+    </item>
+    <item row="1" column="4">
+     <widget class="QLineEdit" name="s14"/>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLineEdit" name="s16"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_29">
+      <property name="text">
+       <string>服药过敏史</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="s13">
+      <property name="text">
+       <string>西药，药名：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="s11">
+      <property name="text">
+       <string>中药，药名：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLabel" name="s15">
+      <property name="text">
+       <string>成药，药名：</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

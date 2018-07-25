@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui serialport printsupport network webenginewidgets
+QT       += core gui serialport printsupport network webenginewidgets webengine
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,6 +16,7 @@ TEMPLATE = app
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
+
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -57,7 +58,20 @@ FORMS += \
     src/ui/customerSearch.ui \
     src/ui/recuperatePlan.ui \
     src/ui/selfCheck.ui \
-    src/ui/userManager.ui
+    src/ui/userManager.ui \
+    src/ui/t3l0.ui \
+    src/ui/t3l1.ui \
+    src/ui/t3l2.ui \
+    src/ui/t3l3.ui \
+    src/ui/t3l4.ui \
+    src/ui/t3l5.ui \
+    src/ui/t3l6.ui \
+    src/ui/t3l7.ui \
+    src/ui/t3l8.ui \
+    src/ui/t3l9.ui \
+    src/ui/t3l10.ui \
+    src/ui/t3l11.ui \
+    src/ui/t3l12.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340d

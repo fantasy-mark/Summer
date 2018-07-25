@@ -143,7 +143,19 @@ void XReport::test_post()
 //	netManager->put(request, dataArray);
 }
 
+QString XReport ::create_Report(void)
+{
+    QByteArray text;
+    QFile file("C:/Users/Administrator/source/repos/Summer/doc/temple.html");
+    if (file.open(QIODevice::ReadOnly)) {		//以只读方式打开
+        text = file.readAll();
+        file.close();
+    }
 
+    html = QString(text);
+
+    return html;
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
@@ -152,15 +164,6 @@ void XReport::test_post()
  *****************************************************************************/
 QString XReport::create_BIReport(void)
 {
-	QByteArray text;
-    QFile file("C:/Users/Administrator/source/repos/Summer/doc/temple.html");
-	if (file.open(QIODevice::ReadOnly)) {		//以只读方式打开
-		text = file.readAll();
-		file.close();
-	}
-
-	html = QString(text);
-	
 	QStringList baseInfoItemList = { "name", "sex", "age", "tel", "id", "height", "weight", "bmi", 
 		"temp", "fatR", "subFatR", "viscusFatR", "metabolicR", "boneMass", "bodyMoisture", "bodyAge", "bloodSugar",
 		"wristPulseL", "wristPulseLH", "wristPulseLL", "wristPulseR", "wristPulseRH", "wristPulseRL",

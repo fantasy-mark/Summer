@@ -26,6 +26,7 @@ public:
 	template <typename T>
 	QString get_checkedText(T item);
 
+    QString create_Report();
 	QString create_BIReport();
 	QString create_SCReport();
 

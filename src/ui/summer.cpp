@@ -2,10 +2,12 @@
 #include <QProcess>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QPrintDialog>
 #include "summer.h"
 
 #include "xdev.h"
 #include "xserial.h"
+#include "xreport.h"
 
 #include "ui_summer.h"
 
@@ -67,6 +69,13 @@ void Summer::disconnect_irDev()
     irExamPage->CB2->setEnabled(false);
 }
 
+void Summer::closeEvent(QCloseEvent * event)
+{
+    if (assessReportPage != NULL)
+        assessReportPage->reportView->deleteLater();
+    this->close();
+}
+
 //=============================================================================
 //=============================================================================
 //=============================================================================
@@ -115,6 +124,286 @@ void Summer::create_customerSearchPage()
     current = customerSearchWidget;
 }
 
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.10
+    Description	: 获取基本信息 & 槽函数
+ *****************************************************************************/
+void Summer::get_baseInfo(void)
+{
+    //客户信息
+    XReport::Get()->itemMap["name"] = baseInfoPage->name->text();
+    XReport::Get()->itemMap["sex"] = baseInfoPage->sex->text();
+    XReport::Get()->itemMap["age"] = baseInfoPage->age->text();
+    XReport::Get()->itemMap["tel"] = baseInfoPage->tel->text();
+    XReport::Get()->itemMap["id"] = baseInfoPage->id->text();
+    //基本检查信息
+    XReport::Get()->itemMap["height"] = baseInfoPage->height->text();
+    XReport::Get()->itemMap["weight"] = baseInfoPage->weight->text();
+    XReport::Get()->itemMap["bmi"] = baseInfoPage->bmi->text();
+    XReport::Get()->itemMap["temp"] = baseInfoPage->temp->text();
+    XReport::Get()->itemMap["fatR"] = baseInfoPage->fatR->text();
+    XReport::Get()->itemMap["subFatR"] = baseInfoPage->subFatR->text();
+    XReport::Get()->itemMap["viscusFatR"] = baseInfoPage->subFatR->text();
+    XReport::Get()->itemMap["metabolicR"] = baseInfoPage->metabolicR->text();
+    XReport::Get()->itemMap["boneMass"] = baseInfoPage->boneMass->text();
+    XReport::Get()->itemMap["bodyMoisture"] = baseInfoPage->bodyMoisture->text();
+    XReport::Get()->itemMap["bodyAge"] = baseInfoPage->bodyAge->text();
+    XReport::Get()->itemMap["bloodSugar"] = baseInfoPage->bloodSugar->text();
+    //脉诊信息
+    XReport::Get()->itemMap["wristPulseL"] = baseInfoPage->wristPulseL->text();
+    XReport::Get()->itemMap["wristPulseLH"] = baseInfoPage->wristPulseLH->text();
+    XReport::Get()->itemMap["wristPulseLL"] = baseInfoPage->wristPulseLL->text();
+    XReport::Get()->itemMap["wristPulseR"] = baseInfoPage->wristPulseR->text();
+    XReport::Get()->itemMap["wristPulseRH"] = baseInfoPage->wristPulseRH->text();
+    XReport::Get()->itemMap["wristPulseRL"] = baseInfoPage->wristPulseRL->text();
+    XReport::Get()->itemMap["armPulseL"] = baseInfoPage->armPulseL->text();
+    XReport::Get()->itemMap["armPulseLH"] = baseInfoPage->armPulseLH->text();
+    XReport::Get()->itemMap["armPulseLL"] = baseInfoPage->armPulseLL->text();
+    XReport::Get()->itemMap["armPulseR"] = baseInfoPage->armPulseR->text();
+    XReport::Get()->itemMap["armPulseRH"] = baseInfoPage->armPulseRH->text();
+    XReport::Get()->itemMap["armPulseRL"] = baseInfoPage->armPulseRL->text();
+
+    QMap<QString, QString> itemMap = XReport::Get()->itemMap;
+    QMap<QString, QString>::iterator item;
+    for (item = itemMap.begin(); item != itemMap.end(); item++) {
+        //qDebug() << item.key() << "\t" << item.value();
+    }
+
+    //============================================
+//    XReport::Get()->create_Report();
+ //   assessReportPage->reportView->page()->setHtml(XReport::Get()->create_BIReport());
+    //============================================
+}
+
+
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.13
+    Description	: 获得QCheckBox勾选项文本
+ *****************************************************************************/
+template <typename T>
+QString get_checkedText(T item)
+{
+    if (item->isChecked())
+        return item->text() + ", ";
+    else
+        return "";
+}
+
+
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.11
+    Description	: 获取自查页信息 & 槽函数
+ *****************************************************************************/
+void Summer::get_selfCheck(void)
+{
+    //家族病史
+    QString familyHistory;
+    QList<QCheckBox *> itemList0 = { t3l0->s11, t3l0->s12, t3l0->s13, t3l0->s14, t3l0->s15, t3l0->s16,
+        t3l0->s21, t3l0->s22, t3l0->s23, t3l0->s24, t3l0->s25, t3l0->s26 };
+    foreach(QCheckBox * item, itemList0) {
+        familyHistory += get_checkedText(item);
+    }
+    if (! t3l0->s32->text().simplified().isEmpty()) {
+        familyHistory += t3l0->s31->text();
+        familyHistory += t3l0->s32->text();
+    }
+    XReport::Get()->itemMap["familyHistory"] = familyHistory;
+    //过敏史
+    QString allergicHistory;
+    if (! t3l1->s11->isChecked()) {
+        if (!t3l1->s13->text().simplified().isEmpty() || !t3l1->s15->text().simplified().isEmpty()) {
+            allergicHistory += t3l1->s12->text();
+            allergicHistory += t3l1->s13->text();
+            allergicHistory += " " + t3l1->s14->text();
+            allergicHistory += t3l1->s15->text();
+        }
+    }
+    XReport::Get()->itemMap["allergicHistory"] = allergicHistory;
+    //过往病史
+    QString pastHistory;
+    QList<QCheckBox *> itemList2 = { t3l2->s11, t3l2->s12, t3l2->s13, t3l2->s14, t3l2->s15, t3l2->s16,
+        t3l2->s21, t3l2->s22, t3l2->s23, t3l2->s24, t3l2->s25, t3l2->s26,
+        t3l2->s31, t3l2->s32, t3l2->s33, t3l2->s34, t3l2->s35, t3l2->s36 };
+    foreach(QCheckBox * item, itemList2) {
+        pastHistory += get_checkedText(item);
+    }
+    if (! t3l2->s42->text().simplified().isEmpty()) {
+        pastHistory += t3l2->s41->text();
+        pastHistory += t3l2->s42->text();
+    }
+    XReport::Get()->itemMap["pastHistory"] = pastHistory;
+    //服药过敏史
+    QString drugHistory;
+    if (! t3l3->s12->text().simplified().isEmpty()) {
+        drugHistory += t3l3->s11->text();
+        drugHistory += t3l3->s12->text();
+    }
+    if (! t3l3->s14->text().simplified().isEmpty()) {
+        drugHistory += t3l3->s13->text();
+        drugHistory += t3l3->s14->text();
+    }
+    if (! t3l3->s16->text().simplified().isEmpty()) {
+        drugHistory += t3l3->s15->text();
+        drugHistory += t3l3->s16->text();
+    }
+    XReport::Get()->itemMap["drugHistory"] = drugHistory;
+    //外伤史
+    QString hurtHistory;
+    if (! t3l4->s13->text().simplified().isEmpty()) {
+        hurtHistory += t3l4->s12->text();
+        hurtHistory += t3l4->s13->text();
+    }
+    XReport::Get()->itemMap["hurtHistory"] = hurtHistory;
+    //手术史
+    QString surgeryHistory;
+    if (! t3l5->s13->text().simplified().isEmpty()) {
+        surgeryHistory += t3l5->s12->text();
+        surgeryHistory += t3l5->s13->text();
+    }
+    XReport::Get()->itemMap["surgeryHistory"] = surgeryHistory;
+    //乳腺症状
+    QString breastSymptom;
+    QList<QCheckBox *> itemList6 = { t3l6->s11, t3l6->s12, t3l6->s21, t3l6->s22, t3l6->s31, t3l6->s32,
+        t3l6->s41, t3l6->s42, t3l6->s51, t3l6->s61, t3l6->s71, t3l6->s72, t3l6->s81, t3l6->s82, t3l6->s91 };
+    foreach(QCheckBox * item, itemList6) {
+        breastSymptom += get_checkedText(item);
+    }
+    XReport::Get()->itemMap["breastSymptom"] = breastSymptom;
+    //生活习惯
+    QString lifeHabit;
+    QList<QCheckBox *> itemList7_1 = { t3l7->s12, t3l7->s13, t3l7->s14, t3l7->s15 };
+    foreach(QCheckBox * item, itemList7_1) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_2 = { t3l7->s22, t3l7->s23, t3l7->s24 };
+    foreach(QCheckBox * item, itemList7_2) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_3 = { t3l7->s32, t3l7->s33, t3l7->s34 };
+    foreach(QCheckBox * item, itemList7_3) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_4 = { t3l7->s42, t3l7->s43, t3l7->s44, t3l7->s45 };
+    foreach(QCheckBox * item, itemList7_4) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_5 = { t3l7->s52, t3l7->s53, t3l7->s54 };
+    foreach(QCheckBox * item, itemList7_5) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_6 = { t3l7->s62, t3l7->s63, t3l7->s64, t3l7->s65, t3l7->s66,
+        t3l7->s67, t3l7->s72, t3l7->s73, t3l7->s74, t3l7->s75};
+    foreach(QCheckBox * item, itemList7_6) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_8 = { t3l7->s82, t3l7->s83, t3l7->s84 };
+    foreach(QCheckBox * item, itemList7_8) {
+        lifeHabit += get_checkedText(item);
+    }
+    QList<QCheckBox *> itemList7_9 = { t3l7->s92, t3l7->s93, t3l7->s94 };
+    foreach(QCheckBox * item, itemList7_9) {
+        lifeHabit += get_checkedText(item);
+    }
+    XReport::Get()->itemMap["lifeHabit"] = lifeHabit;
+    //经络辨识
+    QString channelDistinguish;
+    QList<QCheckBox *> itemList8 = { t3l8->s11, t3l8->s12, t3l8->s13, t3l8->s14, t3l8->s15, t3l8->s16,
+        t3l8->s21, t3l8->s22, t3l8->s23, t3l8->s24, t3l8->s25, t3l8->s26, t3l8->s31, t3l8->s32 };
+    foreach(QCheckBox * item, itemList8) {
+        channelDistinguish += get_checkedText(item);
+    }
+    XReport::Get()->itemMap["channelDistinguish"] = channelDistinguish;
+    //体质辨识
+    QString physiqueDistinguish;
+    QList<QCheckBox *> itemList9 = { t3l9->s11, t3l9->s12, t3l9->s13, t3l8->s14, t3l8->s15, t3l9->s16,
+        t3l9->s21, t3l9->s22, t3l9->s23 };
+    foreach(QCheckBox * item, itemList9) {
+        physiqueDistinguish += get_checkedText(item);
+    }
+    XReport::Get()->itemMap["physiqueDistinguish"] = physiqueDistinguish;
+    //重大疾病预警
+    QString importDiseaseWarning;
+    QList<QCheckBox *> itemList10 = { t3l10->s11, t3l10->s12, t3l10->s13, t3l8->s14, t3l8->s15, t3l10->s16 };
+    foreach(QCheckBox * item, itemList10) {
+        importDiseaseWarning += get_checkedText(item);
+    }
+    XReport::Get()->itemMap["importDiseaseWarning"] = importDiseaseWarning;
+    //亚健康肝
+    QString subHealthyLiver;
+    QList<QCheckBox *> itemList11_1 = { t3l11->s12, t3l11->s13, t3l11->s14, t3l11->s15, t3l11->s16 };
+    foreach(QCheckBox * item, itemList11_1) {
+        subHealthyLiver+= get_checkedText(item);
+    }
+    XReport::Get()->itemMap["subHealthyLiver"] = subHealthyLiver;
+    //亚健康心
+    QString subHealthyHeart;
+    QList<QCheckBox *> itemList11_2 = { t3l11->s22, t3l11->s23, t3l11->s24, t3l11->s25, t3l11->s26 };
+    foreach(QCheckBox * item, itemList11_2) {
+        subHealthyHeart+= get_checkedText(item);
+    }
+    XReport::Get()->itemMap["subHealthyHeart"] = subHealthyHeart;
+    //亚健康脾
+    QString subHealthySpleen;
+    QList<QCheckBox *> itemList11_3 = { t3l11->s32, t3l11->s33, t3l11->s34, t3l11->s35, t3l11->s36 };
+    foreach(QCheckBox * item, itemList11_3) {
+        subHealthySpleen+= get_checkedText(item);
+    }
+    XReport::Get()->itemMap["subHealthySpleen"] = subHealthySpleen;
+    //亚健康肺
+    QString subHealthyLung;
+    QList<QCheckBox *> itemList11_4 = { t3l11->s42, t3l11->s43, t3l11->s44, t3l11->s45, t3l11->s46 };
+    foreach(QCheckBox * item, itemList11_4) {
+        subHealthyLung+= get_checkedText(item);
+    }
+    XReport::Get()->itemMap["subHealthyLung"] = subHealthyLung;
+    //亚健康肾
+    QString subHealthyKidney;
+    QList<QCheckBox *> itemList11_5 = { t3l11->s52, t3l11->s53, t3l11->s54 };
+    foreach(QCheckBox * item, itemList11_5) {
+        subHealthyKidney+= get_checkedText(item);
+    }
+    XReport::Get()->itemMap["subHealthyKidney"] = subHealthyKidney;
+    //现有疾病预警
+    QString existDiseaseWarning;
+    QList<QCheckBox *> itemList12 = { t3l12->s11, t3l12->s12, t3l12->s13,
+        t3l12->s31, t3l12->s32, t3l12->s33, t3l12->s31, t3l12->s32, t3l12->s33,
+        t3l12->s41, t3l12->s42, t3l12->s43, t3l12->s51, t3l12->s52 };
+    foreach(QCheckBox * item, itemList12) {
+        existDiseaseWarning += get_checkedText(item);
+    }
+    XReport::Get()->itemMap["existDiseaseWarning"] = existDiseaseWarning;
+
+    QMap<QString, QString> itemMap = XReport::Get()->itemMap;
+    QMap<QString, QString>::iterator item;
+    for (item = itemMap.begin(); item != itemMap.end(); item++) {
+        qDebug() << item.key() << "\t" << item.value();
+    }
+
+//    assessReportPage->reportView->page()->setHtml(XReport::Get()->create_SCReport());
+}
+
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.16
+    Description	: 使用系统打印机打印报告 & 槽函数
+ *****************************************************************************/
+void Summer::print_report(void)
+{
+    QPrintDialog dlg(XReport::Get()->printer, this);
+    if (dlg.exec() == QDialog::Accepted) {
+        assessReportPage->reportView->page()->print(XReport::Get()->printer, [this](bool found){
+            //if (!found) QMessageBox::information(ui->textBrowser, QString(), QStringLiteral("找不到打印机"));
+        });
+    }
+}
+
 void Summer::create_baseInfoPage()
 {
     if (baseInfoWidget != NULL) {
@@ -134,7 +423,32 @@ void Summer::create_baseInfoPage()
     baseInfoPage = new Ui::baseInfo;
     baseInfoPage->setupUi(baseInfoWidget);
     baseInfoWidget->show();
+
+    connect(baseInfoPage->commitB, SIGNAL(clicked()), this, SLOT(get_baseInfo()));
+
     current = baseInfoWidget;
+}
+
+
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.07.11
+    Description	: 创建tabListWidget控件
+ *****************************************************************************/
+template <typename T>
+T create_tlw(QListWidget * parent, T ui)
+{
+    QWidget *tlw = new QWidget(parent);
+
+    ui->setupUi(tlw);
+    int index = parent->count();
+    new QListWidgetItem(parent);
+    parent->setItemWidget(parent->item(index), ui->gridLayoutWidget);
+    parent->item(index)->setSizeHint(tlw->size());
+    tlw->resize(0, 0);
+
+    return ui;
 }
 
 void Summer::create_selfCheckPage()
@@ -155,7 +469,57 @@ void Summer::create_selfCheckPage()
     selfCheckWidget->move(0, 100);
     selfCheckPage = new Ui::selfCheck;
     selfCheckPage->setupUi(selfCheckWidget);
+
+    QListWidget * tabListWidget = new QListWidget(selfCheckWidget);
+    tabListWidget->setGeometry(QRect(10, 10, 1420, 740));
+    //若需要泛型可用typeid获得类型id,dynamic_cast强制转化为制定对象类型
+    t3l0 = create_tlw(tabListWidget, new Ui::T3L0);
+    t3l1 = create_tlw(tabListWidget, new Ui::T3L1);
+    t3l2 = create_tlw(tabListWidget, new Ui::T3L2);
+    t3l3 = create_tlw(tabListWidget, new Ui::T3L3);
+    t3l4 = create_tlw(tabListWidget, new Ui::T3L4);
+    t3l5 = create_tlw(tabListWidget, new Ui::T3L5);
+    t3l6 = create_tlw(tabListWidget, new Ui::T3L6);
+    //休息时间、吸烟、喝酒、饮茶饮咖啡、饮水、运动单选
+    t3l7 = create_tlw(tabListWidget, new Ui::T3L7);
+    QButtonGroup* t3l7g1 = new QButtonGroup(selfCheckWidget);
+    t3l7g1->addButton(t3l7->s12, 2);
+    t3l7g1->addButton(t3l7->s13, 3);
+    t3l7g1->addButton(t3l7->s14, 4);
+    t3l7g1->addButton(t3l7->s15, 5);
+    QButtonGroup* t3l7g2 = new QButtonGroup(selfCheckWidget);
+    t3l7g2->addButton(t3l7->s22, 2);
+    t3l7g2->addButton(t3l7->s23, 3);
+    t3l7g2->addButton(t3l7->s24, 4);
+    QButtonGroup* t3l7g3 = new QButtonGroup(selfCheckWidget);
+    t3l7g3->addButton(t3l7->s32, 2);
+    t3l7g3->addButton(t3l7->s33, 3);
+    t3l7g3->addButton(t3l7->s34, 4);
+    QButtonGroup* t3l7g4 = new QButtonGroup(selfCheckWidget);
+    t3l7g4->addButton(t3l7->s42, 2);
+    t3l7g4->addButton(t3l7->s43, 3);
+    t3l7g4->addButton(t3l7->s44, 4);
+    QButtonGroup* t3l7g5 = new QButtonGroup(selfCheckWidget);
+    t3l7g5->addButton(t3l7->s52, 2);
+    t3l7g5->addButton(t3l7->s53, 3);
+    QButtonGroup* t3l7g8 = new QButtonGroup(selfCheckWidget);
+    t3l7g8->addButton(t3l7->s82, 2);
+    t3l7g8->addButton(t3l7->s83, 3);
+    t3l7g8->addButton(t3l7->s84, 4);
+    QButtonGroup* t3l7g9 = new QButtonGroup(selfCheckWidget);
+    t3l7g9->addButton(t3l7->s92, 2);
+    t3l7g9->addButton(t3l7->s93, 3);
+    t3l7g9->addButton(t3l7->s94, 4);
+    t3l8 = create_tlw(tabListWidget, new Ui::T3L8);
+    t3l9 = create_tlw(tabListWidget, new Ui::T3L9);
+    t3l10 = create_tlw(tabListWidget, new Ui::T3L10);
+    t3l11 = create_tlw(tabListWidget, new Ui::T3L11);
+    t3l12 = create_tlw(tabListWidget, new Ui::T3L12);
+
     selfCheckWidget->show();
+
+    connect(selfCheckPage->commitB, SIGNAL(clicked()), this, SLOT(get_selfCheck()));
+
     current = selfCheckWidget;
 }
 
@@ -225,7 +589,16 @@ void Summer::create_assessReportPage()
     assessReportWidget->move(0, 100);
     assessReportPage = new Ui::assessReport;
     assessReportPage->setupUi(assessReportWidget);
+
+    XReport::Get()->create_Report();
+    XReport::Get()->create_BIReport();
+    QString html = XReport::Get()->create_SCReport();
+    assessReportPage->reportView->page()->setHtml(html);
+
     assessReportWidget->show();
+
+    connect(assessReportPage->printB, SIGNAL(clicked()), this, SLOT(print_report()));
+
     current = assessReportWidget;
 }
 
