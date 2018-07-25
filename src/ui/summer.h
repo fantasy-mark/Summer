@@ -34,7 +34,6 @@ public slots:
     void show_devList();
     void connect_irDev();
     void disconnect_irDev();
-    void play_irDev();
 
 private:
     Ui::Summer *ui;

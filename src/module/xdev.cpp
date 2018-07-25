@@ -32,10 +32,7 @@ XDev::~XDev()
     m_pThread->wait();
     //m_pThread->destroyed();
 
-    MAG_StopProcessImage(channelIndex);
-    MAG_DisLinkCamera(channelIndex);
-    MAG_Free(channelIndex);
-    MAG_DelChannel(channelIndex);
+    free_irDev();
 }
 
 void XDev::run()
@@ -238,21 +235,48 @@ void XDev::photo_irDev() {}
 	Date		: 2018.07.17
 	Description	: 红外图传停止
  *****************************************************************************/
-void XDev::stop_irDev() {}
+void XDev::stop_irDev()
+{
+    MAG_StopProcessImage(channelIndex);
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
 	Description	: 断开红外图传连接
  *****************************************************************************/
-void XDev::disconnect_irDev() {}
+void XDev::disconnect_irDev()
+{
+    MAG_StopProcessImage(channelIndex);
+    MAG_DisLinkCamera(channelIndex);
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
 	Description	: 销毁红外图传实例
  *****************************************************************************/
-void XDev::free_irDev() {}
+void XDev::free_irDev()
+{
+    MAG_StopProcessImage(channelIndex);
+    MAG_DisLinkCamera(channelIndex);
+    MAG_Free(channelIndex);
+    MAG_DelChannel(channelIndex);
+}
+
+void XDev::SetColorPalette(int index)
+{
+    MAG_SetColorPalette(channelIndex, (ColorPalette)index);
+}
+
+
+bool XDev::GetOutputColorBardata(unsigned char const** pData, BITMAPINFO const** pInfo)
+{
+    return MAG_GetOutputColorBardata(channelIndex, pData, pInfo);
+}
+
+
+
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
@@ -269,14 +293,20 @@ void XDev::auto_focus()
 	Date		: 2018.07.17
 	Description	: 销毁红外图传实例
  *****************************************************************************/
-void XDev::near_focus() {}
+void XDev::near_focus()
+{
+    MAG_SetPTZCmd(channelIndex, PTZFocusNear, 10);
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
 	Description	: 销毁红外图传实例
  *****************************************************************************/
-void XDev::far_focus() {}
+void XDev::far_focus()
+{
+    MAG_SetPTZCmd(channelIndex, PTZFocusFar, 10);
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )

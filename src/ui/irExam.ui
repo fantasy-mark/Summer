@@ -109,6 +109,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="AutoFocus">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1240</x>
@@ -122,6 +125,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="cradleUp">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1240</x>
@@ -135,6 +141,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="FarFocus">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1340</x>
@@ -174,6 +183,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="NearFocus">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1140</x>
@@ -264,6 +276,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="irDisconnect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1340</x>
@@ -329,6 +344,9 @@
    </property>
   </widget>
   <widget class="QComboBox" name="CB2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1220</x>

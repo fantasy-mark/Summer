@@ -37,6 +37,9 @@ public:
 
     struct_CamInfo get_cameraInfo();
 
+    void SetColorPalette(int index);
+    bool GetOutputColorBardata(unsigned char const** pData, BITMAPINFO const** pInfo);
+
 public slots:
     void run();
     void timeOutSlot();

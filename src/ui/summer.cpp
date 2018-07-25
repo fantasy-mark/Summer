@@ -42,8 +42,14 @@ void Summer::connect_irDev()
         irExamPage->irConnect->setEnabled(false);
         irExamPage->irDisconnect->setEnabled(true);
         irExamPage->Play->setEnabled(true);
+        irExamPage->Pause->setEnabled(true);
+        irExamPage->Photo->setEnabled(true);
+        irExamPage->AutoFocus->setEnabled(true);
+        irExamPage->NearFocus->setEnabled(true);
+        irExamPage->FarFocus->setEnabled(true);
+        irExamPage->CB2->setEnabled(true);
     } else {
-        QMessageBox::information(this, QString(), QStringLiteral("??????????????"));
+        QMessageBox::information(this, QString(), QStringLiteral("无法连接红外探测头"));
     }
 }
 
@@ -52,17 +58,13 @@ void Summer::disconnect_irDev()
     XDev::Get()->disconnect_irDev();
     irExamPage->irConnect->setEnabled(true);
     irExamPage->irDisconnect->setEnabled(false);
-}
-
-void Summer::play_irDev()
-{
-    if (XDev::Get()->play_irDev()) {
-        irExamPage->Play->setEnabled(false);
-        irExamPage->Pause->setEnabled(true);
-        irExamPage->Photo->setEnabled(true);
-    } else {
-        QMessageBox::information(this, QString(), QStringLiteral("???????"));
-    }
+    irExamPage->Play->setEnabled(false);
+    irExamPage->Pause->setEnabled(false);
+    irExamPage->Photo->setEnabled(false);
+    irExamPage->AutoFocus->setEnabled(false);
+    irExamPage->NearFocus->setEnabled(false);
+    irExamPage->FarFocus->setEnabled(false);
+    irExamPage->CB2->setEnabled(false);
 }
 
 //=============================================================================
@@ -157,6 +159,7 @@ void Summer::create_selfCheckPage()
     current = selfCheckWidget;
 }
 
+#define YaQian_HSV  11
 void Summer::create_irExamPage()
 {
     if (irExamWidget != NULL) {
@@ -181,9 +184,12 @@ void Summer::create_irExamPage()
     connect(irExamPage->irRefresh, SIGNAL(clicked()), this, SLOT(show_devList()));
     connect(irExamPage->irConnect, SIGNAL(clicked()), this, SLOT(connect_irDev()));
     connect(irExamPage->irDisconnect, SIGNAL(clicked()), this, SLOT(disconnect_irDev()));
-    connect(irExamPage->Play, SIGNAL(clicked()), this, SLOT(play_irDev()));
+    connect(irExamPage->Play, SIGNAL(clicked()), XDev::Get(), SLOT(play_irDev()));
+    connect(irExamPage->Pause, SIGNAL(clicked()), XDev::Get(), SLOT(stop_irDev()));
     connect(XDev::Get(), SIGNAL(magFrame(cv::Mat)), irExamPage->View, SLOT(play(cv::Mat)));
     connect(irExamPage->AutoFocus, SIGNAL(clicked()), XDev::Get(), SLOT(auto_focus()));
+    connect(irExamPage->FarFocus, SIGNAL(clicked()), XDev::Get(), SLOT(far_focus()));
+    connect(irExamPage->NearFocus, SIGNAL(clicked()), XDev::Get(), SLOT(near_focus()));
     //cradle & pole signal & slot
     connect(irExamPage->cradleUp, SIGNAL(pressed()), XDev::Get(), SLOT(up_cradle()));
     connect(irExamPage->cradleDown, SIGNAL(pressed()), XDev::Get(), SLOT(down_cradle()));
@@ -191,6 +197,13 @@ void Summer::create_irExamPage()
     connect(irExamPage->cradleDown, SIGNAL(released()), XDev::Get(), SLOT(stop_cradle()));
 
     show_devList();
+    //显示色卡
+    QString str = "Gray0to255|Gray255to0|IronBow|RainBow|GlowBow|Autumn|Winter|"
+                  "HotMetal|Jet|RedSaturation|HighContrast|YaQian_HSV|Nice";
+    irExamPage->CB2->insertItems(0, str.split("|"));
+    irExamPage->CB2->setCurrentIndex(YaQian_HSV);
+    connect(irExamPage->CB2, SIGNAL(currentIndexChanged(int)), irExamPage->View, SLOT(set_colormap(int)));
+
     current = irExamWidget;
 }
 

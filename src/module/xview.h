@@ -48,7 +48,7 @@ protected:
 	//保存图像
 	Mat view;
 	//保存色卡
-	Mat cmMat = Mat(800, 64, CV_8UC3);
+    Mat cmMat = Mat(768, 32, CV_8UC3);
 	//保存映射表
 	Mat cmTable = Mat(256, 1, CV_8UC3);
 	//用于显示图像

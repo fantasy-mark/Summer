@@ -170,8 +170,9 @@ void XView::play(cv::Mat mat)
 		return;
 	}
 
-    cv::resize(mat, view, Size(576, 768));
-	if (img.isNull()) {
+    cv::resize(mat, mat, Size(576, 768));
+    mat.copyTo(view);
+    if (img.isNull()) {
         uchar *buf = new uchar[view.rows * view.cols * 3];
         img = QImage(buf, view.cols, view.rows, QImage::Format_RGB888);
 	}
@@ -182,7 +183,7 @@ void XView::play(cv::Mat mat)
 	}
 
 	//伪彩映射
-    //LUT(mat, cmTable, view);
+    LUT(mat, cmTable, view);
 	memcpy(img.bits(), view.data, view.rows * view.cols * view.elemSize());
 
 	//=======================================================================
@@ -297,7 +298,7 @@ void XView::set_colormap(int index)
 			rotate(cmMat, cmMat, ROTATE_180);
 			break;
 		case 12:
-			Nice = imread("Nice.bmp", CV_LOAD_IMAGE_UNCHANGED);
+            Nice = imread("C:/Users/Administrator/source/repos/Summer/doc/Nice.bmp", CV_LOAD_IMAGE_UNCHANGED);
 			for (int i = 0; i < 256; i++) {
 				cmTable.at<Vec3b>(255 - i, 0)[0] = Nice.at<Vec3b>(i, 0)[2];
 				cmTable.at<Vec3b>(255 - i, 0)[1] = Nice.at<Vec3b>(i, 0)[1];
@@ -309,11 +310,10 @@ void XView::set_colormap(int index)
 			break;
 		}
 	} else {
-#if 0
-		XDev::Get()->get_mgdevice()->SetColorPalette((ColorPalette)index);
+        XDev::Get()->SetColorPalette((ColorPalette)index);
 		//pData-指向颜色条位图数据区指针, pInfo-指向颜色条位图信息区指针
 		//TODO 此处有坑，注意先要初始化巨哥摄像头后才可以获取成功读取相关数据
-		if (XDev::Get()->get_mgdevice()->GetOutputColorBardata(&pBarData, &pBarInfo)) {
+        if (XDev::Get()->GetOutputColorBardata(&pBarData, &pBarInfo)) {
 			PrWarning("获取成功");
 
 			IplImage * lookUpTable = cvCreateImage(CvSize(256, 1), IPL_DEPTH_8U, 3);
@@ -330,6 +330,5 @@ void XView::set_colormap(int index)
 		} else {
 			PrWarning("获取失败");
 		}
-#endif
 	}
 }
