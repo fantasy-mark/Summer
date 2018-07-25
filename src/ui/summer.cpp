@@ -549,8 +549,9 @@ void Summer::create_irExamPage()
     connect(irExamPage->irConnect, SIGNAL(clicked()), this, SLOT(connect_irDev()));
     connect(irExamPage->irDisconnect, SIGNAL(clicked()), this, SLOT(disconnect_irDev()));
     connect(irExamPage->Play, SIGNAL(clicked()), XDev::Get(), SLOT(play_irDev()));
-    connect(irExamPage->Pause, SIGNAL(clicked()), XDev::Get(), SLOT(stop_irDev()));
     connect(XDev::Get(), SIGNAL(magFrame(cv::Mat)), irExamPage->View, SLOT(play(cv::Mat)));
+    connect(irExamPage->Pause, SIGNAL(clicked()), XDev::Get(), SLOT(stop_irDev()));
+    connect(irExamPage->Photo, SIGNAL(clicked()), irExamPage->View, SLOT(photo()));
     connect(irExamPage->AutoFocus, SIGNAL(clicked()), XDev::Get(), SLOT(auto_focus()));
     connect(irExamPage->FarFocus, SIGNAL(clicked()), XDev::Get(), SLOT(far_focus()));
     connect(irExamPage->NearFocus, SIGNAL(clicked()), XDev::Get(), SLOT(near_focus()));
@@ -579,6 +580,10 @@ void Summer::create_assessReportPage()
             assessReportWidget->show();
             current =  assessReportWidget;
         }
+        XReport::Get()->create_Report();
+        XReport::Get()->create_BIReport();
+        QString html = XReport::Get()->create_SCReport();
+        assessReportPage->reportView->page()->setHtml(html);
         return;
     }
 
@@ -593,6 +598,7 @@ void Summer::create_assessReportPage()
     XReport::Get()->create_Report();
     XReport::Get()->create_BIReport();
     QString html = XReport::Get()->create_SCReport();
+
     assessReportPage->reportView->page()->setHtml(html);
 
     assessReportWidget->show();

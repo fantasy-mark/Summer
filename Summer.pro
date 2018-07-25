@@ -37,7 +37,8 @@ SOURCES += \
     src/module/logsys.cpp \
     src/module/xview.cpp \
     src/module/xpro.cpp \
-    src/module/xsec.cpp
+    src/module/xsec.cpp \
+    src/module/ximage.cpp
 
 HEADERS += \
     src/ui/summer.h \
@@ -48,7 +49,8 @@ HEADERS += \
     src/module/xview.h \
     src/module/xpro.h \
     src/module/xsec.h \
-    src/kitconfig.h
+    src/kitconfig.h \
+    src/module/ximage.h
 
 FORMS += \
     src/ui/summer.ui \

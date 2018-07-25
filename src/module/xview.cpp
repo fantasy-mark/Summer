@@ -45,7 +45,7 @@ XView::~XView()
 	Date		: 2018.04.28
 	Description	: 绘图到IrView
  ******************************************************************************/
-void XView::paintEvent(QPaintEvent *e)
+void XView::paintEvent(QPaintEvent * event)
 {
 	pen.begin(this);
     pen.drawImage(QPoint(0, 0), img);
@@ -159,22 +159,25 @@ void XView::trackFeature()
 
 void XView::play(cv::Mat mat)
 {
-	switch (mat.channels()) {
+    switch (mat.channels()) {
 	case 1:
+        //注意此处是转化为线性rgb的3位宽数据
         cvtColor(mat, mat, CV_GRAY2RGB, 0);
+//        cvtColor(mat, mat, CV_BGR2RGB);
 		break;
 	case 3:
 		break;
 	default:
 		PrWarning("不支持的Mat格式");
 		return;
-	}
+    }
 
+    rotate(mat, mat, ROTATE_180);
     cv::resize(mat, mat, Size(576, 768));
-    mat.copyTo(view);
+
     if (img.isNull()) {
-        uchar *buf = new uchar[view.rows * view.cols * 3];
-        img = QImage(buf, view.cols, view.rows, QImage::Format_RGB888);
+        uchar *buf = new uchar[mat.rows * mat.cols * 3];
+        img = QImage(buf, mat.cols, mat.rows, QImage::Format_RGB888);
 	}
 	if (cm.isNull()) {
 		uchar *cmbuf = new uchar[cmMat.rows * cmMat.cols * cmMat.elemSize()];
@@ -184,7 +187,8 @@ void XView::play(cv::Mat mat)
 
 	//伪彩映射
     LUT(mat, cmTable, view);
-	memcpy(img.bits(), view.data, view.rows * view.cols * view.elemSize());
+    imshow("view", view);
+    memcpy(img.bits(), view.data, view.rows * view.cols * view.elemSize());
 
 	//=======================================================================
 #if 0
@@ -237,6 +241,7 @@ void XView::play(cv::Mat mat)
 	//	cv::FONT_HERSHEY_SCRIPT_SIMPLEX, 0.5, cv::Scalar(255, 255, 0), 1, 8);
 
 //	memcpy(cm.bits(), cmMat.data, cmMat.rows * cmMat.cols * cmMat.elemSize());
+    //imshow("test photo", view);
 	update();
 }
 
@@ -257,10 +262,11 @@ void XView::pause()
 	Date		: 2018.06.06
 	Description	: 拍照 & 槽函数
  *****************************************************************************/
-void XView::photo(cv::Mat mat)
+void XView::photo()
 {
 	QDateTime currentTime = QDateTime::currentDateTime();
 	QString current_date = PICTURE_PATH + currentTime.toString("yyyy_MM_dd_hh_mm_ss") + ".png";
+    qDebug() << "photo";
 	//因需求改变,直接保存彩色图
 	imwrite(current_date.toStdString(), view);
 }
@@ -295,7 +301,7 @@ void XView::set_colormap(int index)
 			XPro::Get()->rainbowColorMap();
 			rotate(XPro::Get()->get_colormap(), cmTable, ROTATE_90_COUNTERCLOCKWISE);
 			cv::resize(cmTable, cmMat, cmMat.size());
-			rotate(cmMat, cmMat, ROTATE_180);
+            rotate(cmMat, cmMat, ROTATE_180);
 			break;
 		case 12:
             Nice = imread("C:/Users/Administrator/source/repos/Summer/doc/Nice.bmp", CV_LOAD_IMAGE_UNCHANGED);
@@ -315,9 +321,6 @@ void XView::set_colormap(int index)
 		//TODO 此处有坑，注意先要初始化巨哥摄像头后才可以获取成功读取相关数据
         if (XDev::Get()->GetOutputColorBardata(&pBarData, &pBarInfo)) {
 			PrWarning("获取成功");
-
-			IplImage * lookUpTable = cvCreateImage(CvSize(256, 1), IPL_DEPTH_8U, 3);
-			//Mat cmTable(1, 256, CV_8UC3);
 
 			//此处是调色板Mat TODO
 			for (int i = 0; i < 256; i++) {

@@ -34,7 +34,7 @@ std::vector<Point2f> fpts[2];
 public slots:
 	void play(cv::Mat);
 	void pause();
-	void photo(cv::Mat);
+    void photo();
 
 	void show_image(QString path);
 	void select_colormap(QString type);

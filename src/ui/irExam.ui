@@ -26,22 +26,22 @@
     <string>显示照片</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="ImageList">
+  <widget class="XImage" name="ImageList">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>320</y>
-     <width>251</width>
+     <width>261</width>
      <height>341</height>
     </rect>
    </property>
   </widget>
-  <widget class="QListWidget" name="ImageList_2">
+  <widget class="XImage" name="ImageList_2">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>50</y>
-     <width>251</width>
+     <width>261</width>
      <height>231</height>
     </rect>
    </property>
@@ -224,13 +224,13 @@
    <property name="geometry">
     <rect>
      <x>1340</x>
-     <y>425</y>
+     <y>410</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>拍照</string>
+    <string>全身拍照</string>
    </property>
   </widget>
   <widget class="QComboBox" name="CB1">
@@ -411,12 +411,33 @@
     <string>提交</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="Photo_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>1340</x>
+     <y>440</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>乳腺拍照</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
    <class>XView</class>
    <extends>QOpenGLWidget</extends>
    <header>xview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>XImage</class>
+   <extends>QListWidget</extends>
+   <header location="global">ximage.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

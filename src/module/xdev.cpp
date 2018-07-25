@@ -228,7 +228,25 @@ bool XDev::play_irDev()
 	Date		: 2018.07.17
 	Description	: 红外图传拍照
  *****************************************************************************/
-void XDev::photo_irDev() {}
+void XDev::photo_irDev()
+{
+    const UCHAR * pData = NULL;
+    const BITMAPINFO * pInfo = NULL;
+
+    BOOL isBMPData = MAG_GetOutputBMPdata(channelIndex, &pData, &pInfo);
+
+    MAG_UnLockFrame(channelIndex);
+
+    //TODO 此处开始处理显示帧
+    if (isBMPData) {
+        struct_CamInfo cameraInfo = m_CamInfo;
+        Mat postMat = Mat(cameraInfo.intVideoHeight, cameraInfo.intVideoWidth, CV_8UC1);
+        memcpy(postMat.data, pData, cameraInfo.intVideoWidth * cameraInfo.intVideoHeight);
+        //原始图像
+        rotate(postMat, postMat, ROTATE_180);
+        emit photo(postMat);
+    }
+}
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )

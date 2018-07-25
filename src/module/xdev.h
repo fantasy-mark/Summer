@@ -63,6 +63,7 @@ public slots:
 signals:
     void devList(QStringList list);
     void magFrame(cv::Mat);
+    void photo(cv::Mat);
 
 private:
     XDev();
