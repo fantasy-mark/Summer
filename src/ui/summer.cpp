@@ -46,10 +46,12 @@ void Summer::connect_irDev()
         irExamPage->Play->setEnabled(true);
         irExamPage->Pause->setEnabled(true);
         irExamPage->Photo->setEnabled(true);
+        irExamPage->Photo_2->setEnabled(true);
         irExamPage->AutoFocus->setEnabled(true);
         irExamPage->NearFocus->setEnabled(true);
         irExamPage->FarFocus->setEnabled(true);
         irExamPage->CB2->setEnabled(true);
+        XDev::Get()->play_irDev();
     } else {
         QMessageBox::information(this, QString(), QStringLiteral("无法连接红外探测头"));
     }
@@ -63,6 +65,7 @@ void Summer::disconnect_irDev()
     irExamPage->Play->setEnabled(false);
     irExamPage->Pause->setEnabled(false);
     irExamPage->Photo->setEnabled(false);
+    irExamPage->Photo_2->setEnabled(false);
     irExamPage->AutoFocus->setEnabled(false);
     irExamPage->NearFocus->setEnabled(false);
     irExamPage->FarFocus->setEnabled(false);
@@ -551,10 +554,20 @@ void Summer::create_irExamPage()
     connect(irExamPage->Play, SIGNAL(clicked()), XDev::Get(), SLOT(play_irDev()));
     connect(XDev::Get(), SIGNAL(magFrame(cv::Mat)), irExamPage->View, SLOT(play(cv::Mat)));
     connect(irExamPage->Pause, SIGNAL(clicked()), XDev::Get(), SLOT(stop_irDev()));
-    connect(irExamPage->Photo, SIGNAL(clicked()), irExamPage->View, SLOT(photo()));
+    connect(irExamPage->Photo, SIGNAL(clicked()), irExamPage->View, SLOT(photoBody()));
+    connect(irExamPage->Photo_2, SIGNAL(clicked()), irExamPage->View, SLOT(photoBreast()));
     connect(irExamPage->AutoFocus, SIGNAL(clicked()), XDev::Get(), SLOT(auto_focus()));
     connect(irExamPage->FarFocus, SIGNAL(clicked()), XDev::Get(), SLOT(far_focus()));
     connect(irExamPage->NearFocus, SIGNAL(clicked()), XDev::Get(), SLOT(near_focus()));
+    //image list in widget del & show
+    connect(irExamPage->Del, SIGNAL(clicked()), irExamPage->ImageList, SLOT(del_image()));
+    connect(irExamPage->Del_2, SIGNAL(clicked()), irExamPage->ImageList_2, SLOT(del_image()));
+    irExamPage->ImageList->setup_dir("c:/rrk/picture/body/");
+    connect(irExamPage->Show, SIGNAL(clicked()), irExamPage->ImageList, SLOT(show_image()));
+    irExamPage->ImageList_2->setup_dir("c:/rrk/picture/breast/");
+    connect(irExamPage->Show_2, SIGNAL(clicked()), irExamPage->ImageList_2, SLOT(show_image()));
+    connect(irExamPage->ImageList, SIGNAL(show_image(QString)), irExamPage->View, SLOT(show_image(QString)));
+    connect(irExamPage->ImageList_2, SIGNAL(show_image(QString)), irExamPage->View, SLOT(show_image(QString)));
     //cradle & pole signal & slot
     connect(irExamPage->cradleUp, SIGNAL(pressed()), XDev::Get(), SLOT(up_cradle()));
     connect(irExamPage->cradleDown, SIGNAL(pressed()), XDev::Get(), SLOT(down_cradle()));

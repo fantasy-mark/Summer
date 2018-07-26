@@ -13,6 +13,7 @@ class XImage : public QListWidget
 public:
 	XImage(QWidget *parent);
 	~XImage();
+    void setup_dir(QString);
 
 public slots:
 	void add_image(const QString &path);		// 目录变化调用，path是监控路径
@@ -24,6 +25,7 @@ signals:
 
 private:
 	QStringList currentFiles;	// 当前每个监控的内容目录列表
+    QString path;
 
 protected:
 	QFileSystemWatcher myWatcher;

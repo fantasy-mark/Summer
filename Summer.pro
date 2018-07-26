@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui serialport printsupport network webenginewidgets webengine
+QT       += core gui serialport printsupport network webenginewidgets webengine xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +38,8 @@ SOURCES += \
     src/module/xview.cpp \
     src/module/xpro.cpp \
     src/module/xsec.cpp \
-    src/module/ximage.cpp
+    src/module/ximage.cpp \
+    src/module/xconfig.cpp
 
 HEADERS += \
     src/ui/summer.h \
@@ -50,7 +51,8 @@ HEADERS += \
     src/module/xpro.h \
     src/module/xsec.h \
     src/kitconfig.h \
-    src/module/ximage.h
+    src/module/ximage.h \
+    src/module/xconfig.h
 
 FORMS += \
     src/ui/summer.ui \

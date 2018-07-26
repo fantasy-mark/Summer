@@ -33,6 +33,6 @@ protected:
 	XPro();
 	cv::Mat desMat;
 	cv::Mat colorMap;
-	float cm_alpha = 1.1, cm_beta = 180.0;
-	double alpha = 1, beta = 0;
+    double cm_alpha = 1.1, cm_beta = 180.0;
+    double alpha = 1., beta = 0.;
 };

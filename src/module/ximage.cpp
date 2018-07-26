@@ -2,7 +2,7 @@
 #include <QDateTime>
 #include <qDebug>
 
-QString path = "C:/rrk/picture/";//QDir::currentPath() + "/Resources/picture/";
+QString basePath = "C:/rrk/picture/";//QDir::currentPath() + "/Resources/picture/";
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -13,42 +13,47 @@ QString path = "C:/rrk/picture/";//QDir::currentPath() + "/Resources/picture/";
 XImage::XImage(QWidget *parent)
 	: QListWidget(parent)
 {
-	myWatcher.addPath(path);
-
-	const QDir dir(path);
-	currentFiles = dir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDir::DirsFirst);
-
-	connect(&myWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(add_image(QString)));
-
-	//设置图片列表框属性
-	//设置QListWidget的显示模式 \ 图片大小 \ 间距
-	this->setViewMode(QListView::IconMode);
-	this->setIconSize(QSize(160, 160));
-	this->setSpacing(16);
-	//设置自动适应布局调整（Adjust适应，Fixed不适应）\ 不能移动
-	this->setResizeMode(QListWidget::Adjust);
-	this->setMovement(QListWidget::Static);
-	//设置选择模式 单选:SingleSelection 点击+ctrl多选:MultiSelection
-	//点击和鼠标复合多选:ExtendedSelection 鼠标拖拉多选:ContiguousSelection 
-	this->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-	for (int i = 0; i < currentFiles.size(); i++) {
-		if (currentFiles[i].isNull()) continue;
-		QListWidgetItem *new_item = new QListWidgetItem;
-		new_item->setSizeHint(QSize(90, 120));
-		new_item->setIcon(QIcon(path + currentFiles[i]));
-
-		//设置text是为了保存文件路径,并且隐藏
-		new_item->setHidden(true);
-		new_item->setText(path + currentFiles[i]);
-
-		//把新加入图像放到最前
-		this->addItem(new_item);
-	}
 }
 
 XImage::~XImage()
 {
+}
+
+void XImage::setup_dir(QString dirPath)
+{
+    path = dirPath;
+    myWatcher.addPath(path);
+
+    const QDir dir(path);
+    currentFiles = dir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDir::DirsFirst);
+
+    connect(&myWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(add_image(QString)));
+
+    //设置图片列表框属性
+    //设置QListWidget的显示模式 \ 图片大小 \ 间距
+    this->setViewMode(QListView::IconMode);
+    this->setIconSize(QSize(160, 160));
+    this->setSpacing(16);
+    //设置自动适应布局调整（Adjust适应，Fixed不适应）\ 不能移动
+    this->setResizeMode(QListWidget::Adjust);
+    this->setMovement(QListWidget::Static);
+    //设置选择模式 单选:SingleSelection 点击+ctrl多选:MultiSelection
+    //点击和鼠标复合多选:ExtendedSelection 鼠标拖拉多选:ContiguousSelection
+    this->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+    for (int i = 0; i < currentFiles.size(); i++) {
+        if (currentFiles[i].isNull()) continue;
+        QListWidgetItem *new_item = new QListWidgetItem;
+        new_item->setSizeHint(QSize(90, 120));
+        new_item->setIcon(QIcon(path + currentFiles[i]));
+
+        //设置text是为了保存文件路径,并且隐藏
+        new_item->setHidden(true);
+        new_item->setText(path + currentFiles[i]);
+
+        //把新加入图像放到最前
+        this->addItem(new_item);
+    }
 }
 
 /*****************************************************************************
@@ -99,7 +104,7 @@ void XImage::add_image(const QString &path)
 void XImage::del_image()
 {
 	QList<QListWidgetItem*> itemList = this->selectedItems();
-	for (int i = 0; i < itemList.size(); i++) {
+    for (int i = 0; i < itemList.size(); i++) {
 		QFile file(itemList[i]->text());
 		if (file.exists()) {
 			file.remove();
@@ -121,6 +126,9 @@ void XImage::del_image()
 void XImage::show_image()
 {
 	QListWidgetItem * item = this->currentItem();
+    if (item == NULL)
+        return;
 	QString file_path = item->text();
-	emit show_image(file_path);
+
+    emit show_image(file_path);
 }

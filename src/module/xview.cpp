@@ -79,33 +79,31 @@ void XView::mouseMoveEvent(QMouseEvent *event)
  *****************************************************************************/
 void XView::show_image(QString path)
 {
-#if 0
-	XSec::de_sec(path);
+    //XSec::de_sec(path);
 	Mat mat = imread(path.toStdString(), CV_LOAD_IMAGE_UNCHANGED);
-	XSec::en_sec(path);
+    //XSec::en_sec(path);
 
 	switch (mat.channels()) {
 	case 1:
-		cvtColor(mat, view, CV_GRAY2RGB, 0);
+        cvtColor(mat, mat, CV_GRAY2RGB, 0);
 		break;
 	case 3:
-		mat.copyTo(view);
 		break;
 	default:
 		PrWarning("不支持的Mat格式");
 		break;
 	}
 
-	if (img.isNull()) {
+    cvtColor(mat, view, CV_BGR2RGB);
+    if (img.isNull()) {
 		uchar *buf = new uchar[view.rows * view.cols * view.elemSize()];
 		img = QImage(buf, view.cols, view.rows, QImage::Format_RGB888);
 	}
 
-	XDev::Get()->pause_dev();
+    XDev::Get()->stop_irDev();
 
 	memcpy(img.bits(), view.data, view.rows * view.cols * view.elemSize());
 	update();
-#endif
 }
 
 /*****************************************************************************
@@ -163,7 +161,6 @@ void XView::play(cv::Mat mat)
 	case 1:
         //注意此处是转化为线性rgb的3位宽数据
         cvtColor(mat, mat, CV_GRAY2RGB, 0);
-//        cvtColor(mat, mat, CV_BGR2RGB);
 		break;
 	case 3:
 		break;
@@ -187,7 +184,6 @@ void XView::play(cv::Mat mat)
 
 	//伪彩映射
     LUT(mat, cmTable, view);
-    imshow("view", view);
     memcpy(img.bits(), view.data, view.rows * view.cols * view.elemSize());
 
 	//=======================================================================
@@ -240,7 +236,7 @@ void XView::play(cv::Mat mat)
 	//putText(cmMat, std::to_string(pState->intMinTemperature * 0.001), Point(0, 770),
 	//	cv::FONT_HERSHEY_SCRIPT_SIMPLEX, 0.5, cv::Scalar(255, 255, 0), 1, 8);
 
-//	memcpy(cm.bits(), cmMat.data, cmMat.rows * cmMat.cols * cmMat.elemSize());
+    //	memcpy(cm.bits(), cmMat.data, cmMat.rows * cmMat.cols * cmMat.elemSize());
     //imshow("test photo", view);
 	update();
 }
@@ -262,13 +258,26 @@ void XView::pause()
 	Date		: 2018.06.06
 	Description	: 拍照 & 槽函数
  *****************************************************************************/
-void XView::photo()
+void XView::photoBody()
 {
 	QDateTime currentTime = QDateTime::currentDateTime();
-	QString current_date = PICTURE_PATH + currentTime.toString("yyyy_MM_dd_hh_mm_ss") + ".png";
-    qDebug() << "photo";
+    QString current_date = PICTURE_BODY_PATH + currentTime.toString("yyyy_MM_dd_hh_mm_ss") + ".png";
+    Mat saveMat;
+    //open以bgr排列储存数据,故需要转化后保存
+    cvtColor(view, saveMat, CV_BGR2RGB);
 	//因需求改变,直接保存彩色图
-	imwrite(current_date.toStdString(), view);
+    imwrite(current_date.toStdString(), saveMat);
+}
+
+void XView::photoBreast()
+{
+    QDateTime currentTime = QDateTime::currentDateTime();
+    QString current_date = PICTURE_BREAST_PATH + currentTime.toString("yyyy_MM_dd_hh_mm_ss") + ".png";
+    Mat saveMat;
+    //open以bgr排列储存数据,故需要转化后保存
+    cvtColor(view, saveMat, CV_BGR2RGB);
+    //因需求改变,直接保存彩色图
+    imwrite(current_date.toStdString(), saveMat);
 }
 
 void XView::set_cmAlpha(int val)
