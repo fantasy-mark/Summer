@@ -1,5 +1,6 @@
 #include "xconfig.h"
 #include <QFile>
+#include <qDebug>
 
 XConfig::XConfig()
 {
@@ -17,28 +18,36 @@ XConfig * XConfig::Get()
     return &xc;
 }
 
-void XConfig::read_xml(QString path)
+bool XConfig::load_XML(QString fileName)
 {
-    QDomDocument doc("mydocument");
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly))
-        return;
-    if (!doc.setContent(&file)) {
-        file.close();
-        return;
-    }
-    file.close();
-
-    // print out the element names of all elements that are direct children
-    // of the outermost element.
-    QDomElement docElem = doc.documentElement();
-
-    QDomNode n = docElem.firstChild();
-    while(!n.isNull()) {
-        QDomElement e = n.toElement(); // try to convert the node to an element.
-        if(!e.isNull()) {
-            globalConfig[e.tagName()] = e.text();
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        QDomDocument dom("XConfig");
+        if (dom.setContent(&file)) {
+            QDomElement docElem = dom.documentElement();
+            list_DOM(docElem);
         }
-        n = n.nextSibling();
+        file.close();
+
+        return true;
+    }
+
+    return false;
+}
+
+void XConfig::list_DOM(QDomElement docElem)
+{
+    QDomNode node = docElem.firstChild();
+
+    //叶子节点
+    if(node.toElement().isNull()) {
+        globalConfig[docElem.tagName()] = docElem.text();
+    } else {
+        while(! node.isNull()) {
+            QDomElement element = node.toElement(); // try to convert the node to an element.
+            //非叶子节点则遍历子节点
+            list_DOM(element);
+            node = node.nextSibling();
+        }
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<config type="irExam">
+	<base>
+		<user>Mark Huang</user>
+		<password>Path Of Exist</password>
+	</base>
+	<path>
+		<irPicture>/../Summer/resource/picture/</irPicture>
+	</path>
+</config>

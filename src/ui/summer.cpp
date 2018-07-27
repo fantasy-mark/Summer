@@ -3,11 +3,14 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QPrintDialog>
+#include <QFormLayout>
+#include <QTextStream>
 #include "summer.h"
 
 #include "xdev.h"
 #include "xserial.h"
 #include "xreport.h"
+#include "xconfig.h"
 
 #include "ui_summer.h"
 
@@ -82,6 +85,12 @@ void Summer::closeEvent(QCloseEvent * event)
 //=============================================================================
 //=============================================================================
 //=============================================================================
+#if 0
+template <typename T>
+QString get_checkedText(T item)
+{
+}
+#endif
 
 void Summer::create_userManagerPage()
 {
@@ -101,6 +110,54 @@ void Summer::create_userManagerPage()
     userManagerWidget->move(0, 100);
     userManagerPage = new Ui::userManager;
     userManagerPage->setupUi(userManagerWidget);
+
+    QWidget * formLayoutWidget = new QWidget(this);
+    QFormLayout * formLayout = new QFormLayout(formLayoutWidget);
+
+    formLayoutWidget->setObjectName(QStringLiteral("formLayoutWidget"));
+    formLayoutWidget->setGeometry(QRect(110, 400, 371, 231));
+
+    formLayout->setObjectName(QStringLiteral("formLayout"));
+    formLayout->setContentsMargins(0, 0, 0, 0);
+
+    int i = 0;
+    QMap<QString, QString>::iterator item = XConfig::Get()->globalConfig.begin();
+    while (item != XConfig::Get()->globalConfig.end()) {
+        qDebug() << item.key() << item.value();
+        QLabel * label = new QLabel(formLayoutWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setText(item.key());
+
+        formLayout->setWidget(i, QFormLayout::LabelRole, label);
+
+        QLineEdit * lineEdit = new QLineEdit(formLayoutWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setText(item.value());
+
+        formLayout->setWidget(i, QFormLayout::FieldRole, lineEdit);
+
+        i++;
+        item++;
+    }
+    formLayoutWidget->show();
+
+#if 0
+    QFile xmlfile("c:/rrk/test.xml");
+    QDomDocument domDocument;
+    if (!domDocument.setContent(&file, true)) {
+        file.close();
+        return;
+    }
+
+    QFile xmlfile("c:/rrk/test.xml");
+    if (xmlfile.open(QFile::WriteOnly | QFile::Text)){
+        //Dom方式写xml文件
+        QTextStream out(&xmlfile);
+        domDocument.save(out, QDomNode::EncodingFromDocument);
+        xmlfile.close();
+    }
+#endif
+
     userManagerWidget->show();
     current = userManagerWidget;
 }

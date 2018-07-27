@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QObject>
 #include <QDomDocument>
+#include <QTreeWidgetItem>
 
 /*****************************************************************************
     Copyright	: Yaqian Group
@@ -15,11 +16,12 @@ class XConfig : public QObject
     Q_OBJECT
 
 public:
-    QMap<QString, QString> globalConfig = {};
-
     ~XConfig();
     static XConfig * Get();
-    void read_xml(QString);
+    QMap<QString, QString> globalConfig = {};
+
+    bool load_XML(QString fileName);
+    void list_DOM(QDomElement docElem);
 
 private:
     XConfig();
