@@ -5,6 +5,8 @@
 #include <QPrintDialog>
 #include <QFormLayout>
 #include <QTextStream>
+#include <QScrollBar>
+#include <QPalette>
 #include "summer.h"
 
 #include "xdev.h"
@@ -107,7 +109,7 @@ void Summer::create_userManagerPage()
         current->hide();
 
     userManagerWidget = new QWidget(this);
-    userManagerWidget->move(0, 100);
+    userManagerWidget->move(0, 73);
     userManagerPage = new Ui::userManager;
     userManagerPage->setupUi(userManagerWidget);
 
@@ -120,6 +122,8 @@ void Summer::create_userManagerPage()
     formLayout->setObjectName(QStringLiteral("formLayout"));
     formLayout->setContentsMargins(0, 0, 0, 0);
 
+    //TODO 用于配置文件读取
+#if 0
     int i = 0;
     QMap<QString, QString>::iterator item = XConfig::Get()->globalConfig.begin();
     while (item != XConfig::Get()->globalConfig.end()) {
@@ -140,6 +144,7 @@ void Summer::create_userManagerPage()
         item++;
     }
     formLayoutWidget->show();
+#endif
 
 #if 0
     QFile xmlfile("c:/rrk/test.xml");
@@ -177,7 +182,7 @@ void Summer::create_customerSearchPage()
         current->hide();
 
     customerSearchWidget = new QWidget(this);
-    customerSearchWidget->move(0, 100);
+    customerSearchWidget->move(0, 73);
     customerSearchPage = new Ui::customerSearch;
     customerSearchPage->setupUi(customerSearchWidget);
     customerSearchWidget->show();
@@ -479,12 +484,13 @@ void Summer::create_baseInfoPage()
         current->hide();
 
     baseInfoWidget = new QWidget(this);
-    baseInfoWidget->move(0, 100);
+    baseInfoWidget->move(0, 73);
     baseInfoPage = new Ui::baseInfo;
     baseInfoPage->setupUi(baseInfoWidget);
     baseInfoWidget->show();
 
-    connect(baseInfoPage->commitB, SIGNAL(clicked()), this, SLOT(get_baseInfo()));
+    //TODO
+    //connect(baseInfoPage->commitB, SIGNAL(clicked()), this, SLOT(get_baseInfo()));
 
     current = baseInfoWidget;
 }
@@ -496,6 +502,7 @@ void Summer::create_baseInfoPage()
     Date		: 2018.07.11
     Description	: 创建tabListWidget控件
  *****************************************************************************/
+static int contentHeight = 0;
 template <typename T>
 T create_tlw(QListWidget * parent, T ui)
 {
@@ -506,6 +513,8 @@ T create_tlw(QListWidget * parent, T ui)
     new QListWidgetItem(parent);
     parent->setItemWidget(parent->item(index), ui->gridLayoutWidget);
     parent->item(index)->setSizeHint(tlw->size());
+    contentHeight += tlw->height();
+    qDebug() << tlw->size() << parent->item(index)->sizeHint();
     tlw->resize(0, 0);
 
     return ui;
@@ -526,12 +535,17 @@ void Summer::create_selfCheckPage()
         current->hide();
 
     selfCheckWidget = new QWidget(this);
-    selfCheckWidget->move(0, 100);
+    selfCheckWidget->move(0, 73);
     selfCheckPage = new Ui::selfCheck;
     selfCheckPage->setupUi(selfCheckWidget);
 
-    QListWidget * tabListWidget = new QListWidget(selfCheckWidget);
-    tabListWidget->setGeometry(QRect(10, 10, 1420, 740));
+    tabListWidget = new QListWidget(selfCheckPage->widget);
+    tabListWidget->setGeometry(QRect(48, 28, 1060, 680));
+    tabListWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    tabListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    tabListWidget->setVerticalScrollMode(QListWidget::ScrollPerPixel);
+//    tabListWidget->verticalScrollBar()->setSingleStep(10);
+
     //若需要泛型可用typeid获得类型id,dynamic_cast强制转化为制定对象类型
     t3l0 = create_tlw(tabListWidget, new Ui::T3L0);
     t3l1 = create_tlw(tabListWidget, new Ui::T3L1);
@@ -570,15 +584,21 @@ void Summer::create_selfCheckPage()
     t3l7g9->addButton(t3l7->s92, 2);
     t3l7g9->addButton(t3l7->s93, 3);
     t3l7g9->addButton(t3l7->s94, 4);
+#if 0
     t3l8 = create_tlw(tabListWidget, new Ui::T3L8);
     t3l9 = create_tlw(tabListWidget, new Ui::T3L9);
     t3l10 = create_tlw(tabListWidget, new Ui::T3L10);
     t3l11 = create_tlw(tabListWidget, new Ui::T3L11);
     t3l12 = create_tlw(tabListWidget, new Ui::T3L12);
+#endif
+    qDebug() << tabListWidget->size();
+    selfCheckPage->verticalScrollBar->setMaximum(contentHeight);
+    connect(selfCheckPage->verticalScrollBar, SIGNAL(valueChanged(int)), tabListWidget->verticalScrollBar(), SLOT(setValue(int)));
 
     selfCheckWidget->show();
 
-    connect(selfCheckPage->commitB, SIGNAL(clicked()), this, SLOT(get_selfCheck()));
+    //TODO
+    //connect(selfCheckPage->commitB, SIGNAL(clicked()), this, SLOT(get_selfCheck()));
 
     current = selfCheckWidget;
 }
@@ -599,7 +619,7 @@ void Summer::create_irExamPage()
         current->hide();
 
     irExamWidget = new QWidget(this);
-    irExamWidget->move(0, 100);
+    irExamWidget->move(0, 73);
     irExamPage = new Ui::irExam;
     irExamPage->setupUi(irExamWidget);
     irExamWidget->show();
@@ -661,7 +681,7 @@ void Summer::create_assessReportPage()
         current->hide();
 
     assessReportWidget = new QWidget(this);
-    assessReportWidget->move(0, 100);
+    assessReportWidget->move(0, 73);
     assessReportPage = new Ui::assessReport;
     assessReportPage->setupUi(assessReportWidget);
 
@@ -693,7 +713,7 @@ void Summer::create_recuperatePlanPage()
         current->hide();
 
     recuperatePlanWidget = new QWidget(this);
-    recuperatePlanWidget->move(0, 100);
+    recuperatePlanWidget->move(0, 73);
     recuperatePlanPage = new Ui::recuperatePlan;
     recuperatePlanPage->setupUi(recuperatePlanWidget);
     recuperatePlanWidget->show();

@@ -7,124 +7,262 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>800</height>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="gridLayoutWidget_13">
+  <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>130</y>
-     <width>1331</width>
-     <height>211</height>
+     <x>148</x>
+     <y>18</y>
+     <width>1145</width>
+     <height>740</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout_13">
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_47">
-      <property name="text">
-       <string>姓    名</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLabel" name="label_37">
-      <property name="text">
-       <string>手    机</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QLineEdit" name="lineEdit_38">
-      <property name="text">
-       <string>1999999999</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="3">
-     <widget class="QComboBox" name="comboBox">
-      <item>
-       <property name="text">
-        <string>显示20个搜索结果</string>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>1061</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>9</pointsize>
+        </font>
        </property>
-      </item>
-     </widget>
-    </item>
-    <item row="4" column="4">
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>搜索</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_48">
-      <property name="text">
-       <string>日    期</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QLineEdit" name="lineEdit_39">
-      <property name="text">
-       <string>2018.1.4-2018.2.4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="3">
-     <widget class="QLabel" name="label_49">
-      <property name="text">
-       <string>身份证号</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="4">
-     <widget class="QLineEdit" name="lineEdit_40"/>
-    </item>
-    <item row="2" column="1">
-     <widget class="QComboBox" name="comboBox_2">
-      <item>
        <property name="text">
-        <string>自定义</string>
+        <string>姓      名</string>
        </property>
-      </item>
-      <item>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>最近一天</string>
+        <string>身份证号</string>
        </property>
-      </item>
-      <item>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>282</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="lineEdit_3">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>282</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>最近一周</string>
+        <string/>
        </property>
-      </item>
-      <item>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>最近一月</string>
+        <string>日      期</string>
        </property>
-      </item>
-     </widget>
-    </item>
-    <item row="1" column="1" colspan="2">
-     <widget class="QLineEdit" name="lineEdit_34">
-      <property name="text">
-       <string>李元霸</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0" colspan="6">
-     <widget class="QListWidget" name="listWidget">
-      <item>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEdit_2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>282</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>显示最近的20条或者搜索结果</string>
+        <string>手      机</string>
        </property>
-      </item>
-     </widget>
-    </item>
-   </layout>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLineEdit" name="lineEdit_4">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>282</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>显示条目</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QComboBox" name="comboBox">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>20 个</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>200</y>
+     <width>1062</width>
+     <height>527</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>253</x>
+     <y>150</y>
+     <width>60</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(6, 50, 144);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>搜索</string>
+   </property>
   </widget>
  </widget>
  <resources/>

@@ -10,8 +10,16 @@
     <height>900</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Summer</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -19,97 +27,268 @@
   <widget class="QPushButton" name="customerSearchB">
    <property name="geometry">
     <rect>
-     <x>106</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
+     <x>460</x>
+     <y>11</y>
+     <width>52</width>
+     <height>52</height>
     </rect>
    </property>
-   <property name="text">
-    <string>客户搜索</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="userManagerB">
-   <property name="geometry">
-    <rect>
-     <x>26</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
-    </rect>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#customerSearchB
+{
+    border-image:url(:/stylePic/picture/userManager/customerSearch2.png);
+}
+QPushButton#customerSearchB:pressed
+{
+    border-image:url(:/stylePic/picture/userManager/customerSearch1.png);
+}</string>
    </property>
    <property name="text">
-    <string>管理员登录</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="irExamB">
    <property name="geometry">
     <rect>
-     <x>349</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
+     <x>720</x>
+     <y>11</y>
+     <width>52</width>
+     <height>52</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#irExamB
+{
+    border-image:url(:/stylePic/picture/userManager/irExam2.png);
+}
+QPushButton#irExamB:pressed
+{
+    border-image:url(:/stylePic/picture/userManager/irExam1.png);
+}</string>
+   </property>
    <property name="text">
-    <string>影像拍摄</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="baseInfoRecordB">
    <property name="geometry">
     <rect>
-     <x>187</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
+     <x>550</x>
+     <y>11</y>
+     <width>52</width>
+     <height>52</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#baseInfoRecordB
+{
+    border-image:url(:/stylePic/picture/userManager/baseInfo2.png);
+}
+QPushButton#baseInfoRecordB:pressed
+{
+    border-image:url(:/stylePic/picture/userManager/baseInfo1.png);
+}</string>
+   </property>
    <property name="text">
-    <string>基本信息</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="selfCheckRecordB">
    <property name="geometry">
     <rect>
-     <x>268</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
+     <x>630</x>
+     <y>11</y>
+     <width>52</width>
+     <height>52</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#selfCheckRecordB
+{
+    border-image:url(:/stylePic/picture/userManager/selfCheck2.png);
+}
+QPushButton#selfCheckRecordB:pressed
+{
+    border-image:url(:/stylePic/picture/userManager/selfCheck1.png);
+}</string>
+   </property>
    <property name="text">
-    <string>信息咨询</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="recuperatePlanB">
    <property name="geometry">
     <rect>
-     <x>511</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
+     <x>900</x>
+     <y>11</y>
+     <width>52</width>
+     <height>52</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#recuperatePlanB
+{
+    border-image:url(:/stylePic/picture/userManager/recuperatePlan2.png);
+}
+QPushButton#recuperatePlanB:pressed
+{
+    border-image:url(:/stylePic/picture/userManager/recuperatePlan1.png);
+}</string>
+   </property>
    <property name="text">
-    <string>调理方案</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="assessReportB">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>20</y>
-     <width>75</width>
-     <height>75</height>
+     <x>810</x>
+     <y>11</y>
+     <width>52</width>
+     <height>52</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#assessReportB
+{
+    border-image:url(:/stylePic/picture/userManager/aaessReport2.png);
+}
+QPushButton#assessReportB:pressed
+{
+    border-image:url(:/stylePic/picture/userManager/aaessReport1.png);
+}</string>
+   </property>
    <property name="text">
-    <string>测评报告</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroud" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>73</y>
+     <width>1440</width>
+     <height>776</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/userManager/11-background.png);</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="toolBar" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1440</width>
+     <height>73</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/userManager/9-toolBar.png);</string>
+   </property>
+   <widget class="QWidget" name="widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>14</y>
+      <width>107</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/stylePic/picture/userManager/8-logo1.png);</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>1230</x>
+      <y>19</y>
+      <width>180</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>9</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTipDuration">
+     <number>-1</number>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>  管理员登录</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../../resource/summer.qrc">
+      <normaloff>:/stylePic/picture/userManager/1.png</normaloff>:/stylePic/picture/userManager/1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>33</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextBesideIcon</enum>
+    </property>
+    <property name="autoRaise">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>849</y>
+     <width>1440</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/userManager/10-statusBar.png);</string>
+   </property>
+  </widget>
+  <zorder>widget</zorder>
+  <zorder>backgroud</zorder>
+  <zorder>toolBar</zorder>
+  <zorder>customerSearchB</zorder>
+  <zorder>irExamB</zorder>
+  <zorder>baseInfoRecordB</zorder>
+  <zorder>selfCheckRecordB</zorder>
+  <zorder>recuperatePlanB</zorder>
+  <zorder>assessReportB</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../../resource/summer.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>irExamB</sender>
@@ -208,18 +387,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>userManagerB</sender>
+   <sender>toolButton</sender>
    <signal>clicked()</signal>
    <receiver>Summer</receiver>
    <slot>create_userManagerPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>67</x>
-     <y>75</y>
+     <x>1317</x>
+     <y>33</y>
     </hint>
     <hint type="destinationlabel">
-     <x>73</x>
-     <y>229</y>
+     <x>1223</x>
+     <y>-24</y>
     </hint>
    </hints>
   </connection>

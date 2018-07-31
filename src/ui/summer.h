@@ -37,6 +37,8 @@ public:
     explicit Summer(QWidget *parent = 0);
     ~Summer();
 
+    QListWidget * tabListWidget = NULL;
+
 public slots:
     void get_baseInfo();
     void get_selfCheck();

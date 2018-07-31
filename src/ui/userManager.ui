@@ -7,111 +7,193 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>800</height>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_64">
+  <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>390</y>
-     <width>55</width>
-     <height>19</height>
+     <x>605</x>
+     <y>90</y>
+     <width>230</width>
+     <height>97</height>
     </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/userManager/8-logo2.png);</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>549</x>
+     <y>240</y>
+     <width>375</width>
+     <height>373</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/stylePic/picture/userManager/7.png);</string>
+   </property>
+   <widget class="QWidget" name="widget_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>120</y>
+      <width>43</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/stylePic/picture/userManager/2.png);</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_4" native="true">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>180</y>
+      <width>43</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/stylePic/picture/userManager/3.png);</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>250</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="text">
-    <string>密码</string>
+    <string>管理员登录</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_44">
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>682</x>
-     <y>390</y>
-     <width>237</width>
-     <height>19</height>
+     <x>644</x>
+     <y>360</y>
+     <width>216</width>
+     <height>43</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_35">
-   <property name="geometry">
-    <rect>
-     <x>682</x>
-     <y>364</y>
-     <width>237</width>
-     <height>19</height>
-    </rect>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_63">
-   <property name="geometry">
-    <rect>
-     <x>620</x>
-     <y>364</y>
-     <width>55</width>
-     <height>19</height>
-    </rect>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(180, 180, 180);
+padding-left: 10px;</string>
    </property>
    <property name="text">
     <string>用户名</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView_4">
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>270</y>
-     <width>299</width>
-     <height>87</height>
+     <x>644</x>
+     <y>420</y>
+     <width>216</width>
+     <height>43</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/res/picture/20180627165836.jpg);</string>
+    <string notr="true">color: rgb(180, 180, 180);
+padding-left: 10px;</string>
+   </property>
+   <property name="text">
+    <string>密码</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_65">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>416</y>
-     <width>299</width>
-     <height>17</height>
+     <x>600</x>
+     <y>470</y>
+     <width>261</width>
+     <height>26</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(180, 180, 180);</string>
    </property>
    <property name="text">
     <string>权限提示</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_10">
+  <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>440</y>
-     <width>299</width>
-     <height>31</height>
+     <x>600</x>
+     <y>500</y>
+     <width>260</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/userManager/6.png);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>登录</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>40</y>
-     <width>71</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>config</string>
-   </property>
-  </widget>
+  <zorder>widget_2</zorder>
+  <zorder>widget</zorder>
+  <zorder>label</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>lineEdit_2</zorder>
+  <zorder>label_2</zorder>
+  <zorder>pushButton_2</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource/summer.qrc"/>
+ </resources>
  <connections/>
 </ui>

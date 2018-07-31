@@ -1,0 +1,28 @@
+<RCC>
+  <qresource prefix="/stylePic">
+    <file>picture/userManager/1.png</file>
+    <file>picture/userManager/2.png</file>
+    <file>picture/userManager/3.png</file>
+    <file>picture/userManager/aaessReport1.png</file>
+    <file>picture/userManager/aaessReport2.png</file>
+    <file>picture/userManager/baseInfo1.png</file>
+    <file>picture/userManager/customerSearch1.png</file>
+    <file>picture/userManager/baseInfo2.png</file>
+    <file>picture/userManager/customerSearch2.png</file>
+    <file>picture/userManager/irExam1.png</file>
+    <file>picture/userManager/irExam2.png</file>
+    <file>picture/userManager/recuperatePlan1.png</file>
+    <file>picture/userManager/recuperatePlan2.png</file>
+    <file>picture/userManager/selfCheck1.png</file>
+    <file>picture/userManager/selfCheck2.png</file>
+    <file>picture/userManager/4.png</file>
+    <file>picture/userManager/5.png</file>
+    <file>picture/userManager/6.png</file>
+    <file>picture/userManager/7.png</file>
+    <file>picture/userManager/8-logo1.png</file>
+    <file>picture/userManager/8-logo2.png</file>
+    <file>picture/userManager/9-toolBar.png</file>
+    <file>picture/userManager/10-statusBar.png</file>
+    <file>picture/userManager/11-background.png</file>
+  </qresource>
+</RCC>

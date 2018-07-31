@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    setup();
+    //setup();
 
     Summer w;
     w.show();
@@ -37,7 +37,7 @@ void set_configFile()
     QStringList fileNames;
     QString path = QDir::currentPath() + "/../Summer/resource/config.xml";
     if (! XConfig::Get()->load_XML(path)) {
-        QFileDialog * fileDlg = new QFileDialog(NULL);
+        QFileDialog * fileDlg = new QFileDialog();
         fileDlg->setWindowFilePath(QDir::currentPath());
         fileDlg->setWindowTitle(QStringLiteral("打开配置文件"));
         fileDlg->setNameFilter(QStringLiteral("DOM(*.xml)"));

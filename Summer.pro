@@ -87,3 +87,6 @@ win32: LIBS += -L$$PWD/lib/ -lThermoGroupSDKLib
 
 INCLUDEPATH += $$PWD/include
 DEPENDPATH += $$PWD/include
+
+RESOURCES += \
+    resource/summer.qrc

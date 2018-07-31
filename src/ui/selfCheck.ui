@@ -7,40 +7,91 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>800</height>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="horizontalLayoutWidget">
+  <widget class="QScrollBar" name="verticalScrollBar">
    <property name="geometry">
     <rect>
-     <x>1150</x>
-     <y>740</y>
-     <width>261</width>
-     <height>41</height>
+     <x>1420</x>
+     <y>18</y>
+     <width>20</width>
+     <height>740</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QPushButton" name="commitB">
-      <property name="text">
-       <string>提  交</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_27">
-      <property name="text">
-       <string>审核人:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit"/>
-    </item>
-   </layout>
+   <property name="cursor">
+    <cursorShape>SizeVerCursor</cursorShape>
+   </property>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QScrollBar:vertical
+{
+    width:8px;
+    background:rgba(0,0,0,20%);
+    margin:0px,0px,0px,0px;
+	border-radius:10px;
+}
+QScrollBar::handle:vertical
+{
+    background:rgba(0,0,0,40%);
+    min-height:20;
+	border:1px solid blue;
+	border-radius:10px;
+}
+QScrollBar::handle:vertical:hover
+{
+    background:rgba(0,0,0,60%);
+    min-height:20;
+	border:1px solid blue;
+	border-radius:10px;
+}
+
+QScrollBar::add-line:vertical
+{
+    height:9px;width:8px;
+    border-radius:10px;
+    subcontrol-position:bottom;
+}
+QScrollBar::sub-line:vertical
+{
+    height:9px;width:8px;
+    border-radius:10px;
+    subcontrol-position:top;
+}</string>
+   </property>
+   <property name="singleStep">
+    <number>10</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <property name="invertedAppearance">
+    <bool>false</bool>
+   </property>
+   <property name="invertedControls">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>148</x>
+     <y>18</y>
+     <width>1145</width>
+     <height>740</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
  </widget>
  <resources/>

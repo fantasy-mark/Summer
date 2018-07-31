@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1312</width>
-    <height>253</height>
+    <width>1056</width>
+    <height>373</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,13 +18,19 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1301</width>
-     <height>241</height>
+     <width>1051</width>
+     <height>364</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
-    <item row="4" column="1" colspan="2">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
+    <item row="5" column="0" colspan="2">
      <widget class="QCheckBox" name="s51">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -36,106 +42,147 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
+    <item row="7" column="0">
      <widget class="QCheckBox" name="s71">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>乳房内有多个大小不等而较硬的不规则结节，与周围组织分界不清</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="2" column="0">
      <widget class="QCheckBox" name="s21">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>乳腺疾病手术带来的长期处于高度焦虑，抑郁状态</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
+    <item row="9" column="0">
      <widget class="QCheckBox" name="s91">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>肿块呈圆形或椭圆形，表面光环、边界清楚，单发或者多发。</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
+    <item row="3" column="1">
      <widget class="QCheckBox" name="s32">
       <property name="text">
        <string>疼痛性质为钝痛、隐痛，局限于病变处针刺样疼痛，有时呈间断性。</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="4" column="0">
      <widget class="QCheckBox" name="s41">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>剧烈疼痛伴触疼。</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="2">
+    <item row="8" column="1">
      <widget class="QCheckBox" name="s82">
       <property name="text">
        <string>疼痛引起惊慌焦虑</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
+    <item row="8" column="0">
      <widget class="QCheckBox" name="s81">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>对乳腺癌治疗的恐惧和一般性焦虑。</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
+    <item row="1" column="1">
      <widget class="QCheckBox" name="s12">
       <property name="text">
        <string>乳腺腺体局限增厚，长期存在而且与月经周期变化无关，范围不断增大</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
+    <item row="4" column="1">
      <widget class="QCheckBox" name="s42">
       <property name="text">
        <string>常感乳房疼痛，月经前症状加重</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="1" column="0">
      <widget class="QCheckBox" name="s11">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>参加乳腺疾病筛查体检引起的短暂焦虑。</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
+    <item row="2" column="1">
      <widget class="QCheckBox" name="s22">
       <property name="text">
        <string>乳头溢液：溢液可为乳汁样、浆液样、水样或血性溢液， 且多为单侧乳头溢液。</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="3" column="0">
      <widget class="QCheckBox" name="s31">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>乳房局部伴随有红、肿、热、痛的症状。</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="9">
-     <widget class="QLabel" name="label_45">
-      <property name="text">
-       <string>乳腺症状</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
+    <item row="7" column="1">
      <widget class="QCheckBox" name="s72">
       <property name="text">
        <string>无痛性单发的小肿块，质硬，表面不光滑，组织界限不清，不易被推动。</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1" colspan="2">
+    <item row="6" column="0" colspan="2">
      <widget class="QCheckBox" name="s61">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -144,6 +191,31 @@
       </property>
       <property name="text">
        <string>肿块为卵圆形或圆形，表面光滑，质地中等硬度，与周围组织分界清楚，与皮肤无粘连，肿块易被推动</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_45">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 10px solid blue;
+border-radius:5px;
+padding-left: 5px;
+</string>
+      </property>
+      <property name="text">
+       <string>乳腺症状</string>
       </property>
      </widget>
     </item>
