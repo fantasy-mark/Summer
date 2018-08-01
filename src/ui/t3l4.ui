@@ -22,6 +22,11 @@
      <height>76</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,0">
     <item row="1" column="0">
      <widget class="QCheckBox" name="s11">
@@ -37,6 +42,11 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>无        </string>
       </property>
@@ -50,6 +60,11 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -60,6 +75,11 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>有，说明：</string>
       </property>
@@ -67,9 +87,6 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QWidget" name="widget" native="true"/>
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QLabel" name="label_31">
@@ -84,6 +101,12 @@
         <width>16777215</width>
         <height>38</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">border-left: 10px solid blue;

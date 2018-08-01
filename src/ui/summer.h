@@ -56,6 +56,11 @@ public slots:
     void disconnect_irDev();
     void closeEvent(QCloseEvent * event);
 
+    void verify();
+    void commit_baseInfo();
+    void commit_selfCheck();
+    void commit_irExam();
+
 private:
     Ui::Summer *ui;
     QWidget * current = NULL;

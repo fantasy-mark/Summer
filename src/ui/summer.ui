@@ -262,7 +262,7 @@ QPushButton#assessReportB:pressed
     </property>
    </widget>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
+  <widget class="QWidget" name="statusBar" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -274,10 +274,76 @@ QPushButton#assessReportB:pressed
    <property name="styleSheet">
     <string notr="true">background-image: url(:/stylePic/picture/userManager/10-statusBar.png);</string>
    </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>1130</x>
+      <y>6</y>
+      <width>91</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>记录者</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1230</x>
+      <y>6</y>
+      <width>81</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 85, 0);</string>
+    </property>
+    <property name="text">
+     <string>李元霸</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="commit">
+    <property name="geometry">
+     <rect>
+      <x>1340</x>
+      <y>6</y>
+      <width>38</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/stylePic/picture/baseInfo/3.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
-  <zorder>widget</zorder>
-  <zorder>backgroud</zorder>
   <zorder>toolBar</zorder>
+  <zorder>backgroud</zorder>
+  <zorder>statusBar</zorder>
   <zorder>customerSearchB</zorder>
   <zorder>irExamB</zorder>
   <zorder>baseInfoRecordB</zorder>

@@ -20,15 +20,14 @@ public:
 	~XReport();
 	QPrinter * printer;
 	QNetworkAccessManager * netManager;
-	QString html;
 	QMap<QString, QString> itemMap;
 
 	template <typename T>
 	QString get_checkedText(T item);
 
-    QString create_Report();
-	QString create_BIReport();
-	QString create_SCReport();
+    void create_Report();
+
+    QString get_html();
 
 public slots:
 	//服务器API
@@ -36,7 +35,13 @@ public slots:
 	void reply_Post_Finished(QNetworkReply * reply);
 	void test_get();
 	void test_post();
-	
+    //生成报告
+    QString create_BIReport();
+    QString create_SCReport();
+
+private:
+    QString html;
+
 protected:
 	XReport();
 };

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1331</width>
-    <height>122</height>
+    <width>1056</width>
+    <height>225</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,209 +18,581 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1331</width>
-     <height>125</height>
+     <width>1051</width>
+     <height>220</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,2,2,2,2,2" columnminimumwidth="0,0,0,0,0,0,0">
-    <item row="1" column="2">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>29</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,2,2,2,2">
+    <item row="2" column="1">
      <widget class="QCheckBox" name="s22">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>心火亢盛</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="5">
+    <item row="2" column="4">
      <widget class="QCheckBox" name="s25">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>心阴虚</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="3">
+    <item row="2" column="2">
      <widget class="QCheckBox" name="s23">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>痰火扰心</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="3">
+    <item row="1" column="2">
      <widget class="QCheckBox" name="s13">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肝阳上亢</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="5">
+    <item row="1" column="4">
      <widget class="QCheckBox" name="s15">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肝火上炎</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="4">
+    <item row="1" column="3">
      <widget class="QCheckBox" name="s14">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肝风内动</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="2" column="0">
      <widget class="QLabel" name="s21">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>心</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="3" column="0">
      <widget class="QLabel" name="s31">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>脾</string>
       </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="s11">
-      <property name="text">
-       <string>肝</string>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="1" column="4">
+    <item row="1" column="0">
+     <widget class="QLabel" name="s11">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
+      <property name="text">
+       <string>肝</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
      <widget class="QCheckBox" name="s24">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>心气虚</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
+    <item row="1" column="1">
      <widget class="QCheckBox" name="s12">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肝气郁结</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="4" column="0">
      <widget class="QLabel" name="s41">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>肺</string>
       </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLabel" name="s51">
-      <property name="text">
-       <string>肾</string>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="0" column="6">
+    <item row="5" column="0">
+     <widget class="QLabel" name="s51">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
+      <property name="text">
+       <string>肾</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
      <widget class="QCheckBox" name="s16">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肝阴血虚</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="6">
+    <item row="2" column="5">
      <widget class="QCheckBox" name="s26">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>心阳虚</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
+    <item row="3" column="1">
      <widget class="QCheckBox" name="s32">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>脾气虚</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="3">
+    <item row="3" column="2">
      <widget class="QCheckBox" name="s33">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>脾阳虚</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="4">
+    <item row="3" column="3">
      <widget class="QCheckBox" name="s34">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>脾阴虚</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="5">
+    <item row="3" column="4">
      <widget class="QCheckBox" name="s35">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>脾湿阻滞</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="6">
+    <item row="3" column="5">
      <widget class="QCheckBox" name="s36">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>脾不统血</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
+    <item row="5" column="1">
      <widget class="QCheckBox" name="s52">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肾气虚</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="3">
+    <item row="4" column="2">
      <widget class="QCheckBox" name="s43">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肺阴虚</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
+    <item row="4" column="1">
      <widget class="QCheckBox" name="s42">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肺气虚</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="4">
+    <item row="4" column="3">
      <widget class="QCheckBox" name="s44">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>痰浊阻肺</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="3">
+    <item row="5" column="2">
      <widget class="QCheckBox" name="s53">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肾阳虚</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="4">
+    <item row="5" column="3">
      <widget class="QCheckBox" name="s54">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肾阴虚</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="5">
+    <item row="4" column="4">
      <widget class="QCheckBox" name="s45">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>寒邪犯肺</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="6">
+    <item row="4" column="5">
      <widget class="QCheckBox" name="s46">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>热邪犯肺</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="5">
+    <item row="0" column="0" colspan="6">
      <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 10px solid blue;
+border-radius:5px;
+padding-left: 5px;
+</string>
+      </property>
       <property name="text">
        <string>亚健康证候</string>
       </property>

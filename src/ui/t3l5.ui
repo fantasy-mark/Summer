@@ -22,6 +22,11 @@
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,10">
     <property name="rightMargin">
      <number>10</number>
@@ -39,6 +44,11 @@
         <width>360</width>
         <height>16777215</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
       </property>
      </widget>
     </item>
@@ -62,6 +72,11 @@
         <height>0</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>无        </string>
       </property>
@@ -80,6 +95,11 @@
         <width>160</width>
         <height>16777215</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
       </property>
       <property name="text">
        <string>有，说明：</string>
@@ -105,6 +125,12 @@
         <width>0</width>
         <height>38</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">border-left: 10px solid blue;

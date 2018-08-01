@@ -143,7 +143,7 @@ void XReport::test_post()
 //	netManager->put(request, dataArray);
 }
 
-QString XReport ::create_Report(void)
+void XReport ::create_Report(void)
 {
     QByteArray text;
     QFile file("C:/Users/Administrator/source/repos/Summer/doc/temple.html");
@@ -153,9 +153,13 @@ QString XReport ::create_Report(void)
     }
 
     html = QString(text);
+}
 
+QString XReport::get_html()
+{
     return html;
 }
+
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )

@@ -18,11 +18,16 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1051</width>
+     <width>1041</width>
      <height>76</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1,1,1">
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,1,2,1,2">
     <item row="1" column="1">
      <widget class="QLineEdit" name="s12">
       <property name="minimumSize">
@@ -36,6 +41,11 @@
         <width>245</width>
         <height>16777215</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
       </property>
      </widget>
     </item>
@@ -53,6 +63,11 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
      </widget>
     </item>
     <item row="1" column="5">
@@ -69,10 +84,26 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
      </widget>
     </item>
     <item row="1" column="2">
      <widget class="QLabel" name="s13">
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>西药，药名：</string>
       </property>
@@ -82,9 +113,14 @@
      <widget class="QLabel" name="s11">
       <property name="minimumSize">
        <size>
-        <width>0</width>
+        <width>60</width>
         <height>29</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
       </property>
       <property name="text">
        <string>中药，药名：</string>
@@ -93,6 +129,17 @@
     </item>
     <item row="1" column="4">
      <widget class="QLabel" name="s15">
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>成药，药名：</string>
       </property>
@@ -111,6 +158,14 @@
         <width>16777215</width>
         <height>38</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">border-left: 10px solid blue;

@@ -7,271 +7,333 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>800</height>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTextBrowser" name="textBrowser">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>560</y>
-     <width>1351</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;5. 亚健康（包含经络辨识、中医体质辨识、亚健康、重大疾病预警、现有疾病预测勾选项）&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="gridLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>340</y>
-     <width>1351</width>
-     <height>211</height>
+     <x>740</x>
+     <y>180</y>
+     <width>671</width>
+     <height>364</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0" columnstretch="1,1,2,2,2,2">
-    <item row="4" column="2" colspan="2">
-     <widget class="QCheckBox" name="checkBox_10">
-      <property name="text">
-       <string>3 类：边缘：增粗或异常的血管在肿块边缘通过</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2" colspan="2">
-     <widget class="QCheckBox" name="checkBox_8">
-      <property name="text">
-       <string>1类：穿入：增粗或异常的血管通过肿块</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="4">
-     <widget class="QCheckBox" name="checkBox_18">
-      <property name="text">
-       <string>产后修复塑形美胸</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="4" colspan="2">
-     <widget class="QCheckBox" name="checkBox_9">
-      <property name="text">
-       <string>2类：中断：引流血管通向肿块突然中断</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="5">
-     <widget class="QLabel" name="label_29">
-      <property name="text">
-       <string>红外乳腺检查</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QCheckBox" name="checkBox_12">
-      <property name="text">
-       <string>乳晕粉嫩美胸</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QCheckBox" name="checkBox_2">
-      <property name="text">
-       <string>II级：似乳晕灰度</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4" colspan="2">
-     <widget class="QCheckBox" name="checkBox_11">
-      <property name="text">
-       <string>4类：无关：肿块与血管影相距较远，推动肿块时血管影不随之移动</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QCheckBox" name="checkBox_16">
-      <property name="text">
-       <string>逆龄激活全效美胸</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="5">
-     <widget class="QCheckBox" name="checkBox_4">
-      <property name="text">
-       <string>IV级：介于乳晕和皮肤间灰度</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="4">
-     <widget class="QCheckBox" name="checkBox_14">
-      <property name="text">
-       <string>紧致塑形胸部</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1" rowspan="2">
-     <widget class="QLabel" name="label_33">
-      <property name="text">
-       <string>肿块和血管影关系:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="3">
-     <widget class="QCheckBox" name="checkBox_17">
-      <property name="text">
-       <string>产后修复健康调理美胸</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QCheckBox" name="checkBox">
-      <property name="text">
-       <string>I级：似乳头灰度</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2" colspan="2">
-     <widget class="QCheckBox" name="checkBox_5">
-      <property name="text">
-       <string>A型：乳房血管影不多于3支</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_30">
-      <property name="text">
-       <string>灰影（疑似肿块）</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1" rowspan="2">
-     <widget class="QLabel" name="label_32">
-      <property name="text">
-       <string>血管型：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="4">
+   <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0,0,0" columnstretch="1,0,0">
+    <item row="2" column="1">
      <widget class="QCheckBox" name="checkBox_3">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>III级：介于乳头和乳晕间灰度</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="2" colspan="2">
+    <item row="3" column="0" rowspan="3">
+     <widget class="QLabel" name="label_32">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>130</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
+      <property name="text">
+       <string>血管型</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>II级：似乳晕灰度</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QCheckBox" name="checkBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>I级：似乳头灰度</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1" colspan="2">
      <widget class="QCheckBox" name="checkBox_7">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>C型：乳房血管影多于3支，形态、分布异常（扭曲、僵硬、中断、模糊等）</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="5">
-     <widget class="QCheckBox" name="checkBox_19">
+    <item row="3" column="1" colspan="2">
+     <widget class="QCheckBox" name="checkBox_5">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
-       <string>产前保养美胸</string>
+       <string>A型：乳房血管影不多于3支</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="4" colspan="2">
+    <item row="8" column="1" colspan="2">
+     <widget class="QCheckBox" name="checkBox_10">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>3 类：边缘：增粗或异常的血管在肿块边缘通过</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1" colspan="2">
+     <widget class="QCheckBox" name="checkBox_8">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>1类：穿入：增粗或异常的血管通过肿块</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QCheckBox" name="checkBox_4">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>IV级：介于乳晕和皮肤间灰度</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1" colspan="2">
      <widget class="QCheckBox" name="checkBox_6">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>B型：乳房血管影多于3支，伴有轻度扩张，但走向正常</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="3">
-     <widget class="QCheckBox" name="checkBox_13">
+    <item row="7" column="1" colspan="2">
+     <widget class="QCheckBox" name="checkBox_9">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
-       <string>乳房健康理疗美胸</string>
+       <string>2类：中断：引流血管通向肿块突然中断</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="5">
-     <widget class="QCheckBox" name="checkBox_15">
+    <item row="9" column="1" colspan="2">
+     <widget class="QCheckBox" name="checkBox_11">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
-       <string>逆龄丰润美胸</string>
+       <string>4类：无关：肿块与血管影相距较远，推动肿块时血管影不随之移动</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="2">
-     <widget class="QCheckBox" name="checkBox_20">
+    <item row="1" column="0" rowspan="2">
+     <widget class="QLabel" name="label_30">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>130</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
-       <string>美胸全年定制</string>
+       <string>灰影（疑似肿块）</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="5" column="0" rowspan="3" colspan="2">
-     <widget class="QLabel" name="label_31">
+    <item row="6" column="0" rowspan="4">
+     <widget class="QLabel" name="label_33">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>130</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
-       <string>调理套餐选择</string>
+       <string>肿块和血管影关系</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="gridLayoutWidget_11">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>730</y>
-     <width>771</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_11">
-    <item row="1" column="4">
-     <widget class="QPushButton" name="commitB">
-      <property name="text">
-       <string>提交</string>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="label_29">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>38</height>
+       </size>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="5">
-     <widget class="QPushButton" name="printB">
-      <property name="text">
-       <string>打印并上传</string>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>38</height>
+       </size>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_35">
-      <property name="text">
-       <string>评估师</string>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLabel" name="label_36">
-      <property name="text">
-       <string>审核日期</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_36">
-      <property name="enabled">
-       <bool>false</bool>
+      <property name="styleSheet">
+       <string notr="true">border-left: 10px solid blue;
+border-radius:5px;
+padding-left: 5px;
+</string>
       </property>
       <property name="text">
-       <string>扁鹊</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLineEdit" name="lineEdit_37">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>2019。1.1</string>
+       <string>红外乳腺检查</string>
       </property>
      </widget>
     </item>
@@ -280,11 +342,14 @@ p, li { white-space: pre-wrap; }
   <widget class="QWebEngineView" name="reportView">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>1361</width>
-     <height>291</height>
+     <x>20</x>
+     <y>18</y>
+     <width>685</width>
+     <height>740</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="url">
     <url>
@@ -292,8 +357,281 @@ p, li { white-space: pre-wrap; }
     </url>
    </property>
    <property name="zoomFactor">
-    <double>1.900000000000000</double>
+    <double>1.000000000000000</double>
    </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>20</y>
+     <width>671</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="3" column="1">
+     <widget class="QCheckBox" name="checkBox_12">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>乳晕粉嫩美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QCheckBox" name="checkBox_13">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>乳房健康理疗美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QCheckBox" name="checkBox_16">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>逆龄激活全效美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QCheckBox" name="checkBox_15">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>逆龄丰润美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QCheckBox" name="checkBox_17">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>产后修复健康调理美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="label_31">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 10px solid blue;
+border-radius:5px;
+padding-left: 5px;
+</string>
+      </property>
+      <property name="text">
+       <string>调理套餐选择</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QCheckBox" name="checkBox_18">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>产后修复塑形美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QCheckBox" name="checkBox_19">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>产前保养美胸</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QCheckBox" name="checkBox_14">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>紧致塑形胸部</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QCheckBox" name="checkBox_20">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>29</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>美胸全年定制</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>560</y>
+     <width>671</width>
+     <height>197</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0">
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>150</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>150</height>
+       </size>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;含经络辨识、中医体质辨识、亚健康、重大疾病预警、现有疾病预警勾选项。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 10px solid blue;
+border-radius:5px;
+padding-left: 5px;
+</string>
+      </property>
+      <property name="text">
+       <string>亚健康</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>

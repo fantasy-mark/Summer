@@ -18,7 +18,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1051</width>
+     <width>1041</width>
      <height>76</height>
     </rect>
    </property>
@@ -27,7 +27,7 @@
      <family>微软雅黑</family>
     </font>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0">
     <property name="rightMargin">
      <number>10</number>
     </property>
@@ -35,7 +35,7 @@
      <widget class="QCheckBox" name="s11">
       <property name="minimumSize">
        <size>
-        <width>60</width>
+        <width>46</width>
         <height>29</height>
        </size>
       </property>
@@ -53,7 +53,7 @@
      <widget class="QLineEdit" name="s13">
       <property name="maximumSize">
        <size>
-        <width>360</width>
+        <width>350</width>
         <height>16777215</height>
        </size>
       </property>
@@ -68,7 +68,7 @@
      <widget class="QLabel" name="s14">
       <property name="minimumSize">
        <size>
-        <width>160</width>
+        <width>46</width>
         <height>0</height>
        </size>
       </property>
@@ -92,7 +92,7 @@
      <widget class="QLineEdit" name="s15">
       <property name="maximumSize">
        <size>
-        <width>360</width>
+        <width>350</width>
         <height>16777215</height>
        </size>
       </property>
@@ -107,7 +107,7 @@
      <widget class="QLabel" name="s12">
       <property name="minimumSize">
        <size>
-        <width>160</width>
+        <width>46</width>
         <height>0</height>
        </size>
       </property>

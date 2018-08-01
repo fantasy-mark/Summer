@@ -1,6 +1,22 @@
 <RCC>
   <qresource prefix="/stylePic">
+    <file>picture/baseInfo/3.png</file>
     <file>picture/userManager/1.png</file>
+    <file>picture/irExam/1.png</file>
+    <file>picture/irExam/2.png</file>
+    <file>picture/irExam/3.png</file>
+    <file>picture/irExam/4.png</file>
+    <file>picture/irExam/5.png</file>
+    <file>picture/irExam/6.png</file>
+    <file>picture/irExam/7.png</file>
+    <file>picture/irExam/8.png</file>
+    <file>picture/irExam/9.png</file>
+    <file>picture/irExam/10.png</file>
+    <file>picture/irExam/11.png</file>
+    <file>picture/irExam/12.png</file>
+    <file>picture/irExam/13.png</file>
+    <file>picture/irExam/14.png</file>
+    <file>picture/irExam/15.png</file>
     <file>picture/userManager/2.png</file>
     <file>picture/userManager/3.png</file>
     <file>picture/userManager/aaessReport1.png</file>

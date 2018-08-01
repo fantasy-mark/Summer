@@ -7,53 +7,92 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>800</height>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QPushButton" name="Show">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>310</y>
-     <width>131</width>
-     <height>50</height>
+     <x>70</x>
+     <y>340</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/3.png);</string>
+   </property>
    <property name="text">
-    <string>显示照片</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="XImage" name="ImageList_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>400</y>
+     <x>30</x>
+     <y>420</y>
      <width>271</width>
-     <height>321</height>
+     <height>280</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="XImage" name="ImageList">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
+     <x>30</x>
+     <y>60</y>
      <width>271</width>
-     <height>251</height>
+     <height>280</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="label_27">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>380</y>
-     <width>63</width>
-     <height>14</height>
+     <x>30</x>
+     <y>390</y>
+     <width>271</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(190, 190, 190);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left:10px;</string>
    </property>
    <property name="text">
     <string>乳腺检查</string>
@@ -62,24 +101,48 @@
   <widget class="QPushButton" name="Del">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>310</y>
-     <width>131</width>
-     <height>50</height>
+     <x>220</x>
+     <y>340</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/4.png);</string>
+   </property>
    <property name="text">
-    <string>删除照片</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_28">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>30</x>
      <y>30</y>
-     <width>63</width>
-     <height>14</height>
+     <width>271</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(190, 190, 190);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left:10px;</string>
    </property>
    <property name="text">
     <string>全身检查</string>
@@ -88,21 +151,42 @@
   <widget class="XView" name="View">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>10</y>
+     <x>432</x>
+     <y>4</y>
      <width>576</width>
      <height>768</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
   </widget>
   <widget class="QLabel" name="L3">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>205</y>
-     <width>121</width>
-     <height>16</height>
+     <x>1100</x>
+     <y>240</y>
+     <width>320</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(190, 190, 190);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left:10px;</string>
    </property>
    <property name="text">
     <string>调焦及云台控制：</string>
@@ -114,14 +198,26 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>275</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1250</x>
+     <y>335</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/10.png);</string>
+   </property>
    <property name="text">
-    <string>自动对焦</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="cradleUp">
@@ -130,14 +226,26 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>246</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1250</x>
+     <y>281</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/8.png);</string>
+   </property>
    <property name="text">
-    <string>云台向上</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="FarFocus">
@@ -146,37 +254,67 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1340</x>
-     <y>275</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1330</x>
+     <y>335</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/11.png);</string>
+   </property>
    <property name="text">
-    <string>缩小</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="L1">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>109</y>
-     <width>55</width>
-     <height>16</height>
+     <x>1120</x>
+     <y>85</y>
+     <width>81</width>
+     <height>29</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>当前设备：</string>
+    <string>当前设备</string>
    </property>
   </widget>
   <widget class="QLabel" name="L0">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>80</y>
-     <width>71</width>
-     <height>16</height>
+     <x>1100</x>
+     <y>35</y>
+     <width>320</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(190, 190, 190);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left:10px;</string>
    </property>
    <property name="text">
     <string>设备管理：</string>
@@ -188,14 +326,26 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>275</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1170</x>
+     <y>335</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/9.png);</string>
+   </property>
    <property name="text">
-    <string>放大</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="Play">
@@ -204,17 +354,29 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>425</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1170</x>
+     <y>535</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/13.png);</string>
+   </property>
    <property name="text">
-    <string>播放</string>
+    <string/>
    </property>
    <property name="checkable">
     <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="Photo">
@@ -223,24 +385,50 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1340</x>
-     <y>410</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1250</x>
+     <y>505</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#Photo
+{
+    border-image: url(:/stylePic/picture/irExam/15.png);
+}
+QPushButton#Photo:pressed
+{
+    
+	border-image: url(:/stylePic/picture/irExam/2.png);
+}</string>
+   </property>
    <property name="text">
-    <string>全身拍照</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QComboBox" name="CB1">
    <property name="geometry">
     <rect>
-     <x>1220</x>
-     <y>109</y>
+     <x>1210</x>
+     <y>85</y>
      <width>191</width>
-     <height>20</height>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPushButton" name="Pause">
@@ -249,30 +437,26 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>425</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1330</x>
+     <y>535</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
-   <property name="text">
-    <string>暂停</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="irRefresh">
-   <property name="geometry">
-    <rect>
-     <x>1140</x>
-     <y>135</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 12pt &quot;Aharoni&quot;;</string>
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/14.png);</string>
    </property>
    <property name="text">
-    <string>刷新</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="irDisconnect">
@@ -281,37 +465,73 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1340</x>
-     <y>135</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1350</x>
+     <y>150</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/7.png);</string>
+   </property>
    <property name="text">
-    <string>断开</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="cradleDown">
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>304</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1250</x>
+     <y>385</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/12.png);</string>
+   </property>
    <property name="text">
-    <string>云台向下</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="L4">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>375</y>
-     <width>71</width>
-     <height>16</height>
+     <x>1100</x>
+     <y>470</y>
+     <width>320</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(190, 190, 190);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left:10px;</string>
    </property>
    <property name="text">
     <string>图传控制：</string>
@@ -320,24 +540,42 @@
   <widget class="QPushButton" name="irConnect">
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>135</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1250</x>
+     <y>150</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/6.png);</string>
+   </property>
    <property name="text">
-    <string>连接</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="L2">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>595</y>
-     <width>66</width>
-     <height>16</height>
+     <x>1120</x>
+     <y>690</y>
+     <width>81</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>调色板方案：</string>
@@ -350,65 +588,41 @@
    <property name="geometry">
     <rect>
      <x>1220</x>
-     <y>595</y>
+     <y>690</y>
      <width>191</width>
-     <height>20</height>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="L5">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>550</y>
-     <width>71</width>
-     <height>16</height>
+     <x>1100</x>
+     <y>645</y>
+     <width>320</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(190, 190, 190);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left:10px;</string>
    </property>
    <property name="text">
     <string>色卡管理：</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_52">
-   <property name="geometry">
-    <rect>
-     <x>1070</x>
-     <y>730</y>
-     <width>55</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>评测师</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_43">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>1142</x>
-     <y>736</y>
-     <width>181</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>李元霸</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_6">
-   <property name="geometry">
-    <rect>
-     <x>1330</x>
-     <y>730</y>
-     <width>93</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>提交</string>
    </property>
   </widget>
   <widget class="QPushButton" name="Photo_2">
@@ -417,42 +631,171 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>1340</x>
-     <y>440</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1250</x>
+     <y>565</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#Photo_2
+{
+    border-image: url(:/stylePic/picture/irExam/15.png);
+}
+QPushButton#Photo_2:pressed
+{
+    
+	border-image: url(:/stylePic/picture/irExam/2.png);
+}</string>
+   </property>
    <property name="text">
-    <string>乳腺拍照</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="Show_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>730</y>
-     <width>131</width>
-     <height>50</height>
+     <x>70</x>
+     <y>710</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/3.png);</string>
+   </property>
    <property name="text">
-    <string>显示照片</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="Del_2">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>730</y>
-     <width>131</width>
-     <height>50</height>
+     <x>220</x>
+     <y>710</y>
+     <width>42</width>
+     <height>42</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/4.png);</string>
+   </property>
    <property name="text">
-    <string>删除照片</string>
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="irRefresh">
+   <property name="geometry">
+    <rect>
+     <x>1150</x>
+     <y>150</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/stylePic/picture/irExam/5.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>1095</x>
+     <y>15</y>
+     <width>331</width>
+     <height>751</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(222, 222, 222);
+border-radius: 20px;
+</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>15</y>
+     <width>311</width>
+     <height>751</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(222, 222, 222);
+border-radius: 20px;
+</string>
+   </property>
+  </widget>
+  <zorder>widget_2</zorder>
+  <zorder>widget</zorder>
+  <zorder>irRefresh</zorder>
+  <zorder>ImageList_2</zorder>
+  <zorder>ImageList</zorder>
+  <zorder>label_27</zorder>
+  <zorder>Del</zorder>
+  <zorder>View</zorder>
+  <zorder>L3</zorder>
+  <zorder>AutoFocus</zorder>
+  <zorder>cradleUp</zorder>
+  <zorder>FarFocus</zorder>
+  <zorder>L1</zorder>
+  <zorder>L0</zorder>
+  <zorder>NearFocus</zorder>
+  <zorder>Play</zorder>
+  <zorder>Photo</zorder>
+  <zorder>CB1</zorder>
+  <zorder>Pause</zorder>
+  <zorder>irDisconnect</zorder>
+  <zorder>cradleDown</zorder>
+  <zorder>L4</zorder>
+  <zorder>irConnect</zorder>
+  <zorder>L2</zorder>
+  <zorder>CB2</zorder>
+  <zorder>L5</zorder>
+  <zorder>Photo_2</zorder>
+  <zorder>Show_2</zorder>
+  <zorder>Del_2</zorder>
+  <zorder>Show</zorder>
+  <zorder>label_28</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -466,6 +809,8 @@
    <header location="global">ximage.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../../resource/summer.qrc"/>
+ </resources>
  <connections/>
 </ui>

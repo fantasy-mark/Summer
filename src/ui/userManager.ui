@@ -90,7 +90,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="user">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -115,7 +115,7 @@ padding-left: 10px;</string>
     <string>用户名</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="password">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -162,7 +162,7 @@ padding-left: 10px;</string>
     <string>权限提示</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="login">
    <property name="geometry">
     <rect>
      <x>600</x>
@@ -187,10 +187,10 @@ color: rgb(255, 255, 255);</string>
   <zorder>widget_2</zorder>
   <zorder>widget</zorder>
   <zorder>label</zorder>
-  <zorder>lineEdit</zorder>
-  <zorder>lineEdit_2</zorder>
+  <zorder>user</zorder>
+  <zorder>password</zorder>
   <zorder>label_2</zorder>
-  <zorder>pushButton_2</zorder>
+  <zorder>login</zorder>
  </widget>
  <resources>
   <include location="../../resource/summer.qrc"/>

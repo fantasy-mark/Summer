@@ -21,6 +21,13 @@ Summer::Summer(QWidget *parent) :
     ui(new Ui::Summer)
 {
     ui->setupUi(this);
+    create_userManagerPage();
+
+    ui->label->hide();
+    ui->label_2->hide();
+    ui->commit->hide();
+
+    XReport::Get()->create_Report();
 }
 
 Summer::~Summer()
@@ -87,15 +94,20 @@ void Summer::closeEvent(QCloseEvent * event)
 //=============================================================================
 //=============================================================================
 //=============================================================================
-#if 0
-template <typename T>
-QString get_checkedText(T item)
+void Summer::verify()
 {
+    if (userManagerPage != NULL) {
+        if (userManagerPage->password->text() == "pass")
+            create_baseInfoPage();
+    }
 }
-#endif
 
 void Summer::create_userManagerPage()
 {
+    ui->label->hide();
+    ui->label_2->hide();
+    ui->commit->hide();
+
     if (userManagerWidget != NULL) {
         if (current != userManagerWidget) {
             current->hide();
@@ -162,6 +174,7 @@ void Summer::create_userManagerPage()
         xmlfile.close();
     }
 #endif
+    connect(userManagerPage->login, SIGNAL(clicked()), this, SLOT(verify()));
 
     userManagerWidget->show();
     current = userManagerWidget;
@@ -169,6 +182,10 @@ void Summer::create_userManagerPage()
 
 void Summer::create_customerSearchPage()
 {
+    ui->label->hide();
+    ui->label_2->hide();
+    ui->commit->hide();
+
     if (customerSearchWidget != NULL) {
         if (current != customerSearchWidget) {
             current->hide();
@@ -195,6 +212,34 @@ void Summer::create_customerSearchPage()
     Date		: 2018.07.10
     Description	: 获取基本信息 & 槽函数
  *****************************************************************************/
+void Summer::commit_baseInfo(void)
+{
+    qDebug() << "current is " << current;
+    if (current == baseInfoWidget) {
+        get_baseInfo();
+        XReport::Get()->create_BIReport();
+        create_selfCheckPage();
+    }
+}
+
+void Summer::commit_selfCheck(void)
+{
+    qDebug() << "current is " << current;
+    if (current == selfCheckWidget) {
+        get_selfCheck();
+        XReport::Get()->create_SCReport();
+        create_irExamPage();
+    }
+}
+
+void Summer::commit_irExam(void)
+{
+    qDebug() << "current is " << current;
+    if (current == irExamWidget) {
+        create_assessReportPage();
+    }
+}
+
 void Summer::get_baseInfo(void)
 {
     //客户信息
@@ -450,7 +495,7 @@ void Summer::get_selfCheck(void)
         qDebug() << item.key() << "\t" << item.value();
     }
 
-//    assessReportPage->reportView->page()->setHtml(XReport::Get()->create_SCReport());
+    //assessReportPage->reportView->page()->setHtml(XReport::Get()->create_SCReport());
 }
 
 /*****************************************************************************
@@ -461,16 +506,27 @@ void Summer::get_selfCheck(void)
  *****************************************************************************/
 void Summer::print_report(void)
 {
-    QPrintDialog dlg(XReport::Get()->printer, this);
-    if (dlg.exec() == QDialog::Accepted) {
-        assessReportPage->reportView->page()->print(XReport::Get()->printer, [this](bool found){
-            //if (!found) QMessageBox::information(ui->textBrowser, QString(), QStringLiteral("找不到打印机"));
-        });
+    qDebug() << "current is " << current;
+    if (current == assessReportWidget) {
+        QPrintDialog dlg(XReport::Get()->printer, this);
+        if (dlg.exec() == QDialog::Accepted) {
+            assessReportPage->reportView->page()->print(XReport::Get()->printer, [this](bool found){
+                //if (!found) QMessageBox::information(ui->textBrowser, QString(), QStringLiteral("找不到打印机"));
+            });
+            create_recuperatePlanPage();
+        }
     }
 }
 
 void Summer::create_baseInfoPage()
 {
+    ui->label->show();
+    ui->label_2->show();
+    ui->commit->show();
+
+    disconnect(ui->commit, 0, 0, 0);
+    connect(ui->commit, SIGNAL(clicked()), this, SLOT(commit_baseInfo()));
+
     if (baseInfoWidget != NULL) {
         if (current != baseInfoWidget) {
             current->hide();
@@ -487,11 +543,8 @@ void Summer::create_baseInfoPage()
     baseInfoWidget->move(0, 73);
     baseInfoPage = new Ui::baseInfo;
     baseInfoPage->setupUi(baseInfoWidget);
+
     baseInfoWidget->show();
-
-    //TODO
-    //connect(baseInfoPage->commitB, SIGNAL(clicked()), this, SLOT(get_baseInfo()));
-
     current = baseInfoWidget;
 }
 
@@ -514,7 +567,6 @@ T create_tlw(QListWidget * parent, T ui)
     parent->setItemWidget(parent->item(index), ui->gridLayoutWidget);
     parent->item(index)->setSizeHint(tlw->size());
     contentHeight += tlw->height();
-    qDebug() << tlw->size() << parent->item(index)->sizeHint();
     tlw->resize(0, 0);
 
     return ui;
@@ -522,6 +574,9 @@ T create_tlw(QListWidget * parent, T ui)
 
 void Summer::create_selfCheckPage()
 {
+    disconnect(ui->commit, 0, 0, 0);
+    connect(ui->commit, SIGNAL(clicked()), this, SLOT(commit_selfCheck()));
+
     if (selfCheckWidget != NULL) {
         if (current != selfCheckWidget) {
             current->hide();
@@ -540,11 +595,11 @@ void Summer::create_selfCheckPage()
     selfCheckPage->setupUi(selfCheckWidget);
 
     tabListWidget = new QListWidget(selfCheckPage->widget);
-    tabListWidget->setGeometry(QRect(48, 28, 1060, 680));
+    tabListWidget->setGeometry(QRect(28, 28, 1090, 680));
     tabListWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     tabListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     tabListWidget->setVerticalScrollMode(QListWidget::ScrollPerPixel);
-//    tabListWidget->verticalScrollBar()->setSingleStep(10);
+    tabListWidget->setStyleSheet("padding:4px;");
 
     //若需要泛型可用typeid获得类型id,dynamic_cast强制转化为制定对象类型
     t3l0 = create_tlw(tabListWidget, new Ui::T3L0);
@@ -584,21 +639,19 @@ void Summer::create_selfCheckPage()
     t3l7g9->addButton(t3l7->s92, 2);
     t3l7g9->addButton(t3l7->s93, 3);
     t3l7g9->addButton(t3l7->s94, 4);
-#if 0
     t3l8 = create_tlw(tabListWidget, new Ui::T3L8);
     t3l9 = create_tlw(tabListWidget, new Ui::T3L9);
     t3l10 = create_tlw(tabListWidget, new Ui::T3L10);
     t3l11 = create_tlw(tabListWidget, new Ui::T3L11);
     t3l12 = create_tlw(tabListWidget, new Ui::T3L12);
-#endif
-    qDebug() << tabListWidget->size();
-    selfCheckPage->verticalScrollBar->setMaximum(contentHeight);
+
+    //这个计算是 滚动内容高度 - 已经显示高度, 单位是像素值 setVerticalScrollMode(QListWidget::ScrollPerPixel)
+    selfCheckPage->verticalScrollBar->setMaximum(contentHeight-tabListWidget->height());
     connect(selfCheckPage->verticalScrollBar, SIGNAL(valueChanged(int)), tabListWidget->verticalScrollBar(), SLOT(setValue(int)));
+    //查表实现？
+    //connect(tabListWidget, SIGNAL(currentRowChanged(int)), selfCheckPage->verticalScrollBar, SLOT(setValue(int)));
 
     selfCheckWidget->show();
-
-    //TODO
-    //connect(selfCheckPage->commitB, SIGNAL(clicked()), this, SLOT(get_selfCheck()));
 
     current = selfCheckWidget;
 }
@@ -606,6 +659,9 @@ void Summer::create_selfCheckPage()
 #define YaQian_HSV  11
 void Summer::create_irExamPage()
 {
+    disconnect(ui->commit, 0, 0, 0);
+    connect(ui->commit, SIGNAL(clicked()), this, SLOT(commit_irExam()));
+
     if (irExamWidget != NULL) {
         if (current != irExamWidget) {
             current->hide();
@@ -664,16 +720,16 @@ void Summer::create_irExamPage()
 
 void Summer::create_assessReportPage()
 {
+    disconnect(ui->commit, 0, 0, 0);
+    connect(ui->commit, SIGNAL(clicked()), this, SLOT(print_report()));
+
     if (assessReportWidget != NULL) {
         if (current != assessReportWidget) {
             current->hide();
             assessReportWidget->show();
             current =  assessReportWidget;
         }
-        XReport::Get()->create_Report();
-        XReport::Get()->create_BIReport();
-        QString html = XReport::Get()->create_SCReport();
-        assessReportPage->reportView->page()->setHtml(html);
+        assessReportPage->reportView->page()->setHtml(XReport::Get()->get_html());
         return;
     }
 
@@ -685,15 +741,11 @@ void Summer::create_assessReportPage()
     assessReportPage = new Ui::assessReport;
     assessReportPage->setupUi(assessReportWidget);
 
-    XReport::Get()->create_Report();
-    XReport::Get()->create_BIReport();
-    QString html = XReport::Get()->create_SCReport();
-
-    assessReportPage->reportView->page()->setHtml(html);
-
+    assessReportPage->reportView->page()->setHtml(XReport::Get()->get_html());
     assessReportWidget->show();
 
-    connect(assessReportPage->printB, SIGNAL(clicked()), this, SLOT(print_report()));
+    //TODO
+    //connect(assessReportPage->printB, SIGNAL(clicked()), this, SLOT(print_report()));
 
     current = assessReportWidget;
 }

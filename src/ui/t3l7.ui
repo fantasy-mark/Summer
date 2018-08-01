@@ -22,6 +22,11 @@
      <height>364</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1,1,1,1">
     <item row="5" column="1">
      <widget class="QCheckBox" name="s52">
@@ -30,6 +35,11 @@
         <width>0</width>
         <height>29</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
       </property>
       <property name="text">
        <string>无饮咖啡</string>
@@ -44,6 +54,11 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>正常（2-2.5升）</string>
       </property>
@@ -51,6 +66,11 @@
     </item>
     <item row="2" column="2">
      <widget class="QCheckBox" name="s23">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>吸烟小于10只</string>
       </property>
@@ -58,6 +78,11 @@
     </item>
     <item row="2" column="3">
      <widget class="QCheckBox" name="s24">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>吸烟大于10只</string>
       </property>
@@ -65,6 +90,11 @@
     </item>
     <item row="3" column="1">
      <widget class="QCheckBox" name="s32">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>无饮酒</string>
       </property>
@@ -72,6 +102,11 @@
     </item>
     <item row="2" column="1">
      <widget class="QCheckBox" name="s22">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>无吸烟</string>
       </property>
@@ -85,8 +120,19 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>每日饮酒</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -98,6 +144,11 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>无饮茶</string>
       </property>
@@ -105,6 +156,11 @@
     </item>
     <item row="3" column="3">
      <widget class="QCheckBox" name="s34">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮酒大于2两</string>
       </property>
@@ -112,6 +168,11 @@
     </item>
     <item row="4" column="3">
      <widget class="QCheckBox" name="s44">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮浓茶(非休息时段)</string>
       </property>
@@ -119,6 +180,11 @@
     </item>
     <item row="4" column="2">
      <widget class="QCheckBox" name="s43">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮清茶</string>
       </property>
@@ -126,6 +192,11 @@
     </item>
     <item row="8" column="2">
      <widget class="QCheckBox" name="s83">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>偏少（少于1.5升）</string>
       </property>
@@ -133,6 +204,11 @@
     </item>
     <item row="6" column="5">
      <widget class="QCheckBox" name="s66">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>甜</string>
       </property>
@@ -140,6 +216,11 @@
     </item>
     <item row="1" column="3">
      <widget class="QCheckBox" name="s14">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>凌晨1点前</string>
       </property>
@@ -147,6 +228,11 @@
     </item>
     <item row="6" column="6">
      <widget class="QCheckBox" name="s67">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>咸</string>
       </property>
@@ -160,13 +246,29 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>每日吸烟</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
      <widget class="QCheckBox" name="s12">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>晚上10点前</string>
       </property>
@@ -174,6 +276,11 @@
     </item>
     <item row="6" column="4">
      <widget class="QCheckBox" name="s65">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>酸</string>
       </property>
@@ -181,6 +288,11 @@
     </item>
     <item row="1" column="4">
      <widget class="QCheckBox" name="s15">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>凌晨一点后</string>
       </property>
@@ -194,6 +306,11 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>清淡</string>
       </property>
@@ -201,20 +318,47 @@
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="s81">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>饮水情况</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
     <item row="9" column="0">
      <widget class="QLabel" name="s91">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>运动情况</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
     <item row="6" column="2">
      <widget class="QCheckBox" name="s63">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>油腻</string>
       </property>
@@ -222,6 +366,11 @@
     </item>
     <item row="6" column="3">
      <widget class="QCheckBox" name="s64">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>辛辣</string>
       </property>
@@ -229,6 +378,11 @@
     </item>
     <item row="5" column="2">
      <widget class="QCheckBox" name="s53">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮咖啡(非休息时段)</string>
       </property>
@@ -236,6 +390,11 @@
     </item>
     <item row="1" column="2">
      <widget class="QCheckBox" name="s13">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>晚上12点前</string>
       </property>
@@ -243,6 +402,11 @@
     </item>
     <item row="3" column="2">
      <widget class="QCheckBox" name="s33">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮酒小于2两</string>
       </property>
@@ -256,15 +420,37 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>休息时间</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
     <item row="4" column="0" rowspan="2">
      <widget class="QLabel" name="s41">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>饮茶、饮咖啡</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -276,6 +462,11 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>蔬菜</string>
       </property>
@@ -283,6 +474,11 @@
     </item>
     <item row="7" column="2">
      <widget class="QCheckBox" name="s73">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>海鲜</string>
       </property>
@@ -290,6 +486,11 @@
     </item>
     <item row="7" column="3">
      <widget class="QCheckBox" name="s74">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>肉类</string>
       </property>
@@ -297,6 +498,11 @@
     </item>
     <item row="7" column="4">
      <widget class="QCheckBox" name="s75">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>水果</string>
       </property>
@@ -304,13 +510,29 @@
     </item>
     <item row="6" column="0" rowspan="2">
      <widget class="QLabel" name="s61">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(190, 190, 190);</string>
+      </property>
       <property name="text">
        <string>饮食偏好</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
     <item row="8" column="3">
      <widget class="QCheckBox" name="s84">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>偏多（大于2.5升）</string>
       </property>
@@ -324,6 +546,11 @@
         <height>29</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>无运动习惯</string>
       </property>
@@ -331,6 +558,11 @@
     </item>
     <item row="9" column="2">
      <widget class="QCheckBox" name="s93">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>2～3次/周，30钟/次</string>
       </property>
@@ -338,6 +570,11 @@
     </item>
     <item row="9" column="3">
      <widget class="QCheckBox" name="s94">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>4～7次/周，30钟/次</string>
       </property>
@@ -345,6 +582,11 @@
     </item>
     <item row="5" column="3">
      <widget class="QCheckBox" name="s54">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮咖啡(睡前1小时内)</string>
       </property>
@@ -352,6 +594,11 @@
     </item>
     <item row="4" column="4">
      <widget class="QCheckBox" name="s45">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="text">
        <string>饮浓茶(睡前1小时内)</string>
       </property>
@@ -370,6 +617,12 @@
         <width>16777215</width>
         <height>38</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">border-left: 10px solid blue;

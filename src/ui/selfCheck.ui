@@ -34,24 +34,23 @@
    <property name="styleSheet">
     <string notr="true">QScrollBar:vertical
 {
-    width:8px;
     background:rgba(0,0,0,20%);
     margin:0px,0px,0px,0px;
-	border-radius:10px;
+    border-radius:10px;
 }
 QScrollBar::handle:vertical
 {
     background:rgba(0,0,0,40%);
-    min-height:20;
-	border:1px solid blue;
-	border-radius:10px;
+	min-height: 30px;
+	max-height: 100px;
+    border:1px solid blue;
+    border-radius:10px;
 }
 QScrollBar::handle:vertical:hover
 {
     background:rgba(0,0,0,60%);
-    min-height:20;
-	border:1px solid blue;
-	border-radius:10px;
+    border:1px solid blue;
+    border-radius:10px;
 }
 
 QScrollBar::add-line:vertical
@@ -65,10 +64,17 @@ QScrollBar::sub-line:vertical
     height:9px;width:8px;
     border-radius:10px;
     subcontrol-position:top;
-}</string>
+}
+</string>
+   </property>
+   <property name="maximum">
+    <number>100</number>
    </property>
    <property name="singleStep">
-    <number>10</number>
+    <number>1</number>
+   </property>
+   <property name="pageStep">
+    <number>60</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>

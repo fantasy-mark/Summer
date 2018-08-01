@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1331</width>
-    <height>147</height>
+    <width>1056</width>
+    <height>224</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,111 +18,219 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1331</width>
-     <height>141</height>
+     <width>1051</width>
+     <height>220</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" columnstretch="1,4,4,4">
-    <item row="0" column="1">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>29</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1">
+    <item row="1" column="0">
      <widget class="QCheckBox" name="s11">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>鼻部疾病(易鼻过敏、鼻窦炎、鼻息肉)</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="3" column="0">
      <widget class="QCheckBox" name="s31">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>甲状腺疾病(易甲状腺囊肿、甲状腺炎)</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="3">
+    <item row="1" column="2">
      <widget class="QCheckBox" name="s13">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>肝胆疾病(易脂肪肝、胆结石)</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
+    <item row="1" column="1">
      <widget class="QCheckBox" name="s12">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>肺部疾病(易感冒、哮喘)</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="3">
+    <item row="3" column="2">
      <widget class="QCheckBox" name="s33">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>血管疾病(易静脉炎、静脉曲张)</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="2" column="0">
      <widget class="QCheckBox" name="s21">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>脾胃疾病(易胃炎、胃液逆流、胃胀气)</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
+    <item row="3" column="1">
      <widget class="QCheckBox" name="s32">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>情志疾病(易失眠、焦虑、烦躁)</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
+    <item row="2" column="1">
      <widget class="QCheckBox" name="s22">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>泌尿疾病(易膀胱炎、尿道炎、肾功能下降)</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="3">
+    <item row="2" column="2">
      <widget class="QCheckBox" name="s23">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>肠道疾病(易便秘、痔疮)</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="4" column="0">
      <widget class="QCheckBox" name="s41">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>颈椎疾病(易颈椎间盘突出、颈椎退化)</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
+    <item row="4" column="1">
      <widget class="QCheckBox" name="s42">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>腰椎疾病(易腰椎间盘突出、腰椎退化)</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="3">
+    <item row="4" column="2">
      <widget class="QCheckBox" name="s43">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>膝关节疾病(易膝关节炎、膝关节劳损)</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="5" column="0">
      <widget class="QCheckBox" name="s51">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>皮肤疾病(易皮肤松弛、湿疹、荨麻疹、疱疹、皮肤过敏)</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="2" colspan="2">
+    <item row="5" column="1" colspan="2">
      <widget class="QCheckBox" name="s52">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>29</height>
+       </size>
+      </property>
       <property name="text">
        <string>生殖疾病(易月经失调、痛经、盆腔炎、卵巢囊肿、子宫肌瘤(女)、性功能下降(男))</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="5">
+    <item row="0" column="0" colspan="3">
      <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>38</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 10px solid blue;
+border-radius:5px;
+padding-left: 5px;
+</string>
+      </property>
       <property name="text">
        <string>现有疾病隐患预测</string>
       </property>

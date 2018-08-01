@@ -20,6 +20,12 @@ int main(int argc, char *argv[])
     //setup();
 
     Summer w;
+
+    //设置在某个屏幕显示UI
+    //QDesktopWidget * deskTop = QApplication::desktop();
+    //MainWindow::Get()->setGeometry(deskTop->screenGeometry(1));
+
+    w.setWindowFlags(Qt::FramelessWindowHint);
     w.show();
 
     //qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "9223");
