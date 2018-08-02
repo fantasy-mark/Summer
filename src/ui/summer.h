@@ -93,6 +93,9 @@ private:
     Ui::T3L10 * t3l10;
     Ui::T3L11 * t3l11;
     Ui::T3L12 * t3l12;
+
+protected:
+    bool eventFilter(QObject *target, QEvent *event);
 };
 
 #endif // SUMMER_H

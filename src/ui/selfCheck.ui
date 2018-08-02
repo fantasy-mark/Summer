@@ -74,7 +74,7 @@ QScrollBar::sub-line:vertical
     <number>1</number>
    </property>
    <property name="pageStep">
-    <number>60</number>
+    <number>10</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>

@@ -572,6 +572,22 @@ T create_tlw(QListWidget * parent, T ui)
     return ui;
 }
 
+int testvalue = 0;
+
+//使用事件过滤器在父控件处理滚轮事件
+bool Summer::eventFilter(QObject *target, QEvent *event)
+{
+    //特别的鼠标滚轮事件使用 QEvent::Wheel 判断并不生效,故使用QEvent::Paint代替
+    if (event->type() == QEvent::Paint) {
+        if (current == selfCheckWidget) {
+            selfCheckPage->verticalScrollBar->setValue(tabListWidget->verticalScrollBar()->value());
+        }
+        return true;        //表示过滤成功,将不传递给子控件
+    }
+
+    return false;
+}
+
 void Summer::create_selfCheckPage()
 {
     disconnect(ui->commit, 0, 0, 0);
@@ -600,6 +616,11 @@ void Summer::create_selfCheckPage()
     tabListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     tabListWidget->setVerticalScrollMode(QListWidget::ScrollPerPixel);
     tabListWidget->setStyleSheet("padding:4px;");
+
+    selfCheckWidget->installEventFilter(this);
+    tabListWidget->installEventFilter(this);
+
+//    tabListWidget->verticalScrollBar()->
 
     //若需要泛型可用typeid获得类型id,dynamic_cast强制转化为制定对象类型
     t3l0 = create_tlw(tabListWidget, new Ui::T3L0);
@@ -647,9 +668,14 @@ void Summer::create_selfCheckPage()
 
     //这个计算是 滚动内容高度 - 已经显示高度, 单位是像素值 setVerticalScrollMode(QListWidget::ScrollPerPixel)
     selfCheckPage->verticalScrollBar->setMaximum(contentHeight-tabListWidget->height());
+#if 0
+    //实现自定义的滚动条,但无法分离滚动条和显示区
+    //tabListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    tabListWidget->setVerticalScrollBar(selfCheckPage->verticalScrollBar);
+#endif
     connect(selfCheckPage->verticalScrollBar, SIGNAL(valueChanged(int)), tabListWidget->verticalScrollBar(), SLOT(setValue(int)));
     //查表实现？
-    //connect(tabListWidget, SIGNAL(currentRowChanged(int)), selfCheckPage->verticalScrollBar, SLOT(setValue(int)));
+    //connect(tabListWidget->pos, SIGNAL(currentRowChanged(int)), selfCheckPage->verticalScrollBar, SLOT(setValue(int)));
 
     selfCheckWidget->show();
 
