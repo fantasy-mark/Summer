@@ -10,11 +10,26 @@
 #include "xdev.h"
 #include <QDebug>
 
+#ifdef WIN32
+#include "windows.h"
+#pragma comment(lib,"user32.lib")
+#endif
+
 void setup();
 void set_configFile();
 
 int main(int argc, char *argv[])
 {
+#ifdef WIN32
+    //用于调整系统分辨率
+    DEVMODE DevMode;
+    EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &DevMode);
+    DevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
+    DevMode.dmPelsWidth = 1440;
+    DevMode.dmPelsHeight = 900;
+    ChangeDisplaySettings(&DevMode, CDS_FULLSCREEN);
+#endif
+
     QApplication a(argc, argv);
 
     //setup();
@@ -24,7 +39,6 @@ int main(int argc, char *argv[])
     //设置在某个屏幕显示UI
     //QDesktopWidget * deskTop = QApplication::desktop();
     //MainWindow::Get()->setGeometry(deskTop->screenGeometry(1));
-
     w.setWindowFlags(Qt::FramelessWindowHint);
     w.show();
 

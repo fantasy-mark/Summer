@@ -214,7 +214,6 @@ void Summer::create_customerSearchPage()
  *****************************************************************************/
 void Summer::commit_baseInfo(void)
 {
-    qDebug() << "current is " << current;
     if (current == baseInfoWidget) {
         get_baseInfo();
         XReport::Get()->create_BIReport();
@@ -224,7 +223,6 @@ void Summer::commit_baseInfo(void)
 
 void Summer::commit_selfCheck(void)
 {
-    qDebug() << "current is " << current;
     if (current == selfCheckWidget) {
         get_selfCheck();
         XReport::Get()->create_SCReport();
@@ -234,7 +232,6 @@ void Summer::commit_selfCheck(void)
 
 void Summer::commit_irExam(void)
 {
-    qDebug() << "current is " << current;
     if (current == irExamWidget) {
         create_assessReportPage();
     }
@@ -274,17 +271,6 @@ void Summer::get_baseInfo(void)
     XReport::Get()->itemMap["armPulseR"] = baseInfoPage->armPulseR->text();
     XReport::Get()->itemMap["armPulseRH"] = baseInfoPage->armPulseRH->text();
     XReport::Get()->itemMap["armPulseRL"] = baseInfoPage->armPulseRL->text();
-
-    QMap<QString, QString> itemMap = XReport::Get()->itemMap;
-    QMap<QString, QString>::iterator item;
-    for (item = itemMap.begin(); item != itemMap.end(); item++) {
-        //qDebug() << item.key() << "\t" << item.value();
-    }
-
-    //============================================
-//    XReport::Get()->create_Report();
- //   assessReportPage->reportView->page()->setHtml(XReport::Get()->create_BIReport());
-    //============================================
 }
 
 
@@ -577,12 +563,11 @@ int testvalue = 0;
 //使用事件过滤器在父控件处理滚轮事件
 bool Summer::eventFilter(QObject *target, QEvent *event)
 {
-    //特别的鼠标滚轮事件使用 QEvent::Wheel 判断并不生效,故使用QEvent::Paint代替
-    if (event->type() == QEvent::Paint) {
+    if (event->type() == QEvent::Wheel) {
         if (current == selfCheckWidget) {
             selfCheckPage->verticalScrollBar->setValue(tabListWidget->verticalScrollBar()->value());
         }
-        return true;        //表示过滤成功,将不传递给子控件
+        return false;        //因为要同步原滚动条,不能过滤掉,继续传送给子控件
     }
 
     return false;
@@ -617,10 +602,8 @@ void Summer::create_selfCheckPage()
     tabListWidget->setVerticalScrollMode(QListWidget::ScrollPerPixel);
     tabListWidget->setStyleSheet("padding:4px;");
 
-    selfCheckWidget->installEventFilter(this);
-    tabListWidget->installEventFilter(this);
-
-//    tabListWidget->verticalScrollBar()->
+    tabListWidget->verticalScrollBar()->setSingleStep(20);
+    tabListWidget->verticalScrollBar()->installEventFilter(this);
 
     //若需要泛型可用typeid获得类型id,dynamic_cast强制转化为制定对象类型
     t3l0 = create_tlw(tabListWidget, new Ui::T3L0);

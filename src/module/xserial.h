@@ -18,21 +18,12 @@ public:
 	static XSerial * Get();
 
 public slots:
-	//void scan_port();
-	//void open_port();
-	//void send_data();
-	//void sendData1();
-	//void sendData2();
-	//void sendData3();
-	//void RecvMsgEvent();
 	//串口API
 	QStringList scan_serial();
 	bool open_serial();
 	void close_serial();
-	//void send_data();
 
-public slots:
-	bool get_poleSpeed(int * speed);
+    bool get_poleSpeed(int * speed);
     bool set_cradleSpeed(int * speed);
 
 signals:
@@ -40,7 +31,8 @@ signals:
 
 private:
     XSerial();
-	QSerialPort * poleSerial = NULL;
+    ~XSerial();
+    QSerialPort * poleSerial = NULL;
 	QSerialPort * cradleSerial = NULL;
 	/* 摇杆 -0x200~0x200 云台-3f~3f, TODO : 可自定义划分为16速 */
 	//int Speed = 0;

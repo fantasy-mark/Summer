@@ -1,42 +1,104 @@
-#include <QString>
+#include <qDebug>
+#include "gtest/gtest.h"
 #include "xserial.h"
 #include "xdev.h"
-#include "test_summer.h"
+#include "logsys.h"
 
-TestSummer::TestSummer()
+namespace {
+/*****************************************************************************
+    Date		: 2018.08.06
+    Description	: 测试XSerial类
+ *****************************************************************************/
+int speed = 0;
+TEST(XSerial, scan)
 {
+    qDebug() << XSerial::Get()->scan_serial();
+}
+TEST(XSerial, close)
+{
+    XSerial::Get()->close_serial();
+}
+TEST(XSerial, open)
+{
+    EXPECT_TRUE(XSerial::Get()->open_serial());
+}
+TEST(XSerial, getSpeed)
+{
+    EXPECT_TRUE(XSerial::Get()->get_poleSpeed(&speed)) <<  "some time can't get pole speed, maybe qserial module have same bug?\n";
+}
+TEST(XSerial, setSpeed)
+{
+    speed = 0x180;
+    EXPECT_TRUE(XSerial::Get()->set_cradleSpeed(&speed));
+}
+/*****************************************************************************
+    Date		: 2018.08.06
+    Description	: 测试XDev类
+ *****************************************************************************/
+TEST(XDev, create)
+{
+    EXPECT_TRUE(XDev::Get()->create_irDev()) << "can't create irDev, confirm connect lan\n";
+}
+TEST(XDev, refresh)
+{
+    qDebug() << XDev::Get()->refresh_irDev();
+}
+TEST(XDev, connect)
+{
+    EXPECT_TRUE(XDev::Get()->connect_irDev());
+}
+TEST(XDev, play)
+{
+    EXPECT_TRUE(XDev::Get()->play_irDev());
+}
+TEST(XDev, autoFocus)
+{
+    XDev::Get()->auto_focus();
+}
+#if 0
+TEST(XDev, farFocus)
+{
+    XDev::Get()->far_focus();
+}
+TEST(XDev, nearFocus)
+{
+    XDev::Get()->near_focus();
+}
+#endif
+TEST(XDev, stop)
+{
+    XDev::Get()->stop_irDev();
+}
+TEST(XDev, disconnect)
+{
+    XDev::Get()->disconnect_irDev();
+}
+TEST(XDev, free)
+{
+    XDev::Get()->free_irDev();
+}
+/*****************************************************************************
+    Date		: 2018.08.06
+    Description	: 测试LogSys模块
+ *****************************************************************************/
+TEST(LogSys, get_appPath)
+{
+    qDebug() << QString::fromStdString(LogSys::Get()->GetAppPathA());
+}
+TEST(LogSys, get_formatString)
+{
+    qDebug() << QString::fromStdString(LogSys::Get()->FormatString("%04d%02d%02d_%02d%02d.md", 2018, 8, 11, 17, 59));
+}
 }
 
-void TestSummer::test_xserial()
+/*****************************************************************************
+    Copyright	: Yaqian Group
+    Author		: Mark_Huang ( hacker.do@163.com )
+    Date		: 2018.08.06
+    Description	: 单元测试总入口
+ *****************************************************************************/
+int main(int argc, char* argv[])
 {
-    int speed;
-    QFETCH(QStringList, scan);
-    QFETCH(bool, open);
-    QVERIFY2(open, "plz open crade/pole serial && close all soft if opening the serial");
-    ////QVERIFY2_WITH_TIMEOUT会导致测试失败
-    QVERIFY2(XSerial::Get()->get_poleSpeed(&speed), "get poleSpeed failed");
-    QVERIFY2(speed > -0x201 && speed < 0x201, "-0x201 < speed < 0x201 verify failed");
-    QVERIFY2(XSerial::Get()->set_cradleSpeed(&speed), "set cradle speed failed");
+    testing::InitGoogleTest(&argc,argv);
+    return RUN_ALL_TESTS();
 }
-
-void TestSummer::test_xserial_data()
-{
-    // 添加数据列
-    QTest::addColumn<QStringList>("scan");
-    QTest::addColumn<bool>("open");
-    // 添加测试数据
-    QTest::newRow("test_serial") << XSerial::Get()->scan_serial() << XSerial::Get()->open_serial();
-}
-
-void TestSummer::test_xdev()
-{
-    QVERIFY2(XDev::Get()->create_irDev(), "create ir dev failure");
-    QVERIFY2(XDev::Get()->refresh_irDev(), "refresh ir dev failure");
-    QVERIFY2(XDev::Get()->connect_irDev(), "connect ir dev failure");
-    //MAG_StartProcessImage持续播放
-    //QVERIFY2(XDev::Get()->play_irDev(), "play bmpdata stream failure");
-}
-
-QTEST_APPLESS_MAIN(TestSummer)
-
-#include "test_summer.moc"

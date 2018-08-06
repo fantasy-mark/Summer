@@ -1,21 +1,18 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-07-20T15:51:33
+# Project created by QtCreator 2018-08-02T15:17:05
 #
 #-------------------------------------------------
 
-#
-# Add by Mark
-# 用于Summer类单元测试
-#
-
-QT       += testlib serialport
+QT       += widgets network testlib serialport
 
 QT       -= gui
 
-TARGET = tst_testsummer
-CONFIG   += console
-CONFIG   -= app_bundle
+greaterThan(QT_MAJOR_VERSION, 4): QT += printsupport
+
+TARGET = test_summer
+CONFIG += console c++11
+CONFIG -= app_bundle
 
 TEMPLATE = app
 
@@ -34,17 +31,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/module/test_summer.cpp \
     src/module/xserial.cpp \
-    src/module/xdev.cpp
+    src/module/xdev.cpp \
+    src/module/logsys.cpp
+
+INCLUDEPATH += \
+	include/
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
-INCLUDEPATH += include
+
+LIBS += -L$$PWD/lib/ -lgtest
 
 HEADERS += \
     src/module/xserial.h \
-    src/module/test_summer.h \
     src/module/xdev.h \
-
+    src/module/logsys.h
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lopencv_world340d
 

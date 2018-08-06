@@ -6,6 +6,11 @@ XSerial::XSerial()
     open_serial();
 }
 
+XSerial::~XSerial()
+{
+    close_serial();
+}
+
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
@@ -29,15 +34,10 @@ QStringList XSerial::scan_serial()
 	QStringList serialList;
 
 	foreach(const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
-		QSerialPort serial;
-		serial.setPort(info);
-		/* 判断端口是否能打开 */
-		if (serial.open(QIODevice::ReadWrite)) {
-			serialList.append(info.portName());
-			//vid 1659 pid 8963 摇杆串口
-			serial.close();
-		}
-	}
+        QString id;
+        id.sprintf("-%04x:%04x", info.productIdentifier(), info.vendorIdentifier());
+        serialList.append(info.portName() + id);
+    }
 
 	return serialList;
 }
@@ -57,14 +57,16 @@ bool XSerial::open_serial()
 		serial_p->setPort(info);
 		/* 判断端口是否能打开 */
 		if (serial_p->open(QIODevice::ReadWrite)) {
-			if (info.hasVendorIdentifier()) _vid = info.vendorIdentifier();
-			if (info.hasProductIdentifier()) _pid = info.productIdentifier();
+            if (info.hasVendorIdentifier())
+                _vid = info.vendorIdentifier();
+            if (info.hasProductIdentifier())
+                _pid = info.productIdentifier();
 			//为指定设备设置波特率
 			if (_vid == POLE_VID && _pid == POLE_PID && poleSerial == NULL) {
 				poleSerial = serial_p;
 				poleSerial->setBaudRate(9600);
 			} else if (_vid == CRADLE_VID && _pid == CRADLE_PID && cradleSerial == NULL) {
-				cradleSerial = serial_p;
+                cradleSerial = serial_p;
 				cradleSerial->setBaudRate(115200);
 			} else {
 				serial_p->close();
@@ -81,7 +83,7 @@ bool XSerial::open_serial()
 			serial_p->setFlowControl(QSerialPort::NoFlowControl);
 			/* 设置读缓冲,0为全缓冲 */
 			serial_p->setReadBufferSize(0);
-		}
+        }
 	}
 	if (cradleSerial != NULL && poleSerial != NULL)
 		return true;
@@ -120,7 +122,7 @@ bool XSerial::get_poleSpeed(int * speed)
     if (! poleSerial->isOpen()) {
 		return false;
 	}
-	QByteArray data;
+    QByteArray data;
 	//1 等待读
     poleSerial->waitForReadyRead(10);
 	//最长合成帧需要2*9-1=17,舍弃多余数据
@@ -128,7 +130,7 @@ bool XSerial::get_poleSpeed(int * speed)
 	if (len > 17) {
 		poleSerial->read(len - 17);
 	}
-	data = poleSerial->readAll();
+    data = poleSerial->readAll();
     if (data.size() < 17)
         return false;
 	int begin;
