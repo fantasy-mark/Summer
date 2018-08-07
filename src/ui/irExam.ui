@@ -171,7 +171,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1100</x>
-     <y>240</y>
+     <y>365</y>
      <width>320</width>
      <height>29</height>
     </rect>
@@ -199,7 +199,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1250</x>
-     <y>335</y>
+     <y>460</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -227,7 +227,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1250</x>
-     <y>281</y>
+     <y>406</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -255,7 +255,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1330</x>
-     <y>335</y>
+     <y>460</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -327,7 +327,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1170</x>
-     <y>335</y>
+     <y>460</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -355,7 +355,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1170</x>
-     <y>535</y>
+     <y>660</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -386,7 +386,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1250</x>
-     <y>505</y>
+     <y>630</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -438,7 +438,7 @@ QPushButton#Photo:pressed
    <property name="geometry">
     <rect>
      <x>1330</x>
-     <y>535</y>
+     <y>660</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -491,7 +491,7 @@ QPushButton#Photo:pressed
    <property name="geometry">
     <rect>
      <x>1250</x>
-     <y>385</y>
+     <y>510</y>
      <width>42</width>
      <height>42</height>
     </rect>
@@ -516,7 +516,7 @@ QPushButton#Photo:pressed
    <property name="geometry">
     <rect>
      <x>1100</x>
-     <y>470</y>
+     <y>595</y>
      <width>320</width>
      <height>29</height>
     </rect>
@@ -566,7 +566,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1120</x>
-     <y>690</y>
+     <y>290</y>
      <width>81</width>
      <height>29</height>
     </rect>
@@ -588,7 +588,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1220</x>
-     <y>690</y>
+     <y>290</y>
      <width>191</width>
      <height>29</height>
     </rect>
@@ -604,7 +604,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1100</x>
-     <y>645</y>
+     <y>245</y>
      <width>320</width>
      <height>29</height>
     </rect>
@@ -632,7 +632,7 @@ padding-left:10px;</string>
    <property name="geometry">
     <rect>
      <x>1250</x>
-     <y>565</y>
+     <y>690</y>
      <width>42</width>
      <height>42</height>
     </rect>

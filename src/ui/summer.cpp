@@ -37,11 +37,9 @@ Summer::~Summer()
 
 void Summer::show_devList()
 {
-    if (irExamPage == NULL)
-        return;
-
     irExamPage->CB1->clear();
     QStringList list = XDev::Get()->refresh_irDev();
+    qDebug() << list;
     QList<QString>::Iterator it = list.begin(), itend = list.end();
     for (int i = 0; it != itend; it++, i++) {
         irExamPage->CB1->insertItem(i, *it);
@@ -63,7 +61,7 @@ void Summer::connect_irDev()
         irExamPage->NearFocus->setEnabled(true);
         irExamPage->FarFocus->setEnabled(true);
         irExamPage->CB2->setEnabled(true);
-        XDev::Get()->play_irDev();
+        //XDev::Get()->play_irDev();
     } else {
         QMessageBox::information(this, QString(), QStringLiteral("无法连接红外探测头"));
     }

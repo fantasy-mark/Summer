@@ -112,11 +112,6 @@ void XView::show_image(QString path)
 	Date		: 2018.05.23
 	Description	: 选择合适的色卡用于增强灰度图像显示 & 槽函数
  *****************************************************************************/
-void XView::select_colormap(QString type)
-{
-	qDebug() << type;
-	XPro::Get()->rainbowColorMap();
-}
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -295,13 +290,12 @@ void XView::set_cmBeta(int val)
 	Date		: 2018.06.12
 	Description	: 设置色卡 & 槽函数
  *****************************************************************************/
-void XView::set_colormap(int index)
+bool XView::set_colormap(int index)
 {
 	UCHAR const * pBarData;
 	BITMAPINFO const * pBarInfo;
 
 	Mat Nice;
-	PrInfo("%d", index);
 
 	if (index > 10) {
 		PrInfo("使用自定义模板");
@@ -311,26 +305,26 @@ void XView::set_colormap(int index)
 			rotate(XPro::Get()->get_colormap(), cmTable, ROTATE_90_COUNTERCLOCKWISE);
 			cv::resize(cmTable, cmMat, cmMat.size());
             rotate(cmMat, cmMat, ROTATE_180);
-			break;
+            return true;
 		case 12:
             Nice = imread("C:/Users/Administrator/source/repos/Summer/doc/Nice.bmp", CV_LOAD_IMAGE_UNCHANGED);
+            if (Nice.empty())
+                return false;
 			for (int i = 0; i < 256; i++) {
 				cmTable.at<Vec3b>(255 - i, 0)[0] = Nice.at<Vec3b>(i, 0)[2];
 				cmTable.at<Vec3b>(255 - i, 0)[1] = Nice.at<Vec3b>(i, 0)[1];
 				cmTable.at<Vec3b>(255 - i, 0)[2] = Nice.at<Vec3b>(i, 0)[0];
 				cv::resize(cmTable, cmMat, cmMat.size());
 			}
-			break;
+            return true;
 		default:
-			break;
-		}
-	} else {
+            break;
+        }
+    } else {
         XDev::Get()->SetColorPalette((ColorPalette)index);
 		//pData-指向颜色条位图数据区指针, pInfo-指向颜色条位图信息区指针
 		//TODO 此处有坑，注意先要初始化巨哥摄像头后才可以获取成功读取相关数据
         if (XDev::Get()->GetOutputColorBardata(&pBarData, &pBarInfo)) {
-			PrWarning("获取成功");
-
 			//此处是调色板Mat TODO
 			for (int i = 0; i < 256; i++) {
 				int b0 = (int)*((uchar *)(pBarInfo->bmiColors) + 4 * i);
@@ -339,8 +333,17 @@ void XView::set_colormap(int index)
 				cmTable.at<Vec3b>(255 - i, 0) = Vec3b(b2, b1, b0);
 				cv::resize(cmTable, cmMat, cmMat.size());
 			}
-		} else {
-			PrWarning("获取失败");
-		}
-	}
+            imshow("show table", cmMat);
+            return true;
+        } else {
+            PrWarning("获取失败，巨哥摄像头是否已经初始化成功(连接成功?)");
+        }
+    }
+
+    return false;
+}
+
+cv::Mat XView::get_cmTable()
+{
+    return cmTable;
 }

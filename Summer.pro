@@ -4,11 +4,26 @@
 #
 #-------------------------------------------------
 
-QT       += core gui serialport printsupport network webenginewidgets webengine xml
+QT  += core gui serialport printsupport network webenginewidgets webengine xml
+
+#-------------------------------------------------
+# 是否进行单元测试
+#-------------------------------------------------
+CONFIG  += testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+testlib{
+TARGET = TestSummer
+CONFIG += console c++11
+CONFIG -= app_bundle
+
+DEFINES += USING_GTEST
+
+LIBS += -L$$PWD/lib/ -lgtest
+}else{
 TARGET = Summer
+}
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -30,7 +45,6 @@ INCLUDEPATH += \
 
 SOURCES += \
     src/ui/summer.cpp \
-    src/main.cpp \
     src/module/xserial.cpp \
     src/module/xdev.cpp \
     src/module/xreport.cpp \
@@ -39,7 +53,8 @@ SOURCES += \
     src/module/xpro.cpp \
     src/module/xsec.cpp \
     src/module/ximage.cpp \
-    src/module/xconfig.cpp
+    src/module/xconfig.cpp \
+    src/main.cpp
 
 HEADERS += \
     src/ui/summer.h \
@@ -52,7 +67,8 @@ HEADERS += \
     src/module/xsec.h \
     src/kitconfig.h \
     src/module/ximage.h \
-    src/module/xconfig.h
+    src/module/xconfig.h \
+    src/module/test_summer.h
 
 FORMS += \
     src/ui/summer.ui \
@@ -89,4 +105,4 @@ INCLUDEPATH += $$PWD/include
 DEPENDPATH += $$PWD/include
 
 RESOURCES += \
-    resource/summer.qrc
+    $$PWD/resource/summer.qrc

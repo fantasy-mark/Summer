@@ -1,6 +1,11 @@
 #include "summer.h"
 #include <QApplication>
 
+#ifdef USING_GTEST
+#include "gtest/gtest.h"
+#include "test_summer.h"
+#endif
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QString>
@@ -20,6 +25,7 @@ void set_configFile();
 
 int main(int argc, char *argv[])
 {
+#if 0
 #ifdef WIN32
     //用于调整系统分辨率
     DEVMODE DevMode;
@@ -29,11 +35,11 @@ int main(int argc, char *argv[])
     DevMode.dmPelsHeight = 900;
     ChangeDisplaySettings(&DevMode, CDS_FULLSCREEN);
 #endif
+#endif
 
     QApplication a(argc, argv);
 
     //setup();
-
     Summer w;
 
     //设置在某个屏幕显示UI
@@ -41,6 +47,12 @@ int main(int argc, char *argv[])
     //MainWindow::Get()->setGeometry(deskTop->screenGeometry(1));
     w.setWindowFlags(Qt::FramelessWindowHint);
     w.show();
+
+#ifdef USING_GTEST
+    testing::InitGoogleTest(&argc, argv);
+
+    RUN_ALL_TESTS();
+#endif
 
     //qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "9223");
 

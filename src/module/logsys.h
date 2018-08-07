@@ -2,7 +2,7 @@
 定义:
 LogSys Log(LogLevel_Info, LogSys::GetAppPathA().append("log\\"));
 #define pr(fmt) do { \
-	Log.Info("%s  %s  %d\n\t" fmt, __FILE__, __FUNCTION__, __LINE__); \
+    Log.Info("%s  %s  %d\n\t" fmt, __FUNCTION__, __LINE__); \
 } while(0);
 
 in the  function:
@@ -28,21 +28,25 @@ tips:
 	Date		: 2018.05.29
 	Description	: 用于快捷打印调试位置 & 宏 (与GNU C语法有点不同)
  *****************************************************************************/
+//写严重错误信息 奔溃信息
 #define PrFatal(fmt, ...) do { \
-	LogSys::Get()->Fatal("%s  %s  %d\n\t" fmt, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__); \
+    LogSys::Get()->Fatal("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
+//写错误信息  执行失败信息 测试不通过信息
 #define PrError(fmt, ...) do { \
-	LogSys::Get()->Error("%s  %s  %d\n\t" fmt, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__); \
+    LogSys::Get()->Error("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
+//写警告信息  理想预期之外的信息
 #define PrWarning(fmt, ...) do { \
-	LogSys::Get()->Warning("%s  %s  %d\n\t" fmt, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__); \
+    LogSys::Get()->Warning("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
+//写一般信息 提示信息
 #define PrInfo Pr
 #define Pr(fmt, ...) do { \
-	LogSys::Get()->Info("%s  %s  %d\n\t" fmt, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__); \
+    LogSys::Get()->Info("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
 

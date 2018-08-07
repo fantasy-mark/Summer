@@ -1,10 +1,36 @@
-#include <qDebug>
 #include "gtest/gtest.h"
+#include <qDebug>
 #include "xserial.h"
 #include "xdev.h"
 #include "logsys.h"
+#include "xpro.h"
+#include "xview.h"
+
+#include "opencv2/opencv.hpp"
+using namespace cv;
 
 namespace {
+QWidget * w;
+/*****************************************************************************
+    Date		: 2018.08.07
+    Description	: 日志打印
+ *****************************************************************************/
+TEST(LogSys, pr)
+{
+    LogSys::Get()->ChangeLogLevel(LogLevel_Info);
+    PrFatal("a fatal log");
+    PrError("a error log");
+    PrWarning("a warning log");
+    Pr();
+}
+TEST(LogSys, get_appPath)
+{
+    qDebug() << QString::fromStdString(LogSys::Get()->GetAppPathA());
+}
+TEST(LogSys, get_formatString)
+{
+    qDebug() << QString::fromStdString(LogSys::Get()->FormatString("%04d%02d%02d_%02d%02d.md", 2018, 8, 11, 17, 59));
+}
 /*****************************************************************************
     Date		: 2018.08.06
     Description	: 测试XSerial类
@@ -35,16 +61,13 @@ TEST(XSerial, setSpeed)
     Date		: 2018.08.06
     Description	: 测试XDev类
  *****************************************************************************/
-TEST(XDev, create)
+TEST(XDev, init)
 {
     EXPECT_TRUE(XDev::Get()->create_irDev()) << "can't create irDev, confirm connect lan\n";
 }
-TEST(XDev, refresh)
-{
-    qDebug() << XDev::Get()->refresh_irDev();
-}
 TEST(XDev, connect)
 {
+    qDebug() << XDev::Get()->refresh_irDev();
     EXPECT_TRUE(XDev::Get()->connect_irDev());
 }
 TEST(XDev, play)
@@ -65,40 +88,33 @@ TEST(XDev, nearFocus)
     XDev::Get()->near_focus();
 }
 #endif
-TEST(XDev, stop)
-{
-    XDev::Get()->stop_irDev();
-}
-TEST(XDev, disconnect)
-{
-    XDev::Get()->disconnect_irDev();
-}
-TEST(XDev, free)
-{
-    XDev::Get()->free_irDev();
-}
 /*****************************************************************************
     Date		: 2018.08.06
     Description	: 测试LogSys模块
  *****************************************************************************/
-TEST(LogSys, get_appPath)
+TEST(XPro, rainbow)
 {
-    qDebug() << QString::fromStdString(LogSys::Get()->GetAppPathA());
+    XPro::Get()->rainbowColorMap();
+    imshow("rainbom", XPro::Get()->get_colormap());
 }
-TEST(LogSys, get_formatString)
+TEST(XView, set_colorMap)
 {
-    qDebug() << QString::fromStdString(LogSys::Get()->FormatString("%04d%02d%02d_%02d%02d.md", 2018, 8, 11, 17, 59));
+    UCHAR const * pBarData;
+    BITMAPINFO const * pBarInfo;
+    EXPECT_TRUE(XDev::Get()->GetOutputColorBardata(&pBarData, &pBarInfo));
+#if 0
+    w = new QWidget;
+    XView * xv = new XView(w);
+    ASSERT_TRUE(xv->set_colormap(2)) << "can init irDev? already play irDev?";
+    imshow("color map", xv->get_cmTable());
+#endif
 }
-}
-
-/*****************************************************************************
-    Copyright	: Yaqian Group
-    Author		: Mark_Huang ( hacker.do@163.com )
-    Date		: 2018.08.06
-    Description	: 单元测试总入口
- *****************************************************************************/
-int main(int argc, char* argv[])
+#if 0
+TEST(ALL, exit)
 {
-    testing::InitGoogleTest(&argc,argv);
-    return RUN_ALL_TESTS();
+    XDev::Get()->stop_irDev();
+    XDev::Get()->disconnect_irDev();
+    XDev::Get()->free_irDev();
+}
+#endif
 }

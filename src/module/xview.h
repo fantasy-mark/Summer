@@ -38,12 +38,13 @@ public slots:
     void photoBreast();
 
 	void show_image(QString path);
-	void select_colormap(QString type);
 
 	void set_cmAlpha(int val);
 	void set_cmBeta(int val);
 
-	void set_colormap(int);
+    bool set_colormap(int);
+
+    cv::Mat get_cmTable();
 
 protected:
 	//±£´æÍ¼Ïñ

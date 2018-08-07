@@ -4,9 +4,11 @@
 #include <vector>  
 #include <shlobj.h>
 #include <io.h>
+#include <iostream>
 
 #include "logsys.h"  
 
+using std::cout;
 using std::string;
 using std::vector;
 
@@ -110,7 +112,7 @@ const char *LogSys::path_file(const char *path, char splitter)
 	return strrchr(path, splitter) ? strrchr(path, splitter) + 1 : path;
 }
 
-//写严重错误信息  
+//写严重错误信息 奔溃信息
 void LogSys::Fatal(const char *lpcszFormat, ...)
 {
 	//判断当前的写日志级别  
@@ -130,18 +132,21 @@ void LogSys::Fatal(const char *lpcszFormat, ...)
 		}
 		va_end(marker); //重置变量参数  
 	}
-	if (strResult.empty())
+#ifndef __RELEASE__
+    cout << strResult;
+#endif
+    if (strResult.empty())
 	{
 		return;
 	}
-	string strLog = strFatalPrefix;
-	strLog.append(GetTime()).append("\n" + strResult + "\n");
+    string strLog = strFatalPrefix;
+    strLog.append(GetTime()).append("<div style=\"font-weight:bold;font-size:24px;color:#ff0000\">" + strResult + "</div>\n");
 
 	//写日志文件  
 	Trace(strLog);
 }
 
-//写错误信息  
+//写错误信息  执行失败信息
 void LogSys::Error(const char *lpcszFormat, ...)
 {
 	//判断当前的写日志级别  
@@ -160,17 +165,20 @@ void LogSys::Error(const char *lpcszFormat, ...)
 		}
 		va_end(marker); //重置变量参数  
 	}
-	if (strResult.empty()) {
+#ifndef __RELEASE__
+    cout << strResult;
+#endif
+    if (strResult.empty()) {
 		return;
 	}
 	string strLog = strErrorPrefix;
-	strLog.append(GetTime()).append("\n" + strResult + "\n");
+    strLog.append(GetTime()).append("<div style=\"font-weight:bold;font-size:18px;color:#ff5151\">" + strResult + "</div>\n");
 
 	//写日志文件  
 	Trace(strLog);
 }
 
-//写警告信息  
+//写警告信息  理想预期之外的信息
 void LogSys::Warning(const char *lpcszFormat, ...)
 {
 	//判断当前的写日志级别  
@@ -189,23 +197,26 @@ void LogSys::Warning(const char *lpcszFormat, ...)
 		}
 		va_end(marker); //重置变量参数  
 	}
-	if (strResult.empty()) {
+#ifndef __RELEASE__
+    cout << strResult;
+#endif
+    if (strResult.empty()) {
 		return;
 	}
 	string strLog = strWarningPrefix;
-	strLog.append(GetTime()).append("\n" + strResult + "\n");
+    strLog.append(GetTime()).append("<div style=\"font-weight:bold;color:#ff8f00\">" + strResult + "</div>\n");
 
 	//写日志文件  
 	Trace(strLog);
 }
 
 
-//写一般信息  
+//写一般信息 提示信息
 void LogSys::Info(const char *lpcszFormat, ...)
 {
-	//判断当前的写日志级别  
-	if (LogLevel::LogLevel_Info > m_nLogLevel)
-		return;
+    //判断当前的写日志级别 mark fixme 当前级别打印但不记录
+    //if (LogLevel::LogLevel_Info > m_nLogLevel)
+    //	return;
 	string strResult;
 	if (NULL != lpcszFormat) {
 		va_list marker = NULL;
@@ -218,14 +229,19 @@ void LogSys::Info(const char *lpcszFormat, ...)
 		}
 		va_end(marker); //重置变量参数  
 	}
-	if (strResult.empty()) {
+#ifndef __RELEASE__
+    cout << strResult;
+#endif
+#if 0
+    if (strResult.empty()) {
 		return;
 	}
 	string strLog = strInfoPrefix;
-	strLog.append(GetTime()).append("\n" + strResult + "\n");
+    strLog.append(GetTime()).append("<div style=\"font-weight:bold;color:#00ff00\">" + strResult + "</div>\n");
 
 	//写日志文件  
 	Trace(strLog);
+#endif
 }
 
 //获取系统当前时间  
@@ -260,18 +276,14 @@ void LogSys::Trace(const string &strLog)
 				return;
 			}
 		}
-		//写日志信息到文件流  
-#ifndef __RELEASE__
-		printf(strLog.c_str());
-#endif
-		fprintf(m_pFileStream, "```\n%s```\n", strLog.c_str());
+        //写日志信息到文件流
+        fprintf(m_pFileStream, "\n%s\n", strLog.c_str());
 		fflush(m_pFileStream);
 		//离开临界区  
 		LeaveCriticalSection(&m_cs);
 	}
 	//若发生异常，则先离开临界区，防止死锁  
-	catch (...)
-	{
+    catch (...) {
 		LeaveCriticalSection(&m_cs);
 	}
 }
