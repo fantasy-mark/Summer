@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QDir>
 #include <QListWidget>
@@ -16,7 +16,7 @@ public:
     void setup_dir(QString);
 
 public slots:
-	void add_image(const QString &path);		// Ä¿Â¼±ä»¯µ÷ÓÃ£¬pathÊÇ¼à¿ØÂ·¾¶
+	void add_image(const QString &path);		// ç›®å½•å˜åŒ–è°ƒç”¨ï¼Œpathæ˜¯ç›‘æ§è·¯å¾„
 	void del_image();
 	void show_image();
 
@@ -24,7 +24,7 @@ signals:
 	void show_image(QString);
 
 private:
-	QStringList currentFiles;	// µ±Ç°Ã¿¸ö¼à¿ØµÄÄÚÈİÄ¿Â¼ÁĞ±í
+	QStringList currentFiles;	// å½“å‰æ¯ä¸ªç›‘æ§çš„å†…å®¹ç›®å½•åˆ—è¡¨
     QString path;
 
 protected:

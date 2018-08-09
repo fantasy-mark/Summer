@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QObject>
 #include <QPrinter>
@@ -9,7 +9,7 @@
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.06.26
-	Description	: ±¨¸æµÄtagÏîºÍ·½·¨
+	Description	: æŠ¥å‘Šçš„tagé¡¹å’Œæ–¹æ³•
  *****************************************************************************/
 class XReport : public QObject
 {
@@ -30,12 +30,12 @@ public:
     QString get_html();
 
 public slots:
-	//·şÎñÆ÷API
+	//æœåŠ¡å™¨API
 	void reply_Get_Finished(QNetworkReply * reply);
 	void reply_Post_Finished(QNetworkReply * reply);
 	void test_get();
 	void test_post();
-    //Éú³É±¨¸æ
+    //ç”ŸæˆæŠ¥å‘Š
     QString create_BIReport();
     QString create_SCReport();
 

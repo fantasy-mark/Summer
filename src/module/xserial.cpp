@@ -1,9 +1,9 @@
-#include "xserial.h"
+ï»¿#include "xserial.h"
 #include <qDebug>
 
 XSerial::XSerial()
 {
-    open_serial();
+    //ä¸åº”è¯¥åœ¨æ„é€ å‡½æ•°ä¸­æ‰“å¼€ä¸²å£,åº”è¯¥æ˜¾å¼æ§åˆ¶ä¸²å£
 }
 
 XSerial::~XSerial()
@@ -15,7 +15,7 @@ XSerial::~XSerial()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-	Description	: Ê¹ÓÃ¾²Ì¬Àà,»ñµÃ¶ÔÏóÖ¸Õë
+	Description	: ä½¿ç”¨é™æ€ç±»,è·å¾—å¯¹è±¡æŒ‡é’ˆ
  *****************************************************************************/
 XSerial * XSerial::Get()
 {
@@ -27,7 +27,7 @@ XSerial * XSerial::Get()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-	Description	: É¨Ãè¿ÉÓÃ´®¿Ú²¢»ñÈ¡
+	Description	: æ‰«æå¯ç”¨ä¸²å£å¹¶è·å–
  *****************************************************************************/
 QStringList XSerial::scan_serial()
 {
@@ -46,22 +46,22 @@ QStringList XSerial::scan_serial()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-	Description	: ÓĞÔÆÌ¨»òÒ¡¸Ë´®¿ÚÔò´ò¿ª
+	Description	: æœ‰äº‘å°æˆ–æ‘‡æ†ä¸²å£åˆ™æ‰“å¼€
  *****************************************************************************/
 bool XSerial::open_serial()
 {
 	foreach(const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
 		int _vid, _pid;
 		QSerialPort * serial_p = new QSerialPort;
-		/* ÉèÖÃÓ²¼şĞÅÏ¢ */
+		/* è®¾ç½®ç¡¬ä»¶ä¿¡æ¯ */
 		serial_p->setPort(info);
-		/* ÅĞ¶Ï¶Ë¿ÚÊÇ·ñÄÜ´ò¿ª */
+		/* åˆ¤æ–­ç«¯å£æ˜¯å¦èƒ½æ‰“å¼€ */
 		if (serial_p->open(QIODevice::ReadWrite)) {
             if (info.hasVendorIdentifier())
                 _vid = info.vendorIdentifier();
             if (info.hasProductIdentifier())
                 _pid = info.productIdentifier();
-			//ÎªÖ¸¶¨Éè±¸ÉèÖÃ²¨ÌØÂÊ
+			//ä¸ºæŒ‡å®šè®¾å¤‡è®¾ç½®æ³¢ç‰¹ç‡
 			if (_vid == POLE_VID && _pid == POLE_PID && poleSerial == NULL) {
 				poleSerial = serial_p;
 				poleSerial->setBaudRate(9600);
@@ -73,15 +73,15 @@ bool XSerial::open_serial()
 				delete serial_p;
 				continue;
 			}
-			/* ÉèÖÃÊı¾İÎ»Êı */
+			/* è®¾ç½®æ•°æ®ä½æ•° */
 			serial_p->setDataBits(QSerialPort::Data8);
-			/* ÉèÖÃÆæÅ¼Ğ£Ñé */
+			/* è®¾ç½®å¥‡å¶æ ¡éªŒ */
 			serial_p->setParity(QSerialPort::NoParity);
-			/* ÉèÖÃÍ£Ö¹Î» */
+			/* è®¾ç½®åœæ­¢ä½ */
 			serial_p->setStopBits(QSerialPort::OneStop);
-			/* ÉèÖÃÁ÷¿ØÖÆ */
+			/* è®¾ç½®æµæ§åˆ¶ */
 			serial_p->setFlowControl(QSerialPort::NoFlowControl);
-			/* ÉèÖÃ¶Á»º³å,0ÎªÈ«»º³å */
+			/* è®¾ç½®è¯»ç¼“å†²,0ä¸ºå…¨ç¼“å†² */
 			serial_p->setReadBufferSize(0);
         }
 	}
@@ -95,16 +95,18 @@ bool XSerial::open_serial()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-	Description	: ¹Ø±ÕÔÆÌ¨ºÍÒ¡¸Ë´®¿Ú
+	Description	: å…³é—­äº‘å°å’Œæ‘‡æ†ä¸²å£
  *****************************************************************************/
 void XSerial::close_serial()
 {
-	if (cradleSerial) {
-		cradleSerial->close();
+    if (cradleSerial) {
+        if (cradleSerial->isOpen())
+            cradleSerial->close();
 		cradleSerial = NULL;
 	}
-	if (poleSerial) {
-		poleSerial->close();
+    if (poleSerial) {
+        if (poleSerial->isOpen())
+            poleSerial->close();
 		poleSerial = NULL;
 	}
 }
@@ -113,19 +115,19 @@ void XSerial::close_serial()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-	Description	: »ñµÃÒ¡¸ËËÙ¶È
+	Description	: è·å¾—æ‘‡æ†é€Ÿåº¦
  *****************************************************************************/
 bool XSerial::get_poleSpeed(int * speed)
 {
-    if (cradleSerial == NULL)
+    if (poleSerial == NULL)
         return false;
     if (! poleSerial->isOpen()) {
 		return false;
 	}
     QByteArray data;
-	//1 µÈ´ı¶Á
+	//1 ç­‰å¾…è¯»
     poleSerial->waitForReadyRead(10);
-	//×î³¤ºÏ³ÉÖ¡ĞèÒª2*9-1=17,ÉáÆú¶àÓàÊı¾İ
+	//æœ€é•¿åˆæˆå¸§éœ€è¦2*9-1=17,èˆå¼ƒå¤šä½™æ•°æ®
 	int len = poleSerial->bytesAvailable();
 	if (len > 17) {
 		poleSerial->read(len - 17);
@@ -134,19 +136,19 @@ bool XSerial::get_poleSpeed(int * speed)
     if (data.size() < 17)
         return false;
 	int begin;
-	//ÕÒµ½ÍêÕûÖ¡µÄ×Ö½ÚÍ· 0xff
+	//æ‰¾åˆ°å®Œæ•´å¸§çš„å­—èŠ‚å¤´ 0xff
 	for (int i = 8; i >= 0; i--) {
 		if ((unsigned char)data.at(i) == 0xff) {
 			begin = i;
 			break;
 		}
 	}
-	//È¡ÍêÕûÖ¡
+	//å–å®Œæ•´å¸§
 	unsigned char bytes[9];
 	for (int i = 0; i < 9; i++) {
 		bytes[i] = (unsigned char)data.at(begin + i);
 	}
-	//Ğ£Ñé²¢»ñµÃËÙ¶È
+	//æ ¡éªŒå¹¶è·å¾—é€Ÿåº¦
 	if (bytes[8] == bytes[1] + bytes[2] + bytes[3] + bytes[4] + bytes[5] + bytes[6] + bytes[7]) {
 		*speed = ((int)bytes[1] << 8 | (int)bytes[2]) - 0x200;
 		return true;
@@ -159,7 +161,7 @@ bool XSerial::get_poleSpeed(int * speed)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.19
-    Description	: ¿ØÖÆÔÆÌ¨
+    Description	: æ§åˆ¶äº‘å°
  *****************************************************************************/
 bool XSerial::set_cradleSpeed(int *speed)
 {
@@ -168,16 +170,16 @@ bool XSerial::set_cradleSpeed(int *speed)
     if (! cradleSerial->isOpen()) {
 		return false;
 	}
-    //Ä¬ÈÏ·´×ª\¾²Ö¹
+    //é»˜è®¤åè½¬\é™æ­¢
 	static const char rdata[] = { 0xff, 0x1f, 0x10, 0x08, 0x20, 0x00, 0x56 };
 	QByteArray data = QByteArray::fromRawData(rdata, sizeof(rdata));
-	//Õı×ª,ËÙ¶È0x10,Ğ£Ñé
+	//æ­£è½¬,é€Ÿåº¦0x10,æ ¡éªŒ
     if (*speed > 0x100 && *speed < 0x200) {
         data[3] = 0x08;
         data[5] = 0x10;
         data[6] = 0x66;
     } else  if (*speed > -0x200 && *speed < -0x100) {
-    //·´×ª,ËÙ¶È0x10,Ğ£Ñé
+    //åè½¬,é€Ÿåº¦0x10,æ ¡éªŒ
         data[3] = 0x10;
         data[5] = 0x10;
         data[6] = 0x6e;
@@ -188,7 +190,7 @@ bool XSerial::set_cradleSpeed(int *speed)
     }
 
 	if (data.size() == cradleSerial->write(data)) {
-		//Á¢¼´ÉúĞ§?
+		//ç«‹å³ç”Ÿæ•ˆ?
 		//cradleSerial->flush();
 		return true;
 	}

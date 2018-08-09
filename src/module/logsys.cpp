@@ -1,4 +1,4 @@
-#include <time.h>  
+ï»¿#include <time.h>  
 #include <stdarg.h>  
 #include <direct.h>  
 #include <vector>  
@@ -19,7 +19,7 @@ using std::vector;
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.28
-	Description	: ´´½¨¶à¼¶Ä¿Â¼
+	Description	: åˆ›å»ºå¤šçº§ç›®å½•
  *****************************************************************************/
 void CreateDir(const char *dir)
 {
@@ -34,9 +34,9 @@ void CreateDir(const char *dir)
 		m = str1.find(SEPARATOR);
 
 		str2 += SEPARATOR + str1.substr(0, m);
-		n = _access(str2.c_str(), 0); //ÅĞ¶Ï¸ÃÄ¿Â¼ÊÇ·ñ´æÔÚ
+		n = _access(str2.c_str(), 0); //åˆ¤æ–­è¯¥ç›®å½•æ˜¯å¦å­˜åœ¨
 		if (n == -1) {
-			_mkdir(str2.c_str());     //´´½¨Ä¿Â¼
+			_mkdir(str2.c_str());     //åˆ›å»ºç›®å½•
 		}
 
 		str1 = str1.substr(m + 1, str1.size());
@@ -47,7 +47,7 @@ void CreateDir(const char *dir)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.29
-	Description	: ¹¹Ôìº¯Êı, ³õÊ¼»¯LogSysÊµÀı
+	Description	: æ„é€ å‡½æ•°, åˆå§‹åŒ–LogSyså®ä¾‹
  *****************************************************************************/
 LogSys::LogSys(LogLevel nLogLevel, const std::string strLogPath, const std::string strLogName)
 	:m_nLogLevel(nLogLevel),
@@ -61,20 +61,20 @@ LogSys::LogSys(LogLevel nLogLevel, const std::string strLogPath, const std::stri
 	if (m_strLogPath[m_strLogPath.length() - 1] != SEPARATOR_) {
 		m_strLogPath.append(SEPARATOR);
 	}
-	//´´½¨ÎÄ¼ş¼Ğ
+	//åˆ›å»ºæ–‡ä»¶å¤¹
 	CreateDir(m_strLogPath.c_str());
-	//´´½¨ÈÕÖ¾ÎÄ¼ş  
+	//åˆ›å»ºæ—¥å¿—æ–‡ä»¶  
 	if (m_strLogName.empty()) {
 		time_t curTime;
 		time(&curTime);
 		tm tm1;
 		localtime_s(&tm1, &curTime);
-		//ÈÕÖ¾µÄÃû³ÆÈç£º20160101_2130.log 
+		//æ—¥å¿—çš„åç§°å¦‚ï¼š20160101_2130.log 
 		m_strLogName = FormatString("%04d%02d%02d_%02d%02d.md", tm1.tm_year + 1900, tm1.tm_mon + 1, tm1.tm_mday, tm1.tm_hour, tm1.tm_min);
 	}
 	m_strLogFilePath = m_strLogPath.append(m_strLogName);
 
-	//ÒÔ×·¼ÓµÄ·½Ê½´ò¿ªÎÄ¼şÁ÷  
+	//ä»¥è¿½åŠ çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶æµ  
 	fopen_s(&m_pFileStream, m_strLogFilePath.c_str(), "a+");
 
 	InitializeCriticalSection(&m_cs);
@@ -85,7 +85,7 @@ LogSys::LogSys(LogLevel nLogLevel, const std::string strLogPath, const std::stri
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.29
-	Description	: ÓÃÓÚ»ñµÃÀàÊµÀı, ±ÈÈçLogSys::Get()->ChangeLogLevel(LogLevel::LogLevel_Error);
+	Description	: ç”¨äºè·å¾—ç±»å®ä¾‹, æ¯”å¦‚LogSys::Get()->ChangeLogLevel(LogLevel::LogLevel_Error);
  *****************************************************************************/
 LogSys * LogSys::Get()
 {
@@ -93,12 +93,12 @@ LogSys * LogSys::Get()
 	return &Log;
 }
 
-//Îö¹¹º¯Êı  
+//ææ„å‡½æ•°  
 LogSys::~LogSys()
 {
-	//ÊÍ·ÅÁÙ½çÇø  
+	//é‡Šæ”¾ä¸´ç•ŒåŒº  
 	DeleteCriticalSection(&m_cs);
-	//¹Ø±ÕÎÄ¼şÁ÷  
+	//å…³é—­æ–‡ä»¶æµ  
 	if (m_pFileStream)
 	{
 		fclose(m_pFileStream);
@@ -106,31 +106,31 @@ LogSys::~LogSys()
 	}
 }
 
-//ÎÄ¼şÈ«Â·¾¶µÃµ½ÎÄ¼şÃû  
+//æ–‡ä»¶å…¨è·¯å¾„å¾—åˆ°æ–‡ä»¶å  
 const char *LogSys::path_file(const char *path, char splitter)
 {
 	return strrchr(path, splitter) ? strrchr(path, splitter) + 1 : path;
 }
 
-//Ğ´ÑÏÖØ´íÎóĞÅÏ¢ ±¼À£ĞÅÏ¢
+//å†™ä¸¥é‡é”™è¯¯ä¿¡æ¯ å¥”æºƒä¿¡æ¯
 void LogSys::Fatal(const char *lpcszFormat, ...)
 {
-	//ÅĞ¶Ïµ±Ç°µÄĞ´ÈÕÖ¾¼¶±ğ  
+	//åˆ¤æ–­å½“å‰çš„å†™æ—¥å¿—çº§åˆ«  
 	if (LogLevel::LogLevel_Fatal > m_nLogLevel)
 		return;
 	string strResult;
 	if (NULL != lpcszFormat)
 	{
 		va_list marker = NULL;
-		va_start(marker, lpcszFormat); //³õÊ¼»¯±äÁ¿²ÎÊı  
-		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //»ñÈ¡¸ñÊ½»¯×Ö·û´®³¤¶È  
-		std::vector<char> vBuffer(nLength, '\0'); //´´½¨ÓÃÓÚ´æ´¢¸ñÊ½»¯×Ö·û´®µÄ×Ö·ûÊı×é  
+		va_start(marker, lpcszFormat); //åˆå§‹åŒ–å˜é‡å‚æ•°  
+		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //è·å–æ ¼å¼åŒ–å­—ç¬¦ä¸²é•¿åº¦  
+		std::vector<char> vBuffer(nLength, '\0'); //åˆ›å»ºç”¨äºå­˜å‚¨æ ¼å¼åŒ–å­—ç¬¦ä¸²çš„å­—ç¬¦æ•°ç»„  
 		int nWritten = _vsnprintf_s(&vBuffer[0], vBuffer.size(), nLength, lpcszFormat, marker);
 		if (nWritten > 0)
 		{
 			strResult = &vBuffer[0];
 		}
-		va_end(marker); //ÖØÖÃ±äÁ¿²ÎÊı  
+		va_end(marker); //é‡ç½®å˜é‡å‚æ•°  
 	}
 #ifndef __RELEASE__
     cout << strResult;
@@ -142,28 +142,28 @@ void LogSys::Fatal(const char *lpcszFormat, ...)
     string strLog = strFatalPrefix;
     strLog.append(GetTime()).append("<div style=\"font-weight:bold;font-size:24px;color:#ff0000\">" + strResult + "</div>\n");
 
-	//Ğ´ÈÕÖ¾ÎÄ¼ş  
+	//å†™æ—¥å¿—æ–‡ä»¶  
 	Trace(strLog);
 }
 
-//Ğ´´íÎóĞÅÏ¢  Ö´ĞĞÊ§°ÜĞÅÏ¢
+//å†™é”™è¯¯ä¿¡æ¯  æ‰§è¡Œå¤±è´¥ä¿¡æ¯
 void LogSys::Error(const char *lpcszFormat, ...)
 {
-	//ÅĞ¶Ïµ±Ç°µÄĞ´ÈÕÖ¾¼¶±ğ  
+	//åˆ¤æ–­å½“å‰çš„å†™æ—¥å¿—çº§åˆ«  
 	if (LogLevel::LogLevel_Error > m_nLogLevel)
 		return;
 	string strResult;
 	if (NULL != lpcszFormat)
 	{
 		va_list marker = NULL;
-		va_start(marker, lpcszFormat); //³õÊ¼»¯±äÁ¿²ÎÊı  
-		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //»ñÈ¡¸ñÊ½»¯×Ö·û´®³¤¶È  
-		std::vector<char> vBuffer(nLength, '\0'); //´´½¨ÓÃÓÚ´æ´¢¸ñÊ½»¯×Ö·û´®µÄ×Ö·ûÊı×é  
+		va_start(marker, lpcszFormat); //åˆå§‹åŒ–å˜é‡å‚æ•°  
+		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //è·å–æ ¼å¼åŒ–å­—ç¬¦ä¸²é•¿åº¦  
+		std::vector<char> vBuffer(nLength, '\0'); //åˆ›å»ºç”¨äºå­˜å‚¨æ ¼å¼åŒ–å­—ç¬¦ä¸²çš„å­—ç¬¦æ•°ç»„  
 		int nWritten = _vsnprintf_s(&vBuffer[0], vBuffer.size(), nLength, lpcszFormat, marker);
 		if (nWritten > 0) {
 			strResult = &vBuffer[0];
 		}
-		va_end(marker); //ÖØÖÃ±äÁ¿²ÎÊı  
+		va_end(marker); //é‡ç½®å˜é‡å‚æ•°  
 	}
 #ifndef __RELEASE__
     cout << strResult;
@@ -174,28 +174,28 @@ void LogSys::Error(const char *lpcszFormat, ...)
 	string strLog = strErrorPrefix;
     strLog.append(GetTime()).append("<div style=\"font-weight:bold;font-size:18px;color:#ff5151\">" + strResult + "</div>\n");
 
-	//Ğ´ÈÕÖ¾ÎÄ¼ş  
+	//å†™æ—¥å¿—æ–‡ä»¶  
 	Trace(strLog);
 }
 
-//Ğ´¾¯¸æĞÅÏ¢  ÀíÏëÔ¤ÆÚÖ®ÍâµÄĞÅÏ¢
+//å†™è­¦å‘Šä¿¡æ¯  ç†æƒ³é¢„æœŸä¹‹å¤–çš„ä¿¡æ¯
 void LogSys::Warning(const char *lpcszFormat, ...)
 {
-	//ÅĞ¶Ïµ±Ç°µÄĞ´ÈÕÖ¾¼¶±ğ  
+	//åˆ¤æ–­å½“å‰çš„å†™æ—¥å¿—çº§åˆ«  
 	if (LogLevel::LogLevel_Warning > m_nLogLevel)
 		return;
 	string strResult;
 	if (NULL != lpcszFormat)
 	{
 		va_list marker = NULL;
-		va_start(marker, lpcszFormat); //³õÊ¼»¯±äÁ¿²ÎÊı  
-		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //»ñÈ¡¸ñÊ½»¯×Ö·û´®³¤¶È  
-		std::vector<char> vBuffer(nLength, '\0'); //´´½¨ÓÃÓÚ´æ´¢¸ñÊ½»¯×Ö·û´®µÄ×Ö·ûÊı×é  
+		va_start(marker, lpcszFormat); //åˆå§‹åŒ–å˜é‡å‚æ•°  
+		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //è·å–æ ¼å¼åŒ–å­—ç¬¦ä¸²é•¿åº¦  
+		std::vector<char> vBuffer(nLength, '\0'); //åˆ›å»ºç”¨äºå­˜å‚¨æ ¼å¼åŒ–å­—ç¬¦ä¸²çš„å­—ç¬¦æ•°ç»„  
 		int nWritten = _vsnprintf_s(&vBuffer[0], vBuffer.size(), nLength, lpcszFormat, marker);
 		if (nWritten > 0) {
 			strResult = &vBuffer[0];
 		}
-		va_end(marker); //ÖØÖÃ±äÁ¿²ÎÊı  
+		va_end(marker); //é‡ç½®å˜é‡å‚æ•°  
 	}
 #ifndef __RELEASE__
     cout << strResult;
@@ -206,28 +206,48 @@ void LogSys::Warning(const char *lpcszFormat, ...)
 	string strLog = strWarningPrefix;
     strLog.append(GetTime()).append("<div style=\"font-weight:bold;color:#ff8f00\">" + strResult + "</div>\n");
 
-	//Ğ´ÈÕÖ¾ÎÄ¼ş  
+	//å†™æ—¥å¿—æ–‡ä»¶  
 	Trace(strLog);
 }
 
+void LogSys::Info(QString qtString, ...)
+{
+    const char * lpcszFormat = qtString.toLocal8Bit().data();
+    string strResult;
+    if (NULL != lpcszFormat) {
+        va_list marker = NULL;
+        va_start(marker, lpcszFormat); //åˆå§‹åŒ–å˜é‡å‚æ•°
+        size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //è·å–æ ¼å¼åŒ–å­—ç¬¦ä¸²é•¿åº¦
+        std::vector<char> vBuffer(nLength, '\0'); //åˆ›å»ºç”¨äºå­˜å‚¨æ ¼å¼åŒ–å­—ç¬¦ä¸²çš„å­—ç¬¦æ•°ç»„
+        int nWritten = _vsnprintf_s(&vBuffer[0], vBuffer.size(), nLength, lpcszFormat, marker);
+        if (nWritten > 0) {
+            strResult = &vBuffer[0];
+        }
+        va_end(marker); //é‡ç½®å˜é‡å‚æ•°
+    }
+#ifndef __RELEASE__
+    cout << strResult;
+#endif
+}
 
-//Ğ´Ò»°ãĞÅÏ¢ ÌáÊ¾ĞÅÏ¢
+#include <QString>
+//å†™ä¸€èˆ¬ä¿¡æ¯ æç¤ºä¿¡æ¯
 void LogSys::Info(const char *lpcszFormat, ...)
 {
-    //ÅĞ¶Ïµ±Ç°µÄĞ´ÈÕÖ¾¼¶±ğ mark fixme µ±Ç°¼¶±ğ´òÓ¡µ«²»¼ÇÂ¼
+    //åˆ¤æ–­å½“å‰çš„å†™æ—¥å¿—çº§åˆ« mark fixme å½“å‰çº§åˆ«æ‰“å°ä½†ä¸è®°å½•
     //if (LogLevel::LogLevel_Info > m_nLogLevel)
     //	return;
 	string strResult;
 	if (NULL != lpcszFormat) {
 		va_list marker = NULL;
-		va_start(marker, lpcszFormat); //³õÊ¼»¯±äÁ¿²ÎÊı  
-		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //»ñÈ¡¸ñÊ½»¯×Ö·û´®³¤¶È  
-		std::vector<char> vBuffer(nLength, '\0'); //´´½¨ÓÃÓÚ´æ´¢¸ñÊ½»¯×Ö·û´®µÄ×Ö·ûÊı×é  
+		va_start(marker, lpcszFormat); //åˆå§‹åŒ–å˜é‡å‚æ•°  
+		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //è·å–æ ¼å¼åŒ–å­—ç¬¦ä¸²é•¿åº¦  
+		std::vector<char> vBuffer(nLength, '\0'); //åˆ›å»ºç”¨äºå­˜å‚¨æ ¼å¼åŒ–å­—ç¬¦ä¸²çš„å­—ç¬¦æ•°ç»„  
 		int nWritten = _vsnprintf_s(&vBuffer[0], vBuffer.size(), nLength, lpcszFormat, marker);
 		if (nWritten > 0) {
 			strResult = &vBuffer[0];
 		}
-		va_end(marker); //ÖØÖÃ±äÁ¿²ÎÊı  
+		va_end(marker); //é‡ç½®å˜é‡å‚æ•°  
 	}
 #ifndef __RELEASE__
     cout << strResult;
@@ -239,12 +259,12 @@ void LogSys::Info(const char *lpcszFormat, ...)
 	string strLog = strInfoPrefix;
     strLog.append(GetTime()).append("<div style=\"font-weight:bold;color:#00ff00\">" + strResult + "</div>\n");
 
-	//Ğ´ÈÕÖ¾ÎÄ¼ş  
+	//å†™æ—¥å¿—æ–‡ä»¶  
 	Trace(strLog);
 #endif
 }
 
-//»ñÈ¡ÏµÍ³µ±Ç°Ê±¼ä  
+//è·å–ç³»ç»Ÿå½“å‰æ—¶é—´  
 string LogSys::GetTime()
 {
 	time_t curTime;
@@ -257,32 +277,32 @@ string LogSys::GetTime()
 	return strTime;
 }
 
-//¸Ä±äĞ´ÈÕÖ¾¼¶±ğ  
+//æ”¹å˜å†™æ—¥å¿—çº§åˆ«  
 void LogSys::ChangeLogLevel(LogLevel nLevel)
 {
 	m_nLogLevel = nLevel;
 }
 
-//Ğ´ÎÄ¼ş²Ù×÷  
+//å†™æ–‡ä»¶æ“ä½œ  
 void LogSys::Trace(const string &strLog)
 {
 	try {
-		//½øÈëÁÙ½çÇø  
+		//è¿›å…¥ä¸´ç•ŒåŒº  
 		EnterCriticalSection(&m_cs);
-		//ÈôÎÄ¼şÁ÷Ã»ÓĞ´ò¿ª£¬ÔòÖØĞÂ´ò¿ª  
+		//è‹¥æ–‡ä»¶æµæ²¡æœ‰æ‰“å¼€ï¼Œåˆ™é‡æ–°æ‰“å¼€  
 		if (NULL == m_pFileStream) {
 			fopen_s(&m_pFileStream, m_strLogFilePath.c_str(), "a+");
 			if (!m_pFileStream) {
 				return;
 			}
 		}
-        //Ğ´ÈÕÖ¾ĞÅÏ¢µ½ÎÄ¼şÁ÷
+        //å†™æ—¥å¿—ä¿¡æ¯åˆ°æ–‡ä»¶æµ
         fprintf(m_pFileStream, "\n%s\n", strLog.c_str());
 		fflush(m_pFileStream);
-		//Àë¿ªÁÙ½çÇø  
+		//ç¦»å¼€ä¸´ç•ŒåŒº  
 		LeaveCriticalSection(&m_cs);
 	}
-	//Èô·¢ÉúÒì³££¬ÔòÏÈÀë¿ªÁÙ½çÇø£¬·ÀÖ¹ËÀËø  
+	//è‹¥å‘ç”Ÿå¼‚å¸¸ï¼Œåˆ™å…ˆç¦»å¼€ä¸´ç•ŒåŒºï¼Œé˜²æ­¢æ­»é”  
     catch (...) {
 		LeaveCriticalSection(&m_cs);
 	}
@@ -304,14 +324,14 @@ string LogSys::FormatString(const char *lpcszFormat, ...)
 	string strResult;
 	if (NULL != lpcszFormat) {
 		va_list marker = NULL;
-		va_start(marker, lpcszFormat); //³õÊ¼»¯±äÁ¿²ÎÊı  
-		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //»ñÈ¡¸ñÊ½»¯×Ö·û´®³¤¶È  
-		std::vector<char> vBuffer(nLength, '\0'); //´´½¨ÓÃÓÚ´æ´¢¸ñÊ½»¯×Ö·û´®µÄ×Ö·ûÊı×é  
+		va_start(marker, lpcszFormat); //åˆå§‹åŒ–å˜é‡å‚æ•°  
+		size_t nLength = _vscprintf(lpcszFormat, marker) + 1; //è·å–æ ¼å¼åŒ–å­—ç¬¦ä¸²é•¿åº¦  
+		std::vector<char> vBuffer(nLength, '\0'); //åˆ›å»ºç”¨äºå­˜å‚¨æ ¼å¼åŒ–å­—ç¬¦ä¸²çš„å­—ç¬¦æ•°ç»„  
 		int nWritten = _vsnprintf_s(&vBuffer[0], vBuffer.size(), nLength, lpcszFormat, marker);
 		if (nWritten > 0) {
 			strResult = &vBuffer[0];
 		}
-		va_end(marker); //ÖØÖÃ±äÁ¿²ÎÊı  
+		va_end(marker); //é‡ç½®å˜é‡å‚æ•°  
 	}
 	return strResult;
 }

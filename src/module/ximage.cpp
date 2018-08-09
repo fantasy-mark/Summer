@@ -1,4 +1,4 @@
-#include "ximage.h"
+ï»¿#include "ximage.h"
 #include <QDateTime>
 #include <qDebug>
 
@@ -8,7 +8,7 @@ QString basePath = "C:/rrk/picture/";//QDir::currentPath() + "/Resources/picture
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.07
-	Description	: ÉèÖÃÍ¼ÏñÀ¸
+	Description	: è®¾ç½®å›¾åƒæ 
  *****************************************************************************/
 XImage::XImage(QWidget *parent)
 	: QListWidget(parent)
@@ -29,16 +29,16 @@ void XImage::setup_dir(QString dirPath)
 
     connect(&myWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(add_image(QString)));
 
-    //ÉèÖÃÍ¼Æ¬ÁĞ±í¿òÊôĞÔ
-    //ÉèÖÃQListWidgetµÄÏÔÊ¾Ä£Ê½ \ Í¼Æ¬´óĞ¡ \ ¼ä¾à
+    //è®¾ç½®å›¾ç‰‡åˆ—è¡¨æ¡†å±æ€§
+    //è®¾ç½®QListWidgetçš„æ˜¾ç¤ºæ¨¡å¼ \ å›¾ç‰‡å¤§å° \ é—´è·
     this->setViewMode(QListView::IconMode);
     this->setIconSize(QSize(160, 160));
     this->setSpacing(16);
-    //ÉèÖÃ×Ô¶¯ÊÊÓ¦²¼¾Öµ÷Õû£¨AdjustÊÊÓ¦£¬Fixed²»ÊÊÓ¦£©\ ²»ÄÜÒÆ¶¯
+    //è®¾ç½®è‡ªåŠ¨é€‚åº”å¸ƒå±€è°ƒæ•´ï¼ˆAdjusté€‚åº”ï¼ŒFixedä¸é€‚åº”ï¼‰\ ä¸èƒ½ç§»åŠ¨
     this->setResizeMode(QListWidget::Adjust);
     this->setMovement(QListWidget::Static);
-    //ÉèÖÃÑ¡ÔñÄ£Ê½ µ¥Ñ¡:SingleSelection µã»÷+ctrl¶àÑ¡:MultiSelection
-    //µã»÷ºÍÊó±ê¸´ºÏ¶àÑ¡:ExtendedSelection Êó±êÍÏÀ­¶àÑ¡:ContiguousSelection
+    //è®¾ç½®é€‰æ‹©æ¨¡å¼ å•é€‰:SingleSelection ç‚¹å‡»+ctrlå¤šé€‰:MultiSelection
+    //ç‚¹å‡»å’Œé¼ æ ‡å¤åˆå¤šé€‰:ExtendedSelection é¼ æ ‡æ‹–æ‹‰å¤šé€‰:ContiguousSelection
     this->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     for (int i = 0; i < currentFiles.size(); i++) {
@@ -47,11 +47,11 @@ void XImage::setup_dir(QString dirPath)
         new_item->setSizeHint(QSize(90, 120));
         new_item->setIcon(QIcon(path + currentFiles[i]));
 
-        //ÉèÖÃtextÊÇÎªÁË±£´æÎÄ¼şÂ·¾¶,²¢ÇÒÒş²Ø
+        //è®¾ç½®textæ˜¯ä¸ºäº†ä¿å­˜æ–‡ä»¶è·¯å¾„,å¹¶ä¸”éšè—
         new_item->setHidden(true);
         new_item->setText(path + currentFiles[i]);
 
-        //°ÑĞÂ¼ÓÈëÍ¼Ïñ·Åµ½×îÇ°
+        //æŠŠæ–°åŠ å…¥å›¾åƒæ”¾åˆ°æœ€å‰
         this->addItem(new_item);
     }
 }
@@ -60,7 +60,7 @@ void XImage::setup_dir(QString dirPath)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.07
-	Description	: ÓÃÓÚÊµÊ±¼àÊÓÄ¿Â¼ÎÄ¼ş & ²Ûº¯Êı
+	Description	: ç”¨äºå®æ—¶ç›‘è§†ç›®å½•æ–‡ä»¶ & æ§½å‡½æ•°
  *****************************************************************************/
 void XImage::add_image(const QString &path)
 {
@@ -72,7 +72,7 @@ void XImage::add_image(const QString &path)
 	currentFiles = newFlieList;
 	QStringList newFile = newFiles.toList();
 
-	//·ÀÖ¹Î´Ğ´Íê³É, µ¼ÖÂ¶ÁÊ§°Ü
+	//é˜²æ­¢æœªå†™å®Œæˆ, å¯¼è‡´è¯»å¤±è´¥
 	QDateTime last = QDateTime::currentDateTime();
 	QDateTime now;
 	for (;;) {
@@ -87,7 +87,7 @@ void XImage::add_image(const QString &path)
 		new_item->setSizeHint(QSize(90, 120));
 		new_item->setIcon(QIcon(path + file));
 
-		//ÉèÖÃtextÊÇÎªÁË±£´æÎÄ¼şÂ·¾¶,²¢ÇÒÒş²Ø
+		//è®¾ç½®textæ˜¯ä¸ºäº†ä¿å­˜æ–‡ä»¶è·¯å¾„,å¹¶ä¸”éšè—
 		new_item->setHidden(true);
 		new_item->setText(path + file); 
 
@@ -99,7 +99,7 @@ void XImage::add_image(const QString &path)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.07
-	Description	: É¾³ıËùÑ¡Í¼Ïñ & ²Ûº¯Êı
+	Description	: åˆ é™¤æ‰€é€‰å›¾åƒ & æ§½å‡½æ•°
  *****************************************************************************/
 void XImage::del_image()
 {
@@ -121,7 +121,7 @@ void XImage::del_image()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.08
-	Description	: Ë«»÷Í¼Æ¬ÏÔÊ¾ & ²Ûº¯Êı
+	Description	: åŒå‡»å›¾ç‰‡æ˜¾ç¤º & æ§½å‡½æ•°
  *****************************************************************************/
 void XImage::show_image()
 {

@@ -1,5 +1,5 @@
-/*
-¶¨Òå:
+ï»¿/*
+å®šä¹‰:
 LogSys Log(LogLevel_Info, LogSys::GetAppPathA().append("log\\"));
 #define pr(fmt) do { \
     Log.Info("%s  %s  %d\n\t" fmt, __FUNCTION__, __LINE__); \
@@ -13,7 +13,7 @@ Info	2018-05-29 14:18:22
 c:\users\administrator\desktop\svn\irexam\src\ui\irexam.cpp  IrExam::IrExam  41
 	i'm a log trace
 tips:
-#define __RELEASE__		 //ÓÃÓÚ¹Ø±Õ´òÓ¡ÏûÏ¢
+#define __RELEASE__		 //ç”¨äºå…³é—­æ‰“å°æ¶ˆæ¯
 */
 
 #ifndef _LOGSYS_H_
@@ -21,93 +21,96 @@ tips:
 #include <Windows.h>
 #include <stdio.h>
 #include <string>
+#include <QString>
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.29
-	Description	: ÓÃÓÚ¿ì½İ´òÓ¡µ÷ÊÔÎ»ÖÃ & ºê (ÓëGNU CÓï·¨ÓĞµã²»Í¬)
+	Description	: ç”¨äºå¿«æ·æ‰“å°è°ƒè¯•ä½ç½® & å® (ä¸GNU Cè¯­æ³•æœ‰ç‚¹ä¸åŒ)
  *****************************************************************************/
-//Ğ´ÑÏÖØ´íÎóĞÅÏ¢ ±¼À£ĞÅÏ¢
+//å†™ä¸¥é‡é”™è¯¯ä¿¡æ¯ å¥”æºƒä¿¡æ¯
 #define PrFatal(fmt, ...) do { \
     LogSys::Get()->Fatal("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
-//Ğ´´íÎóĞÅÏ¢  Ö´ĞĞÊ§°ÜĞÅÏ¢ ²âÊÔ²»Í¨¹ıĞÅÏ¢
+//å†™é”™è¯¯ä¿¡æ¯  æ‰§è¡Œå¤±è´¥ä¿¡æ¯ æµ‹è¯•ä¸é€šè¿‡ä¿¡æ¯
 #define PrError(fmt, ...) do { \
     LogSys::Get()->Error("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
-//Ğ´¾¯¸æĞÅÏ¢  ÀíÏëÔ¤ÆÚÖ®ÍâµÄĞÅÏ¢
+//å†™è­¦å‘Šä¿¡æ¯  ç†æƒ³é¢„æœŸä¹‹å¤–çš„ä¿¡æ¯
 #define PrWarning(fmt, ...) do { \
     LogSys::Get()->Warning("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
-//Ğ´Ò»°ãĞÅÏ¢ ÌáÊ¾ĞÅÏ¢
+//å†™ä¸€èˆ¬ä¿¡æ¯ æç¤ºä¿¡æ¯
+    //å¤„ç†ä¸­æ–‡ç¼–ç ç­‰é—®é¢˜ (ä½¿ç”¨ utf-8 bom ç¼–ç )
 #define PrInfo Pr
 #define Pr(fmt, ...) do { \
     LogSys::Get()->Info("%s %3d\t" fmt "\n", __FUNCTION__, __LINE__, __VA_ARGS__); \
 } while(0);
 
 
-//ÈÕÖ¾¼¶±ğµÄÌáÊ¾ĞÅÏ¢  
+//æ—¥å¿—çº§åˆ«çš„æç¤ºä¿¡æ¯  
 static const std::string strFatalPrefix = "Fatal\t";
 static const std::string strErrorPrefix = "Error\t";
 static const std::string strWarningPrefix = "Warning\t";
 static const std::string strInfoPrefix = "Info\t";
 
-//ÈÕÖ¾¼¶±ğÃ¶¾Ù  
+//æ—¥å¿—çº§åˆ«æšä¸¾  
 typedef enum {
-	LogLevel_Stop = 0,  //Ê²Ã´¶¼²»¼ÇÂ¼  
-	LogLevel_Fatal,     //Ö»¼ÇÂ¼ÑÏÖØ´íÎó  
-	LogLevel_Error,     //¼ÇÂ¼ÑÏÖØ´íÎó£¬ÆÕÍ¨´íÎó  
-	LogLevel_Warning,   //¼ÇÂ¼ÑÏÖØ´íÎó£¬ÆÕÍ¨´íÎó£¬¾¯¸æ  
-	LogLevel_Info       //¼ÇÂ¼ÑÏÖØ´íÎó£¬ÆÕÍ¨´íÎó£¬¾¯¸æ£¬ÌáÊ¾ĞÅÏ¢(Ò²¾ÍÊÇÈ«²¿¼ÇÂ¼)  
+	LogLevel_Stop = 0,  //ä»€ä¹ˆéƒ½ä¸è®°å½•  
+	LogLevel_Fatal,     //åªè®°å½•ä¸¥é‡é”™è¯¯  
+	LogLevel_Error,     //è®°å½•ä¸¥é‡é”™è¯¯ï¼Œæ™®é€šé”™è¯¯  
+	LogLevel_Warning,   //è®°å½•ä¸¥é‡é”™è¯¯ï¼Œæ™®é€šé”™è¯¯ï¼Œè­¦å‘Š  
+	LogLevel_Info       //è®°å½•ä¸¥é‡é”™è¯¯ï¼Œæ™®é€šé”™è¯¯ï¼Œè­¦å‘Šï¼Œæç¤ºä¿¡æ¯(ä¹Ÿå°±æ˜¯å…¨éƒ¨è®°å½•)  
 } LogLevel;
 
 class LogSys {
 public:
 	static LogSys * Get();
-	//Îö¹¹º¯Êı
+	//ææ„å‡½æ•°
 	virtual ~LogSys();
 public:
-	//Ğ´ÑÏÖØ´íÎóĞÅÏ¢  
+	//å†™ä¸¥é‡é”™è¯¯ä¿¡æ¯  
 	void Fatal(const char *lpcszFormat, ...);
-	//Ğ´´íÎóĞÅÏ¢  
+	//å†™é”™è¯¯ä¿¡æ¯  
 	void Error(const char *lpcszFormat, ...);
-	//Ğ´¾¯¸æĞÅÏ¢ 
+	//å†™è­¦å‘Šä¿¡æ¯ 
 	void Warning(const char *lpcszFormat, ...);
-	//Ğ´ÌáÊ¾ĞÅÏ¢  
-	void Info(const char *lpcszFormat, ...);
-	//¸Ä±äĞ´ÈÕÖ¾¼¶±ğ  
+	//å†™æç¤ºä¿¡æ¯  
+    void Info(QString qtString, ...);
+    void Info(const char *lpcszFormat, ...);
+	//æ”¹å˜å†™æ—¥å¿—çº§åˆ«  
 	void ChangeLogLevel(LogLevel nLevel);
-	//»ñÈ¡³ÌĞòÔËĞĞÂ·¾¶  
+	//è·å–ç¨‹åºè¿è¡Œè·¯å¾„  
 	static std::string GetAppPathA();
-	//¸ñÊ½»¯×Ö·û´®  
+	//æ ¼å¼åŒ–å­—ç¬¦ä¸²  
 	static std::string FormatString(const char *lpcszFormat, ...);
 private:
-	//Ğ´ÎÄ¼ş²Ù×÷  
+	//å†™æ–‡ä»¶æ“ä½œ  
 	void Trace(const std::string &strLog);
-	//»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä  
+	//è·å–å½“å‰ç³»ç»Ÿæ—¶é—´  
 	std::string GetTime();
-	//ÎÄ¼şÈ«Â·¾¶µÃµ½ÎÄ¼şÃû  
+	//æ–‡ä»¶å…¨è·¯å¾„å¾—åˆ°æ–‡ä»¶å  
 	const char *path_file(const char *path, char splitter);
 protected:
-	//nLogLevel£ºÈÕÖ¾¼ÇÂ¼µÄµÈ¼¶£¬¿É¿Õ  
-	//strLogPath£ºÈÕÖ¾Ä¿Â¼£¬¿É¿Õ  
-	//strLogName£ºÈÕÖ¾Ãû³Æ£¬¿É¿Õ  
+	//nLogLevelï¼šæ—¥å¿—è®°å½•çš„ç­‰çº§ï¼Œå¯ç©º  
+	//strLogPathï¼šæ—¥å¿—ç›®å½•ï¼Œå¯ç©º  
+	//strLogNameï¼šæ—¥å¿—åç§°ï¼Œå¯ç©º  
 	LogSys(LogLevel nLogLevel = LogLevel::LogLevel_Info, const std::string strLogPath = "", const std::string strLogName = "");
-	//Ğ´ÈÕÖ¾ÎÄ¼şÁ÷  
+	//å†™æ—¥å¿—æ–‡ä»¶æµ  
 	FILE * m_pFileStream;
-	//Ğ´ÈÕÖ¾¼¶±ğ  
+	//å†™æ—¥å¿—çº§åˆ«  
 	LogLevel m_nLogLevel;
-	//ÈÕÖ¾Ä¿Â¼  
+	//æ—¥å¿—ç›®å½•  
 	std::string m_strLogPath;
-	//ÈÕÖ¾µÄÃû³Æ
+	//æ—¥å¿—çš„åç§°
 	std::string m_strLogName;
-	//ÈÕÖ¾ÎÄ¼şÈ«Â·¾¶  
+	//æ—¥å¿—æ–‡ä»¶å…¨è·¯å¾„  
 	std::string m_strLogFilePath;
-	//Ïß³ÌÍ¬²½µÄÁÙ½çÇø±äÁ¿  
+	//çº¿ç¨‹åŒæ­¥çš„ä¸´ç•ŒåŒºå˜é‡  
 	CRITICAL_SECTION m_cs;
 };
 

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QObject>
 #include <opencv2\opencv.hpp>
@@ -16,7 +16,7 @@ public:
 	static XPro * Get();
 	void setMat(cv::Mat srcMat);
 	void getMat(cv::Mat srcMat);
-	//ÉèÖÃÁÁ¶ÈºÍ¶Ô±È¶È 0~100 1.0~3.0
+	//è®¾ç½®äº®åº¦å’Œå¯¹æ¯”åº¦ 0~100 1.0~3.0
 	void setGain();
 	void equalizeHist();
 	void edgeCanny();

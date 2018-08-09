@@ -1,4 +1,4 @@
-#include "xconfig.h"
+ï»¿#include "xconfig.h"
 #include <QFile>
 #include <qDebug>
 
@@ -39,13 +39,13 @@ void XConfig::list_DOM(QDomElement docElem)
 {
     QDomNode node = docElem.firstChild();
 
-    //Ò¶×Ó½Úµã
+    //å¶å­èŠ‚ç‚¹
     if(node.toElement().isNull()) {
         globalConfig[docElem.tagName()] = docElem.text();
     } else {
         while(! node.isNull()) {
             QDomElement element = node.toElement(); // try to convert the node to an element.
-            //·ÇÒ¶×Ó½ÚµãÔò±éÀú×Ó½Úµã
+            //éå¶å­èŠ‚ç‚¹åˆ™éå†å­èŠ‚ç‚¹
             list_DOM(element);
             node = node.nextSibling();
         }

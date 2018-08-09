@@ -1,4 +1,4 @@
-#include "xpro.h"
+ï»¿#include "xpro.h"
 #include <qDebug>
 
 XPro::XPro()
@@ -13,7 +13,7 @@ XPro::~XPro()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.14
-	Description	: »ñÈ¡Í¼Ïñ´¦ÀíÊµÀı
+	Description	: è·å–å›¾åƒå¤„ç†å®ä¾‹
  *****************************************************************************/
 XPro* XPro::Get()
 {
@@ -25,7 +25,7 @@ XPro* XPro::Get()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.14
-	Description	: ¿½±´srcMatµ½desMat
+	Description	: æ‹·è´srcMatåˆ°desMat
  *****************************************************************************/
 void XPro::setMat(cv::Mat srcMat)
 {
@@ -37,7 +37,7 @@ void XPro::setMat(cv::Mat srcMat)
 Copyright	: Yaqian Group
 Author		: Mark_Huang ( hacker.do@163.com )
 Date		: 2018.05.14
-Description	: »ñÈ¡desMatµ½srcMat
+Description	: è·å–desMatåˆ°srcMat
 *****************************************************************************/
 void XPro::getMat(cv::Mat srcMat)
 {
@@ -49,7 +49,7 @@ void XPro::getMat(cv::Mat srcMat)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.14
-	Description	: ÉèÖÃÍ¼ÏñµÄ¶Ô±È¶ÈºÍÁÁ¶È
+	Description	: è®¾ç½®å›¾åƒçš„å¯¹æ¯”åº¦å’Œäº®åº¦
  *****************************************************************************/
 void XPro::setGain()
 {
@@ -61,7 +61,7 @@ void XPro::setGain()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.14
-	Description	: ÉèÖÃ¶Ô±È¶È & ²Ûº¯Êı
+	Description	: è®¾ç½®å¯¹æ¯”åº¦ & æ§½å‡½æ•°
  *****************************************************************************/
 void XPro::setAlpha(double alpha)
 {
@@ -73,7 +73,7 @@ void XPro::setAlpha(double alpha)
 Copyright	: Yaqian Group
 Author		: Mark_Huang ( hacker.do@163.com )
 Date		: 2018.05.14
-Description	: ÉèÖÃÁÁ¶È & ²Ûº¯Êı
+Description	: è®¾ç½®äº®åº¦ & æ§½å‡½æ•°
 *****************************************************************************/
 void XPro::setBeta(double beta)
 {
@@ -85,7 +85,7 @@ void XPro::setBeta(double beta)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.14
-	Description	: Ö±·½Í¼¾ùºâ»¯
+	Description	: ç›´æ–¹å›¾å‡è¡¡åŒ–
  *****************************************************************************/
 void XPro::equalizeHist()
 {
@@ -96,7 +96,7 @@ void XPro::equalizeHist()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.14
-	Description	: Ê¹ÓÃCannyËã×Ó±ßÔµ¼ì²â
+	Description	: ä½¿ç”¨Cannyç®—å­è¾¹ç¼˜æ£€æµ‹
  *****************************************************************************/
 void XPro::edgeCanny()
 {
@@ -107,14 +107,14 @@ void XPro::edgeCanny()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.23
-	Description	: Ñ¡Ôñ²ÊºçÄ£°å(HSV)ÓÃÓÚ»Ò¶ÈÓ³Éä
+	Description	: é€‰æ‹©å½©è™¹æ¨¡æ¿(HSV)ç”¨äºç°åº¦æ˜ å°„
  *****************************************************************************/
 void XPro::rainbowColorMap()
 {
 	IplImage * lookUpTable = cvCreateImage(cvSize(256, 1), IPL_DEPTH_8U, 3);
 
 	colorMap = Mat(1, 256, CV_32FC3);
-	//printf(" ´¿ºÚ          H     V     S\n");
+	//printf(" çº¯é»‘          H     V     S\n");
 	qDebug() << cm_alpha << cm_beta;
 	for (int gray = 0; gray < MAXGRAY + 1; gray++) {
 		float val = gray / cm_alpha;
@@ -122,7 +122,7 @@ void XPro::rainbowColorMap()
 		if (val > 360.) {
 			val -= 360.;
 		}
-		//´¿¶È¡¢ÁÁ¶È¶ÔÊÓ¾õ¸Ğ¹ÙÓ°ÏìĞ¡£¬ÉèÖÃ¹Ì¶¨Öµ
+		//çº¯åº¦ã€äº®åº¦å¯¹è§†è§‰æ„Ÿå®˜å½±å“å°ï¼Œè®¾ç½®å›ºå®šå€¼
 		colorMap.at<Vec3f>(0, gray) = Vec3f(val, 0.5, 1.);
 		//printf("gray %3d -> %6.2f %6.2f %6.2f\n", gray, colorMap.at<Vec3f>(0, gray)[0],
 		//	colorMap.at<Vec3f>(0, gray)[1], colorMap.at<Vec3f>(0, gray)[2]);
@@ -130,9 +130,9 @@ void XPro::rainbowColorMap()
 
 	cvtColor(colorMap, colorMap, COLOR_HLS2BGR);
 	IplImage Ipl32F(colorMap);
-	//cvConvertScaleÊ¹ÓÃMat×÷Îª²ÎÊıÖ´ĞĞ»á³ö´í
+	//cvConvertScaleä½¿ç”¨Matä½œä¸ºå‚æ•°æ‰§è¡Œä¼šå‡ºé”™
 	cvConvertScale(&Ipl32F, lookUpTable, 255, 0);
-	//Í¨¹ıLUT(grayMat1C, colorMap3C, colorMat3C)Ê¹ÓÃÄ£°å
+	//é€šè¿‡LUT(grayMat1C, colorMap3C, colorMat3C)ä½¿ç”¨æ¨¡æ¿
 	colorMap = cvarrToMat(lookUpTable);
 }
 
@@ -151,7 +151,7 @@ void XPro::set_cmBeta(int val)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.23
-	Description	: »ñµÃcolorMap
+	Description	: è·å¾—colorMap
  *****************************************************************************/
 cv::Mat XPro::get_colormap(void)
 {

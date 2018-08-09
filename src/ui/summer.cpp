@@ -1,4 +1,4 @@
-#include <qDebug>
+ï»¿#include <qDebug>
 #include <QProcess>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -14,6 +14,8 @@
 #include "xreport.h"
 #include "xconfig.h"
 
+#include "gtest/gtest.h"
+
 #include "ui_summer.h"
 
 Summer::Summer(QWidget *parent) :
@@ -28,11 +30,60 @@ Summer::Summer(QWidget *parent) :
     ui->commit->hide();
 
     XReport::Get()->create_Report();
+
+    connect(ui->gtest, SIGNAL(clicked()), this, SLOT(run_gTest()));
 }
 
 Summer::~Summer()
 {
     delete ui;
+}
+
+void Summer::run_gTest()
+{
+    RUN_ALL_TESTS();
+}
+
+void Summer::minimum()
+{
+    //hide éšè—ç¨‹åºä¸»çª—å£,åœ¨çŠ¶æ€æ ä¸ä¼šæ˜¾ç¤º minimized,éœ€è¦iconåŒå‡»æ‰“å¼€ | åªæ˜¯æœ€å°åŒ–çª—å£,æ— éœ€ä»iconå»åŒå‡»æ‰“å¼€æ˜¾ç¤º
+    //this->hide();
+    showMinimized();
+
+    //æ–°å»ºQSystemTrayIconå¯¹è±¡
+    if (mSysTrayIcon == NULL) {
+        mSysTrayIcon = new QSystemTrayIcon(this);
+        //æ–°å»ºæ‰˜ç›˜è¦æ˜¾ç¤ºçš„icon
+        QIcon icon = QIcon("C:/rrk/test.png");
+        //å°†iconè®¾åˆ°QSystemTrayIconå¯¹è±¡ä¸­
+        mSysTrayIcon->setIcon(icon);
+        //å½“é¼ æ ‡ç§»åŠ¨åˆ°æ‰˜ç›˜ä¸Šçš„å›¾æ ‡æ—¶ï¼Œä¼šæ˜¾ç¤ºæ­¤å¤„è®¾ç½®çš„å†…å®¹
+        mSysTrayIcon->setToolTip(QStringLiteral("ä¹³è…ºè¯Šæ–­ä»ª"));
+        //ç»™QSystemTrayIconæ·»åŠ æ§½å‡½æ•°
+        connect(mSysTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                this, SLOT(on_activatedSysTrayIcon(QSystemTrayIcon::ActivationReason)));
+    } else {
+        //åœ¨ç³»ç»Ÿæ‰˜ç›˜æ˜¾ç¤ºæ­¤å¯¹è±¡
+        mSysTrayIcon->show();
+    }
+}
+
+void Summer::on_activatedSysTrayIcon(QSystemTrayIcon::ActivationReason reason)
+{
+    switch(reason){
+    case QSystemTrayIcon::Trigger:
+        //å•å‡»æ‰˜ç›˜å›¾æ ‡
+        break;
+    case QSystemTrayIcon::DoubleClick:
+        //åŒå‡»æ‰˜ç›˜å›¾æ ‡
+        //åŒå‡»åæ˜¾ç¤ºä¸»ç¨‹åºçª—å£
+        //this->show();
+        showNormal();
+        //this->setVisible(true);
+        break;
+    default:
+        break;
+    }
 }
 
 void Summer::show_devList()
@@ -63,7 +114,7 @@ void Summer::connect_irDev()
         irExamPage->CB2->setEnabled(true);
         //XDev::Get()->play_irDev();
     } else {
-        QMessageBox::information(this, QString(), QStringLiteral("ÎŞ·¨Á¬½ÓºìÍâÌ½²âÍ·"));
+        QMessageBox::information(this, QString(), QStringLiteral("æ— æ³•è¿æ¥çº¢å¤–æ¢æµ‹å¤´"));
     }
 }
 
@@ -132,7 +183,7 @@ void Summer::create_userManagerPage()
     formLayout->setObjectName(QStringLiteral("formLayout"));
     formLayout->setContentsMargins(0, 0, 0, 0);
 
-    //TODO ÓÃÓÚÅäÖÃÎÄ¼ş¶ÁÈ¡
+    //TODO ç”¨äºé…ç½®æ–‡ä»¶è¯»å–
 #if 0
     int i = 0;
     QMap<QString, QString>::iterator item = XConfig::Get()->globalConfig.begin();
@@ -166,7 +217,7 @@ void Summer::create_userManagerPage()
 
     QFile xmlfile("c:/rrk/test.xml");
     if (xmlfile.open(QFile::WriteOnly | QFile::Text)){
-        //Dom·½Ê½Ğ´xmlÎÄ¼ş
+        //Domæ–¹å¼å†™xmlæ–‡ä»¶
         QTextStream out(&xmlfile);
         domDocument.save(out, QDomNode::EncodingFromDocument);
         xmlfile.close();
@@ -208,7 +259,7 @@ void Summer::create_customerSearchPage()
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.10
-    Description	: »ñÈ¡»ù±¾ĞÅÏ¢ & ²Ûº¯Êı
+    Description	: è·å–åŸºæœ¬ä¿¡æ¯ & æ§½å‡½æ•°
  *****************************************************************************/
 void Summer::commit_baseInfo(void)
 {
@@ -237,13 +288,13 @@ void Summer::commit_irExam(void)
 
 void Summer::get_baseInfo(void)
 {
-    //¿Í»§ĞÅÏ¢
+    //å®¢æˆ·ä¿¡æ¯
     XReport::Get()->itemMap["name"] = baseInfoPage->name->text();
     XReport::Get()->itemMap["sex"] = baseInfoPage->sex->text();
     XReport::Get()->itemMap["age"] = baseInfoPage->age->text();
     XReport::Get()->itemMap["tel"] = baseInfoPage->tel->text();
     XReport::Get()->itemMap["id"] = baseInfoPage->id->text();
-    //»ù±¾¼ì²éĞÅÏ¢
+    //åŸºæœ¬æ£€æŸ¥ä¿¡æ¯
     XReport::Get()->itemMap["height"] = baseInfoPage->height->text();
     XReport::Get()->itemMap["weight"] = baseInfoPage->weight->text();
     XReport::Get()->itemMap["bmi"] = baseInfoPage->bmi->text();
@@ -256,7 +307,7 @@ void Summer::get_baseInfo(void)
     XReport::Get()->itemMap["bodyMoisture"] = baseInfoPage->bodyMoisture->text();
     XReport::Get()->itemMap["bodyAge"] = baseInfoPage->bodyAge->text();
     XReport::Get()->itemMap["bloodSugar"] = baseInfoPage->bloodSugar->text();
-    //ÂöÕïĞÅÏ¢
+    //è„‰è¯Šä¿¡æ¯
     XReport::Get()->itemMap["wristPulseL"] = baseInfoPage->wristPulseL->text();
     XReport::Get()->itemMap["wristPulseLH"] = baseInfoPage->wristPulseLH->text();
     XReport::Get()->itemMap["wristPulseLL"] = baseInfoPage->wristPulseLL->text();
@@ -276,7 +327,7 @@ void Summer::get_baseInfo(void)
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.13
-    Description	: »ñµÃQCheckBox¹´Ñ¡ÏîÎÄ±¾
+    Description	: è·å¾—QCheckBoxå‹¾é€‰é¡¹æ–‡æœ¬
  *****************************************************************************/
 template <typename T>
 QString get_checkedText(T item)
@@ -292,11 +343,11 @@ QString get_checkedText(T item)
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.11
-    Description	: »ñÈ¡×Ô²éÒ³ĞÅÏ¢ & ²Ûº¯Êı
+    Description	: è·å–è‡ªæŸ¥é¡µä¿¡æ¯ & æ§½å‡½æ•°
  *****************************************************************************/
 void Summer::get_selfCheck(void)
 {
-    //¼Ò×å²¡Ê·
+    //å®¶æ—ç—…å²
     QString familyHistory;
     QList<QCheckBox *> itemList0 = { t3l0->s11, t3l0->s12, t3l0->s13, t3l0->s14, t3l0->s15, t3l0->s16,
         t3l0->s21, t3l0->s22, t3l0->s23, t3l0->s24, t3l0->s25, t3l0->s26 };
@@ -308,7 +359,7 @@ void Summer::get_selfCheck(void)
         familyHistory += t3l0->s32->text();
     }
     XReport::Get()->itemMap["familyHistory"] = familyHistory;
-    //¹ıÃôÊ·
+    //è¿‡æ•å²
     QString allergicHistory;
     if (! t3l1->s11->isChecked()) {
         if (!t3l1->s13->text().simplified().isEmpty() || !t3l1->s15->text().simplified().isEmpty()) {
@@ -319,7 +370,7 @@ void Summer::get_selfCheck(void)
         }
     }
     XReport::Get()->itemMap["allergicHistory"] = allergicHistory;
-    //¹ıÍù²¡Ê·
+    //è¿‡å¾€ç—…å²
     QString pastHistory;
     QList<QCheckBox *> itemList2 = { t3l2->s11, t3l2->s12, t3l2->s13, t3l2->s14, t3l2->s15, t3l2->s16,
         t3l2->s21, t3l2->s22, t3l2->s23, t3l2->s24, t3l2->s25, t3l2->s26,
@@ -332,7 +383,7 @@ void Summer::get_selfCheck(void)
         pastHistory += t3l2->s42->text();
     }
     XReport::Get()->itemMap["pastHistory"] = pastHistory;
-    //·şÒ©¹ıÃôÊ·
+    //æœè¯è¿‡æ•å²
     QString drugHistory;
     if (! t3l3->s12->text().simplified().isEmpty()) {
         drugHistory += t3l3->s11->text();
@@ -347,21 +398,21 @@ void Summer::get_selfCheck(void)
         drugHistory += t3l3->s16->text();
     }
     XReport::Get()->itemMap["drugHistory"] = drugHistory;
-    //ÍâÉËÊ·
+    //å¤–ä¼¤å²
     QString hurtHistory;
     if (! t3l4->s13->text().simplified().isEmpty()) {
         hurtHistory += t3l4->s12->text();
         hurtHistory += t3l4->s13->text();
     }
     XReport::Get()->itemMap["hurtHistory"] = hurtHistory;
-    //ÊÖÊõÊ·
+    //æ‰‹æœ¯å²
     QString surgeryHistory;
     if (! t3l5->s13->text().simplified().isEmpty()) {
         surgeryHistory += t3l5->s12->text();
         surgeryHistory += t3l5->s13->text();
     }
     XReport::Get()->itemMap["surgeryHistory"] = surgeryHistory;
-    //ÈéÏÙÖ¢×´
+    //ä¹³è…ºç—‡çŠ¶
     QString breastSymptom;
     QList<QCheckBox *> itemList6 = { t3l6->s11, t3l6->s12, t3l6->s21, t3l6->s22, t3l6->s31, t3l6->s32,
         t3l6->s41, t3l6->s42, t3l6->s51, t3l6->s61, t3l6->s71, t3l6->s72, t3l6->s81, t3l6->s82, t3l6->s91 };
@@ -369,7 +420,7 @@ void Summer::get_selfCheck(void)
         breastSymptom += get_checkedText(item);
     }
     XReport::Get()->itemMap["breastSymptom"] = breastSymptom;
-    //Éú»îÏ°¹ß
+    //ç”Ÿæ´»ä¹ æƒ¯
     QString lifeHabit;
     QList<QCheckBox *> itemList7_1 = { t3l7->s12, t3l7->s13, t3l7->s14, t3l7->s15 };
     foreach(QCheckBox * item, itemList7_1) {
@@ -405,7 +456,7 @@ void Summer::get_selfCheck(void)
         lifeHabit += get_checkedText(item);
     }
     XReport::Get()->itemMap["lifeHabit"] = lifeHabit;
-    //¾­Âç±æÊ¶
+    //ç»ç»œè¾¨è¯†
     QString channelDistinguish;
     QList<QCheckBox *> itemList8 = { t3l8->s11, t3l8->s12, t3l8->s13, t3l8->s14, t3l8->s15, t3l8->s16,
         t3l8->s21, t3l8->s22, t3l8->s23, t3l8->s24, t3l8->s25, t3l8->s26, t3l8->s31, t3l8->s32 };
@@ -413,7 +464,7 @@ void Summer::get_selfCheck(void)
         channelDistinguish += get_checkedText(item);
     }
     XReport::Get()->itemMap["channelDistinguish"] = channelDistinguish;
-    //ÌåÖÊ±æÊ¶
+    //ä½“è´¨è¾¨è¯†
     QString physiqueDistinguish;
     QList<QCheckBox *> itemList9 = { t3l9->s11, t3l9->s12, t3l9->s13, t3l8->s14, t3l8->s15, t3l9->s16,
         t3l9->s21, t3l9->s22, t3l9->s23 };
@@ -421,49 +472,49 @@ void Summer::get_selfCheck(void)
         physiqueDistinguish += get_checkedText(item);
     }
     XReport::Get()->itemMap["physiqueDistinguish"] = physiqueDistinguish;
-    //ÖØ´ó¼²²¡Ô¤¾¯
+    //é‡å¤§ç–¾ç—…é¢„è­¦
     QString importDiseaseWarning;
     QList<QCheckBox *> itemList10 = { t3l10->s11, t3l10->s12, t3l10->s13, t3l8->s14, t3l8->s15, t3l10->s16 };
     foreach(QCheckBox * item, itemList10) {
         importDiseaseWarning += get_checkedText(item);
     }
     XReport::Get()->itemMap["importDiseaseWarning"] = importDiseaseWarning;
-    //ÑÇ½¡¿µ¸Î
+    //äºšå¥åº·è‚
     QString subHealthyLiver;
     QList<QCheckBox *> itemList11_1 = { t3l11->s12, t3l11->s13, t3l11->s14, t3l11->s15, t3l11->s16 };
     foreach(QCheckBox * item, itemList11_1) {
         subHealthyLiver+= get_checkedText(item);
     }
     XReport::Get()->itemMap["subHealthyLiver"] = subHealthyLiver;
-    //ÑÇ½¡¿µĞÄ
+    //äºšå¥åº·å¿ƒ
     QString subHealthyHeart;
     QList<QCheckBox *> itemList11_2 = { t3l11->s22, t3l11->s23, t3l11->s24, t3l11->s25, t3l11->s26 };
     foreach(QCheckBox * item, itemList11_2) {
         subHealthyHeart+= get_checkedText(item);
     }
     XReport::Get()->itemMap["subHealthyHeart"] = subHealthyHeart;
-    //ÑÇ½¡¿µÆ¢
+    //äºšå¥åº·è„¾
     QString subHealthySpleen;
     QList<QCheckBox *> itemList11_3 = { t3l11->s32, t3l11->s33, t3l11->s34, t3l11->s35, t3l11->s36 };
     foreach(QCheckBox * item, itemList11_3) {
         subHealthySpleen+= get_checkedText(item);
     }
     XReport::Get()->itemMap["subHealthySpleen"] = subHealthySpleen;
-    //ÑÇ½¡¿µ·Î
+    //äºšå¥åº·è‚º
     QString subHealthyLung;
     QList<QCheckBox *> itemList11_4 = { t3l11->s42, t3l11->s43, t3l11->s44, t3l11->s45, t3l11->s46 };
     foreach(QCheckBox * item, itemList11_4) {
         subHealthyLung+= get_checkedText(item);
     }
     XReport::Get()->itemMap["subHealthyLung"] = subHealthyLung;
-    //ÑÇ½¡¿µÉö
+    //äºšå¥åº·è‚¾
     QString subHealthyKidney;
     QList<QCheckBox *> itemList11_5 = { t3l11->s52, t3l11->s53, t3l11->s54 };
     foreach(QCheckBox * item, itemList11_5) {
         subHealthyKidney+= get_checkedText(item);
     }
     XReport::Get()->itemMap["subHealthyKidney"] = subHealthyKidney;
-    //ÏÖÓĞ¼²²¡Ô¤¾¯
+    //ç°æœ‰ç–¾ç—…é¢„è­¦
     QString existDiseaseWarning;
     QList<QCheckBox *> itemList12 = { t3l12->s11, t3l12->s12, t3l12->s13,
         t3l12->s31, t3l12->s32, t3l12->s33, t3l12->s31, t3l12->s32, t3l12->s33,
@@ -486,7 +537,7 @@ void Summer::get_selfCheck(void)
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.16
-    Description	: Ê¹ÓÃÏµÍ³´òÓ¡»ú´òÓ¡±¨¸æ & ²Ûº¯Êı
+    Description	: ä½¿ç”¨ç³»ç»Ÿæ‰“å°æœºæ‰“å°æŠ¥å‘Š & æ§½å‡½æ•°
  *****************************************************************************/
 void Summer::print_report(void)
 {
@@ -495,9 +546,10 @@ void Summer::print_report(void)
         QPrintDialog dlg(XReport::Get()->printer, this);
         if (dlg.exec() == QDialog::Accepted) {
             assessReportPage->reportView->page()->print(XReport::Get()->printer, [this](bool found){
-                //if (!found) QMessageBox::information(ui->textBrowser, QString(), QStringLiteral("ÕÒ²»µ½´òÓ¡»ú"));
+                //if (!found) QMessageBox::information(ui->textBrowser, QString(), QStringLiteral("æ‰¾ä¸åˆ°æ‰“å°æœº"));
             });
-            create_recuperatePlanPage();
+            //mark fixme æ‰“å°ä¸è·³è½¬
+            //create_recuperatePlanPage();
         }
     }
 }
@@ -537,7 +589,7 @@ void Summer::create_baseInfoPage()
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.11
-    Description	: ´´½¨tabListWidget¿Ø¼ş
+    Description	: åˆ›å»ºtabListWidgetæ§ä»¶
  *****************************************************************************/
 static int contentHeight = 0;
 template <typename T>
@@ -558,14 +610,14 @@ T create_tlw(QListWidget * parent, T ui)
 
 int testvalue = 0;
 
-//Ê¹ÓÃÊÂ¼ş¹ıÂËÆ÷ÔÚ¸¸¿Ø¼ş´¦Àí¹öÂÖÊÂ¼ş
+//ä½¿ç”¨äº‹ä»¶è¿‡æ»¤å™¨åœ¨çˆ¶æ§ä»¶å¤„ç†æ»šè½®äº‹ä»¶
 bool Summer::eventFilter(QObject *target, QEvent *event)
 {
     if (event->type() == QEvent::Wheel) {
         if (current == selfCheckWidget) {
             selfCheckPage->verticalScrollBar->setValue(tabListWidget->verticalScrollBar()->value());
         }
-        return false;        //ÒòÎªÒªÍ¬²½Ô­¹ö¶¯Ìõ,²»ÄÜ¹ıÂËµô,¼ÌĞø´«ËÍ¸ø×Ó¿Ø¼ş
+        return false;        //å› ä¸ºè¦åŒæ­¥åŸæ»šåŠ¨æ¡,ä¸èƒ½è¿‡æ»¤æ‰,ç»§ç»­ä¼ é€ç»™å­æ§ä»¶
     }
 
     return false;
@@ -603,7 +655,7 @@ void Summer::create_selfCheckPage()
     tabListWidget->verticalScrollBar()->setSingleStep(20);
     tabListWidget->verticalScrollBar()->installEventFilter(this);
 
-    //ÈôĞèÒª·ºĞÍ¿ÉÓÃtypeid»ñµÃÀàĞÍid,dynamic_castÇ¿ÖÆ×ª»¯ÎªÖÆ¶¨¶ÔÏóÀàĞÍ
+    //è‹¥éœ€è¦æ³›å‹å¯ç”¨typeidè·å¾—ç±»å‹id,dynamic_castå¼ºåˆ¶è½¬åŒ–ä¸ºåˆ¶å®šå¯¹è±¡ç±»å‹
     t3l0 = create_tlw(tabListWidget, new Ui::T3L0);
     t3l1 = create_tlw(tabListWidget, new Ui::T3L1);
     t3l2 = create_tlw(tabListWidget, new Ui::T3L2);
@@ -611,7 +663,7 @@ void Summer::create_selfCheckPage()
     t3l4 = create_tlw(tabListWidget, new Ui::T3L4);
     t3l5 = create_tlw(tabListWidget, new Ui::T3L5);
     t3l6 = create_tlw(tabListWidget, new Ui::T3L6);
-    //ĞİÏ¢Ê±¼ä¡¢ÎüÑÌ¡¢ºÈ¾Æ¡¢Òû²èÒû¿§·È¡¢ÒûË®¡¢ÔË¶¯µ¥Ñ¡
+    //ä¼‘æ¯æ—¶é—´ã€å¸çƒŸã€å–é…’ã€é¥®èŒ¶é¥®å’–å•¡ã€é¥®æ°´ã€è¿åŠ¨å•é€‰
     t3l7 = create_tlw(tabListWidget, new Ui::T3L7);
     QButtonGroup* t3l7g1 = new QButtonGroup(selfCheckWidget);
     t3l7g1->addButton(t3l7->s12, 2);
@@ -647,17 +699,16 @@ void Summer::create_selfCheckPage()
     t3l11 = create_tlw(tabListWidget, new Ui::T3L11);
     t3l12 = create_tlw(tabListWidget, new Ui::T3L12);
 
-    //Õâ¸ö¼ÆËãÊÇ ¹ö¶¯ÄÚÈİ¸ß¶È - ÒÑ¾­ÏÔÊ¾¸ß¶È, µ¥Î»ÊÇÏñËØÖµ setVerticalScrollMode(QListWidget::ScrollPerPixel)
+    //è¿™ä¸ªè®¡ç®—æ˜¯ æ»šåŠ¨å†…å®¹é«˜åº¦ - å·²ç»æ˜¾ç¤ºé«˜åº¦, å•ä½æ˜¯åƒç´ å€¼ setVerticalScrollMode(QListWidget::ScrollPerPixel)
     selfCheckPage->verticalScrollBar->setMaximum(contentHeight-tabListWidget->height());
 #if 0
-    //ÊµÏÖ×Ô¶¨ÒåµÄ¹ö¶¯Ìõ,µ«ÎŞ·¨·ÖÀë¹ö¶¯ÌõºÍÏÔÊ¾Çø
+    //å®ç°è‡ªå®šä¹‰çš„æ»šåŠ¨æ¡,ä½†æ— æ³•åˆ†ç¦»æ»šåŠ¨æ¡å’Œæ˜¾ç¤ºåŒº
     //tabListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     tabListWidget->setVerticalScrollBar(selfCheckPage->verticalScrollBar);
 #endif
     connect(selfCheckPage->verticalScrollBar, SIGNAL(valueChanged(int)), tabListWidget->verticalScrollBar(), SLOT(setValue(int)));
-    //²é±íÊµÏÖ£¿
+    //æŸ¥è¡¨å®ç°ï¼Ÿ
     //connect(tabListWidget->pos, SIGNAL(currentRowChanged(int)), selfCheckPage->verticalScrollBar, SLOT(setValue(int)));
-
     selfCheckWidget->show();
 
     current = selfCheckWidget;
@@ -715,7 +766,7 @@ void Summer::create_irExamPage()
     connect(irExamPage->cradleDown, SIGNAL(released()), XDev::Get(), SLOT(stop_cradle()));
 
     show_devList();
-    //ÏÔÊ¾É«¿¨
+    //æ˜¾ç¤ºè‰²å¡
     QString str = "Gray0to255|Gray255to0|IronBow|RainBow|GlowBow|Autumn|Winter|"
                   "HotMetal|Jet|RedSaturation|HighContrast|YaQian_HSV|Nice";
     irExamPage->CB2->insertItems(0, str.split("|"));

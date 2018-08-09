@@ -1,4 +1,4 @@
-#include <QFile>
+ï»¿#include <QFile>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -10,7 +10,7 @@
 
 XReport::XReport()
 {
-	//ÉèÖÃ´òÓ¡»ú
+	//è®¾ç½®æ‰“å°æœº
 	printer = new QPrinter;
 
 	//printer->setOutputFormat(QPrinter::PdfFormat);
@@ -29,7 +29,7 @@ XReport::~XReport()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.06.26
-	Description	: »ñµÃ¾²Ì¬ÀàXReportÊµÀıÖ¸Õë
+	Description	: è·å¾—é™æ€ç±»XReportå®ä¾‹æŒ‡é’ˆ
  *****************************************************************************/
 XReport * XReport::Get()
 {
@@ -48,8 +48,8 @@ void XReport::reply_Get_Finished(QNetworkReply * reply)
 			QByteArray a = doc.toJson();
 			qDebug() << QString(a);
 		}
-		// !!! ÈôÎªÊı×é[]ÓÃisArrayÅĞ¶Ï, ·ñÔò{}ÓÃisObjectÅĞ¶Ï
-		// Á½²ãÇ¶Ì×¶ÔÓ¦ /data/inspectionInfo/api/name/index/ nameºÍindex
+		// !!! è‹¥ä¸ºæ•°ç»„[]ç”¨isArrayåˆ¤æ–­, å¦åˆ™{}ç”¨isObjectåˆ¤æ–­
+		// ä¸¤å±‚åµŒå¥—å¯¹åº” /data/inspectionInfo/api/name/index/ nameå’Œindex
 		if (doc.isArray() && doc.array().at(0).isObject())	{
 			QJsonObject base = doc.array().at(0).toObject();
 			QJsonObject client = base.find("client").value().toObject();
@@ -86,18 +86,18 @@ void XReport::reply_Post_Finished(QNetworkReply* reply)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.10
-	Description	: ²âÊÔGET http://192.168.124.222/data/inspectionInfo/api & ²Ûº¯Êı
+	Description	: æµ‹è¯•GET http://192.168.124.222/data/inspectionInfo/api & æ§½å‡½æ•°
  *****************************************************************************/
 void XReport::test_get()
 {
-	QUrl url("http://192.168.124.222/data/inspectionInfo/api");		// ·şÎñÆ÷µÄurl
-	QNetworkRequest request = QNetworkRequest(url);					// ±à¼­HTTPÍ·²¿
+	QUrl url("http://192.168.124.222/data/inspectionInfo/api");		// æœåŠ¡å™¨çš„url
+	QNetworkRequest request = QNetworkRequest(url);					// ç¼–è¾‘HTTPå¤´éƒ¨
 
-	//Ã»ÓĞÉú³ÉAuthorization header, QtÔ´ÂëÔİÊ±Î´ÕÒµ½¸ùÔ´ËùÔÚ
-	//url.setUserName("api-client");									// apiµÇÂ¼ÈÏÖ¤
+	//æ²¡æœ‰ç”ŸæˆAuthorization header, Qtæºç æš‚æ—¶æœªæ‰¾åˆ°æ ¹æºæ‰€åœ¨
+	//url.setUserName("api-client");									// apiç™»å½•è®¤è¯
 	//url.setPassword("123-uijk");
 	//url.setPort(80);
-	//"Basic " + UserName:PasswordÊ¹ÓÃbase64Éú³ÉµÄ×Ö·û´®
+	//"Basic " + UserName:Passwordä½¿ç”¨base64ç”Ÿæˆçš„å­—ç¬¦ä¸²
 	request.setRawHeader("Authorization", "Basic YXBpLWNsaWVudDoxMjMtdWlqaw==");
 
 	//connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyPostFinished(QNetworkReply*)));
@@ -115,18 +115,18 @@ void XReport::test_get()
 //Copyright	: Yaqian Group
 //Author		: Mark_Huang ( hacker.do@163.com )
 //Date		: 2018.05.11
-//Description	: ²âÊÔPOST http://192.168.124.222/data/inspectionInfo/api & ²Ûº¯Êı
+//Description	: æµ‹è¯•POST http://192.168.124.222/data/inspectionInfo/api & æ§½å‡½æ•°
 //*****************************************************************************/
 void XReport::test_post()
 {
-//	QUrl url("http://192.168.124.222/data/inspectionInfo/client/1/api");		// ·şÎñÆ÷µÄurl
-//	url.setUserName("api-client");									// apiµÇÂ¼ÈÏÖ¤
+//	QUrl url("http://192.168.124.222/data/inspectionInfo/client/1/api");		// æœåŠ¡å™¨çš„url
+//	url.setUserName("api-client");									// apiç™»å½•è®¤è¯
 //	url.setPassword("123-uijk");
-//	QNetworkRequest request = QNetworkRequest(url);					// ±à¼­HTTPÍ·²¿
+//	QNetworkRequest request = QNetworkRequest(url);					// ç¼–è¾‘HTTPå¤´éƒ¨
 //
 //	netManager = new QNetworkAccessManager(this);
 //
-//	// JsonÊı¾İ, Èô±àÂëÎÊÌâÊ¹ÓÃQString::fromLocal8Bit("XX")
+//	// Jsonæ•°æ®, è‹¥ç¼–ç é—®é¢˜ä½¿ç”¨QString::fromLocal8Bit("XX")
 //	QJsonObject json;
 //	json.insert("name", ui->lineEdit->text());
 //	json.insert("sex", ui->lineEdit_2->text());
@@ -147,7 +147,7 @@ void XReport ::create_Report(void)
 {
     QByteArray text;
     QFile file("C:/Users/Administrator/source/repos/Summer/doc/temple.html");
-    if (file.open(QIODevice::ReadOnly)) {		//ÒÔÖ»¶Á·½Ê½´ò¿ª
+    if (file.open(QIODevice::ReadOnly)) {		//ä»¥åªè¯»æ–¹å¼æ‰“å¼€
         text = file.readAll();
         file.close();
     }
@@ -164,7 +164,7 @@ QString XReport::get_html()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.13
-	Description	: Éú³É»ù±¾ĞÅÏ¢±¨¸æ
+	Description	: ç”ŸæˆåŸºæœ¬ä¿¡æ¯æŠ¥å‘Š
  *****************************************************************************/
 QString XReport::create_BIReport(void)
 {
@@ -184,7 +184,7 @@ QString XReport::create_BIReport(void)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.13
-	Description	: Éú³É×Ô²éĞÅÏ¢±¨¸æ
+	Description	: ç”Ÿæˆè‡ªæŸ¥ä¿¡æ¯æŠ¥å‘Š
  *****************************************************************************/
 QString XReport::create_SCReport(void)
 {

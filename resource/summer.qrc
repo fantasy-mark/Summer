@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/stylePic">
+    <file>picture/exit.png</file>
+    <file>picture/minmum.png</file>
     <file>picture/baseInfo/3.png</file>
     <file>picture/userManager/1.png</file>
     <file>picture/irExam/1.png</file>

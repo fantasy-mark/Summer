@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QMap>
 #include <QObject>
@@ -9,7 +9,7 @@
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.26
-    Description	: ÅäÖÃÎÄ¼ş
+    Description	: é…ç½®æ–‡ä»¶
  *****************************************************************************/
 class XConfig : public QObject
 {

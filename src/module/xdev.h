@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #ifdef WIN32
 #include "windows.h"
@@ -26,7 +26,7 @@ class XDev : public QObject
 public:
     static XDev * Get();
 	~XDev();
-	//ºìÍâÉãÏñÍ· - Êı¾İ
+	//çº¢å¤–æ‘„åƒå¤´ - æ•°æ®
 	int channelIndex = 0;
 	int ip = 192 | 168 << 8 | 1 << 16 | 118 << 24;
 	int timeout = 500;
@@ -37,13 +37,14 @@ public:
 
     struct_CamInfo get_cameraInfo();
 
+    void setup();
     void SetColorPalette(int index);
     bool GetOutputColorBardata(unsigned char const** pData, BITMAPINFO const** pInfo);
 
 public slots:
     void run();
     void timeOutSlot();
-    //ºìÍâÉãÏñÍ· - Í¼´«
+    //çº¢å¤–æ‘„åƒå¤´ - å›¾ä¼ 
 	bool create_irDev();
     QStringList refresh_irDev();
     bool connect_irDev();
@@ -52,7 +53,7 @@ public slots:
 	void stop_irDev();
 	void disconnect_irDev();
 	void free_irDev();
-	//¾µÍ·¶Ô½¹/ÔÆÌ¨µ÷Õû
+	//é•œå¤´å¯¹ç„¦/äº‘å°è°ƒæ•´
 	void auto_focus();
 	void near_focus();
 	void far_focus();
@@ -67,7 +68,7 @@ signals:
 
 private:
     XDev();
-    //¾Ş¸çSDK
+    //å·¨å“¥SDK
     struct_CamInfo m_CamInfo;
     struct_CeRegContent m_RegContent;
     int button_state = 0;     // 0 stop / 1 up / 2 down

@@ -1,30 +1,29 @@
-#include "xdev.h"
+ï»¿#include "xdev.h"
 #include "xserial.h"
+#include "logsys.h"
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.18
-	Description	: Éè±¸¿ØÖÆÀà¹¹Ôìº¯Êı
+	Description	: è®¾å¤‡æ§åˆ¶ç±»æ„é€ å‡½æ•°
  *****************************************************************************/
 XDev::XDev()
 {
     create_irDev();
-
     m_pThread = new QThread(this);
     m_pTimer = new QTimer();
     m_pTimer->moveToThread(m_pThread);
     m_pTimer->setInterval(100);
     connect(m_pThread, SIGNAL(started()), m_pTimer, SLOT(start()));
     connect(m_pTimer, &QTimer::timeout, this, &XDev::timeOutSlot, Qt::DirectConnection);
-    //begin thread to run
-    m_pThread->start();
 }
+
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.18
-	Description	: Éè±¸¿ØÖÆÀàĞé¹¹º¯Êı
+	Description	: è®¾å¤‡æ§åˆ¶ç±»è™šæ„å‡½æ•°
  *****************************************************************************/
 XDev::~XDev()
 {
@@ -33,6 +32,12 @@ XDev::~XDev()
     //m_pThread->destroyed();
 
     free_irDev();
+}
+
+void XDev::setup()
+{
+    //begin thread to run
+    m_pThread->start();
 }
 
 void XDev::run()
@@ -65,7 +70,7 @@ void XDev::timeOutSlot()
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.18
-    Description	: Éè±¸¿ØÖÆÀàĞé¹¹º¯Êı
+    Description	: è®¾å¤‡æ§åˆ¶ç±»è™šæ„å‡½æ•°
  *****************************************************************************/
 XDev * XDev::Get()
 {
@@ -88,18 +93,18 @@ struct_CamInfo XDev::get_cameraInfo()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: ´´½¨ºìÍâÍ¼´«ÊµÀı
+	Description	: åˆ›å»ºçº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 bool XDev::create_irDev()
 {
-	//×Ô¶¯ÖØÁ¬
+	//è‡ªåŠ¨é‡è¿
 	MAG_EnableAutoReConnect(true);
-	//´´½¨Í¨µÀ
+	//åˆ›å»ºé€šé“
 	if (!MAG_IsChannelAvailable(channelIndex)) {
 		if (!MAG_NewChannel(channelIndex))
 			return false;
 	}
-	//³õÊ¼»¯Í¨µÀ×ÊÔ´
+	//åˆå§‹åŒ–é€šé“èµ„æº
 	if (!MAG_IsInitialized(channelIndex)) {
 		return MAG_Initialize(channelIndex, NULL);
 	}
@@ -110,7 +115,7 @@ bool XDev::create_irDev()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ë¢ĞÂºìÍâÍ¼´«
+	Description	: åˆ·æ–°çº¢å¤–å›¾ä¼ 
  *****************************************************************************/
 QStringList XDev::refresh_irDev()
 {
@@ -144,7 +149,7 @@ QStringList XDev::refresh_irDev()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Á¬½ÓºìÍâÍ¼´«
+	Description	: è¿æ¥çº¢å¤–å›¾ä¼ 
  *****************************************************************************/
 bool XDev::connect_irDev()
 {
@@ -162,7 +167,7 @@ bool XDev::connect_irDev()
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.06.06
-    Description	: ÓÃÓÚ·¢ËÍÍ¼ÏñÖ¡
+    Description	: ç”¨äºå‘é€å›¾åƒå¸§
  *****************************************************************************/
 void CALLBACK newFrame(UINT intChannelIndex, int intCameraTemperature,
     DWORD dwFFCCounterdown, DWORD dwCamState,
@@ -184,24 +189,26 @@ void CALLBACK newFrame(UINT intChannelIndex, int intCameraTemperature,
 
     MAG_UnLockFrame(XDev::Get()->channelIndex);
 
-    //TODO ´Ë´¦¿ªÊ¼´¦ÀíÏÔÊ¾Ö¡
+    //TODO æ­¤å¤„å¼€å§‹å¤„ç†æ˜¾ç¤ºå¸§
     if (isBMPData) {
         struct_CamInfo cameraInfo = XDev::Get()->get_cameraInfo();
         Mat postMat = Mat(cameraInfo.intVideoHeight, cameraInfo.intVideoWidth, CV_8UC1);
         memcpy(postMat.data, pData, cameraInfo.intVideoWidth * cameraInfo.intVideoHeight);
-        //Ô­Ê¼Í¼Ïñ
+        //åŸå§‹å›¾åƒ
         rotate(postMat, postMat, ROTATE_180);
         emit XDev::Get()->magFrame(postMat);
     }
 
-    //´¦ÀíÏÂÒ»Ö¡
+    //Pr("processing");
+
+    //å¤„ç†ä¸‹ä¸€å¸§
     MAG_TransferPulseImage(XDev::Get()->channelIndex);
 }
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: ºìÍâÍ¼´«²¥·Å
+	Description	: çº¢å¤–å›¾ä¼ æ’­æ”¾
  *****************************************************************************/
 bool XDev::play_irDev()
 {
@@ -216,7 +223,7 @@ bool XDev::play_irDev()
 
     MAG_GetCamInfo(channelIndex, &m_CamInfo, sizeof(m_CamInfo));
     OutputPara paraOut = { m_CamInfo.intFPAWidth, m_CamInfo.intFPAHeight, m_CamInfo.intVideoWidth,
-                           m_CamInfo.intVideoHeight, 16, m_CamInfo.intVideoHeight  };	//²ÎÊı5\6ÎªÉ«¿¨ÌõµÄ¿í¸ß
+                           m_CamInfo.intVideoHeight, 16, m_CamInfo.intVideoHeight  };	//å‚æ•°5\6ä¸ºè‰²å¡æ¡çš„å®½é«˜
 
     DWORD streamType = STREAM_TEMPERATURE;
 
@@ -226,7 +233,7 @@ bool XDev::play_irDev()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: ºìÍâÍ¼´«ÅÄÕÕ
+	Description	: çº¢å¤–å›¾ä¼ æ‹ç…§
  *****************************************************************************/
 void XDev::photo_irDev()
 {
@@ -237,12 +244,12 @@ void XDev::photo_irDev()
 
     MAG_UnLockFrame(channelIndex);
 
-    //TODO ´Ë´¦¿ªÊ¼´¦ÀíÏÔÊ¾Ö¡
+    //TODO æ­¤å¤„å¼€å§‹å¤„ç†æ˜¾ç¤ºå¸§
     if (isBMPData) {
         struct_CamInfo cameraInfo = m_CamInfo;
         Mat postMat = Mat(cameraInfo.intVideoHeight, cameraInfo.intVideoWidth, CV_8UC1);
         memcpy(postMat.data, pData, cameraInfo.intVideoWidth * cameraInfo.intVideoHeight);
-        //Ô­Ê¼Í¼Ïñ
+        //åŸå§‹å›¾åƒ
         rotate(postMat, postMat, ROTATE_180);
         emit photo(postMat);
     }
@@ -251,7 +258,7 @@ void XDev::photo_irDev()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: ºìÍâÍ¼´«Í£Ö¹
+	Description	: çº¢å¤–å›¾ä¼ åœæ­¢
  *****************************************************************************/
 void XDev::stop_irDev()
 {
@@ -261,7 +268,7 @@ void XDev::stop_irDev()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: ¶Ï¿ªºìÍâÍ¼´«Á¬½Ó
+	Description	: æ–­å¼€çº¢å¤–å›¾ä¼ è¿æ¥
  *****************************************************************************/
 void XDev::disconnect_irDev()
 {
@@ -272,7 +279,7 @@ void XDev::disconnect_irDev()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+	Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::free_irDev()
 {
@@ -299,7 +306,7 @@ bool XDev::GetOutputColorBardata(unsigned char const** pData, BITMAPINFO const**
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+	Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::auto_focus()
 {
@@ -309,7 +316,7 @@ void XDev::auto_focus()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+	Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::near_focus()
 {
@@ -319,7 +326,7 @@ void XDev::near_focus()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+	Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::far_focus()
 {
@@ -329,7 +336,7 @@ void XDev::far_focus()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+	Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::up_cradle()
 {
@@ -339,7 +346,7 @@ void XDev::up_cradle()
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
     Date		: 2018.07.17
-    Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+    Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::stop_cradle()
 {
@@ -349,7 +356,7 @@ void XDev::stop_cradle()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.07.17
-	Description	: Ïú»ÙºìÍâÍ¼´«ÊµÀı
+	Description	: é”€æ¯çº¢å¤–å›¾ä¼ å®ä¾‹
  *****************************************************************************/
 void XDev::down_cradle()
 {

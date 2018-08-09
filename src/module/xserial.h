@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 
 //#include <QWidget>
 #include <QSerialPort>
 #include <QSerialPortInfo>
 
-//ÔÆÌ¨¡¢Ò¡¸Ë¶ÔÓ¦µÄ´®¿Ú
+//äº‘å°ã€æ‘‡æ†å¯¹åº”çš„ä¸²å£
 #define POLE_VID	0x067b
 #define POLE_PID	0x2303
 #define CRADLE_VID	0x1a86
@@ -18,7 +18,7 @@ public:
 	static XSerial * Get();
 
 public slots:
-	//´®¿ÚAPI
+	//ä¸²å£API
 	QStringList scan_serial();
 	bool open_serial();
 	void close_serial();
@@ -34,6 +34,6 @@ private:
     ~XSerial();
     QSerialPort * poleSerial = NULL;
 	QSerialPort * cradleSerial = NULL;
-	/* Ò¡¸Ë -0x200~0x200 ÔÆÌ¨-3f~3f, TODO : ¿É×Ô¶¨Òå»®·ÖÎª16ËÙ */
+	/* æ‘‡æ† -0x200~0x200 äº‘å°-3f~3f, TODO : å¯è‡ªå®šä¹‰åˆ’åˆ†ä¸º16é€Ÿ */
 	//int Speed = 0;
 };

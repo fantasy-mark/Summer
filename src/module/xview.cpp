@@ -1,4 +1,4 @@
-#include "xview.h"
+ï»¿#include "xview.h"
 #include "xpro.h"
 #include <vector>
 #include "kitconfig.h"
@@ -20,7 +20,7 @@ static VideoCapture irCapture;
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.04.28
-	Description	: ´ò¿ªÉãÏñÍ· \ ´´½¨´¦ÀíÊÓÆµÖ¡µÄÏß³Ì
+	Description	: æ‰“å¼€æ‘„åƒå¤´ \ åˆ›å»ºå¤„ç†è§†é¢‘å¸§çš„çº¿ç¨‹
  ******************************************************************************/
 XView::XView(QWidget *parent)
 	: QOpenGLWidget(parent)
@@ -43,7 +43,7 @@ XView::~XView()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.04.28
-	Description	: »æÍ¼µ½IrView
+	Description	: ç»˜å›¾åˆ°IrView
  ******************************************************************************/
 void XView::paintEvent(QPaintEvent * event)
 {
@@ -51,7 +51,7 @@ void XView::paintEvent(QPaintEvent * event)
     pen.drawImage(QPoint(0, 0), img);
 #if 0
 	if (m_currentPoint.x() > 124) {
-		//MatĞı×ªÁË180¶È,ÎÂ¶È×ø±êÏàÓ¦µ÷Õû
+		//Matæ—‹è½¬äº†180åº¦,æ¸©åº¦åæ ‡ç›¸åº”è°ƒæ•´
 		int temperature = XDev::Get()->get_mgdevice()->GetTemperatureProbe(
 			288-(m_currentPoint.x() - 124), 384-(m_currentPoint.y() - 208), 5);
 		pen.drawText(m_currentPoint, QString::number(temperature / 1000.0, 'f', 1));
@@ -75,7 +75,7 @@ void XView::mouseMoveEvent(QMouseEvent *event)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.07
-	Description	: ÏÔÊ¾ËùÑ¡Í¼Ïñ & ²Ûº¯Êı
+	Description	: æ˜¾ç¤ºæ‰€é€‰å›¾åƒ & æ§½å‡½æ•°
  *****************************************************************************/
 void XView::show_image(QString path)
 {
@@ -90,7 +90,7 @@ void XView::show_image(QString path)
 	case 3:
 		break;
 	default:
-		PrWarning("²»Ö§³ÖµÄMat¸ñÊ½");
+		PrWarning("ä¸æ”¯æŒçš„Matæ ¼å¼");
 		break;
 	}
 
@@ -110,20 +110,20 @@ void XView::show_image(QString path)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.23
-	Description	: Ñ¡ÔñºÏÊÊµÄÉ«¿¨ÓÃÓÚÔöÇ¿»Ò¶ÈÍ¼ÏñÏÔÊ¾ & ²Ûº¯Êı
+	Description	: é€‰æ‹©åˆé€‚çš„è‰²å¡ç”¨äºå¢å¼ºç°åº¦å›¾åƒæ˜¾ç¤º & æ§½å‡½æ•°
  *****************************************************************************/
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.08
-	Description	: ¿ªÆôÊµÊ±ºìÍâÕï¶ÏÏÔÊ¾ & ²Ûº¯Êı
+	Description	: å¼€å¯å®æ—¶çº¢å¤–è¯Šæ–­æ˜¾ç¤º & æ§½å‡½æ•°
  *****************************************************************************/
 void XView::trackFeature()
 {
 	std::vector<uchar> status;
 	std::vector<float> errors;
-	//¼ÆËãÏ¡ÊèÌØÕ÷¼¯µÄ¹âÁ÷
+	//è®¡ç®—ç¨€ç–ç‰¹å¾é›†çš„å…‰æµ
 	calcOpticalFlowPyrLK(pr_gray, gray, fpts[0], fpts[1], status, errors);
 	int k = 0;
 	for (int i = 0; i < fpts[1].size(); i++)
@@ -138,7 +138,7 @@ void XView::trackFeature()
 	}
 	inPoints.resize(k);
 	fpts[1].resize(k);
-	//»æÖÆ¹âÁ÷¹ì¼£
+	//ç»˜åˆ¶å…‰æµè½¨è¿¹
 	RNG rng(0);
 	for (int i = 0; i < fpts[0].size(); i++)
 	{
@@ -154,13 +154,13 @@ void XView::play(cv::Mat mat)
 {
     switch (mat.channels()) {
 	case 1:
-        //×¢Òâ´Ë´¦ÊÇ×ª»¯ÎªÏßĞÔrgbµÄ3Î»¿íÊı¾İ
+        //æ³¨æ„æ­¤å¤„æ˜¯è½¬åŒ–ä¸ºçº¿æ€§rgbçš„3ä½å®½æ•°æ®
         cvtColor(mat, mat, CV_GRAY2RGB, 0);
 		break;
 	case 3:
 		break;
 	default:
-		PrWarning("²»Ö§³ÖµÄMat¸ñÊ½");
+		PrWarning("ä¸æ”¯æŒçš„Matæ ¼å¼");
 		return;
     }
 
@@ -177,7 +177,7 @@ void XView::play(cv::Mat mat)
 		set_colormap(11);
 	}
 
-	//Î±²ÊÓ³Éä
+	//ä¼ªå½©æ˜ å°„
     LUT(mat, cmTable, view);
     memcpy(img.bits(), view.data, view.rows * view.cols * view.elemSize());
 
@@ -193,10 +193,10 @@ void XView::play(cv::Mat mat)
 				gray.at<uchar>(i, j) = 255;
 		}
 	}
-	imshow("±³¾°¼ÓÇ¿", gray);
+	imshow("èƒŒæ™¯åŠ å¼º", gray);
 
-	//¿ªÊ¼½øĞĞÇ¿½Çµã¼ì²â  
-	//ÏÈÅäÖÃĞèÒªµÄº¯Êı²ÎÊı  
+	//å¼€å§‹è¿›è¡Œå¼ºè§’ç‚¹æ£€æµ‹  
+	//å…ˆé…ç½®éœ€è¦çš„å‡½æ•°å‚æ•°  
 	vector<Point2f> dstPoint2f;
 	//void cv::goodFeaturesToTrack(InputArray _image, OutputArray _corners,
 	//	int maxCorners, double qualityLevel, double minDistance,
@@ -204,7 +204,7 @@ void XView::play(cv::Mat mat)
 	//	bool useHarrisDetector, double harrisK)
 	goodFeaturesToTrack(gray, dstPoint2f, 100, 0.01, 10, Mat(), 3);
 
-	//±éÀúÃ¿¸öµã£¬½øĞĞ»æÖÆ£¬±ãÓÚÏÔÊ¾  
+	//éå†æ¯ä¸ªç‚¹ï¼Œè¿›è¡Œç»˜åˆ¶ï¼Œä¾¿äºæ˜¾ç¤º  
 	Mat dstImage;
 	view.copyTo(dstImage);
 	for (int i = 0; i < (int)dstPoint2f.size(); i++) {
@@ -212,13 +212,13 @@ void XView::play(cv::Mat mat)
 			theRNG().uniform(0, 255), theRNG().uniform(0, 255)) , 2, 8);
 	}
 
-	imshow("¡¾¼ì²âµ½µÄ½ÇµãÍ¼¡¿", dstImage);
+	imshow("ã€æ£€æµ‹åˆ°çš„è§’ç‚¹å›¾ã€‘", dstImage);
 #endif
 	//=======================================================================
 
 	//const struct_State * pState;
 	//pState = XDev::Get()->get_mgdevice()->GetFrameStatisticalData();
-	//QString str = QString::fromLocal8Bit("×î¸ßÎÂ¶È %1, ×îµÍÎÂ¶È %2, Æ½¾ùÎÂ¶È %3").
+	//QString str = QString::fromLocal8Bit("æœ€é«˜æ¸©åº¦ %1, æœ€ä½æ¸©åº¦ %2, å¹³å‡æ¸©åº¦ %3").
 	//	arg(pState->intMaxTemperature * 0.001, 2, 'f', 2).
 	//	arg(pState->intMinTemperature * 0.001, 2, 'f', 2).
 	//	arg(pState->intAveTemperature * 0.001, 2, 'f', 2);
@@ -240,7 +240,7 @@ void XView::play(cv::Mat mat)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.28play
-	Description	: ÔİÍ£ÊµÊ±ºìÍâÕï¶ÏÏÔÊ¾ & ²Ûº¯Êı
+	Description	: æš‚åœå®æ—¶çº¢å¤–è¯Šæ–­æ˜¾ç¤º & æ§½å‡½æ•°
  *****************************************************************************/
 void XView::pause()
 {
@@ -251,16 +251,16 @@ void XView::pause()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.06.06
-	Description	: ÅÄÕÕ & ²Ûº¯Êı
+	Description	: æ‹ç…§ & æ§½å‡½æ•°
  *****************************************************************************/
 void XView::photoBody()
 {
 	QDateTime currentTime = QDateTime::currentDateTime();
     QString current_date = PICTURE_BODY_PATH + currentTime.toString("yyyy_MM_dd_hh_mm_ss") + ".png";
     Mat saveMat;
-    //openÒÔbgrÅÅÁĞ´¢´æÊı¾İ,¹ÊĞèÒª×ª»¯ºó±£´æ
+    //openä»¥bgræ’åˆ—å‚¨å­˜æ•°æ®,æ•…éœ€è¦è½¬åŒ–åä¿å­˜
     cvtColor(view, saveMat, CV_BGR2RGB);
-	//ÒòĞèÇó¸Ä±ä,Ö±½Ó±£´æ²ÊÉ«Í¼
+	//å› éœ€æ±‚æ”¹å˜,ç›´æ¥ä¿å­˜å½©è‰²å›¾
     imwrite(current_date.toStdString(), saveMat);
 }
 
@@ -269,9 +269,9 @@ void XView::photoBreast()
     QDateTime currentTime = QDateTime::currentDateTime();
     QString current_date = PICTURE_BREAST_PATH + currentTime.toString("yyyy_MM_dd_hh_mm_ss") + ".png";
     Mat saveMat;
-    //openÒÔbgrÅÅÁĞ´¢´æÊı¾İ,¹ÊĞèÒª×ª»¯ºó±£´æ
+    //openä»¥bgræ’åˆ—å‚¨å­˜æ•°æ®,æ•…éœ€è¦è½¬åŒ–åä¿å­˜
     cvtColor(view, saveMat, CV_BGR2RGB);
-    //ÒòĞèÇó¸Ä±ä,Ö±½Ó±£´æ²ÊÉ«Í¼
+    //å› éœ€æ±‚æ”¹å˜,ç›´æ¥ä¿å­˜å½©è‰²å›¾
     imwrite(current_date.toStdString(), saveMat);
 }
 
@@ -288,7 +288,7 @@ void XView::set_cmBeta(int val)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.06.12
-	Description	: ÉèÖÃÉ«¿¨ & ²Ûº¯Êı
+	Description	: è®¾ç½®è‰²å¡ & æ§½å‡½æ•°
  *****************************************************************************/
 bool XView::set_colormap(int index)
 {
@@ -298,7 +298,6 @@ bool XView::set_colormap(int index)
 	Mat Nice;
 
 	if (index > 10) {
-		PrInfo("Ê¹ÓÃ×Ô¶¨ÒåÄ£°å");
 		switch (index) {
 		case 11:
 			XPro::Get()->rainbowColorMap();
@@ -322,10 +321,10 @@ bool XView::set_colormap(int index)
         }
     } else {
         XDev::Get()->SetColorPalette((ColorPalette)index);
-		//pData-Ö¸ÏòÑÕÉ«ÌõÎ»Í¼Êı¾İÇøÖ¸Õë, pInfo-Ö¸ÏòÑÕÉ«ÌõÎ»Í¼ĞÅÏ¢ÇøÖ¸Õë
-		//TODO ´Ë´¦ÓĞ¿Ó£¬×¢ÒâÏÈÒª³õÊ¼»¯¾Ş¸çÉãÏñÍ·ºó²Å¿ÉÒÔ»ñÈ¡³É¹¦¶ÁÈ¡Ïà¹ØÊı¾İ
+		//pData-æŒ‡å‘é¢œè‰²æ¡ä½å›¾æ•°æ®åŒºæŒ‡é’ˆ, pInfo-æŒ‡å‘é¢œè‰²æ¡ä½å›¾ä¿¡æ¯åŒºæŒ‡é’ˆ
+		//TODO æ­¤å¤„æœ‰å‘ï¼Œæ³¨æ„å…ˆè¦åˆå§‹åŒ–å·¨å“¥æ‘„åƒå¤´åæ‰å¯ä»¥è·å–æˆåŠŸè¯»å–ç›¸å…³æ•°æ®
         if (XDev::Get()->GetOutputColorBardata(&pBarData, &pBarInfo)) {
-			//´Ë´¦ÊÇµ÷É«°åMat TODO
+			//æ­¤å¤„æ˜¯è°ƒè‰²æ¿Mat TODO
 			for (int i = 0; i < 256; i++) {
 				int b0 = (int)*((uchar *)(pBarInfo->bmiColors) + 4 * i);
 				int b1 = (int)*((uchar *)(pBarInfo->bmiColors) + 4 * i + 1);
@@ -336,7 +335,7 @@ bool XView::set_colormap(int index)
             imshow("show table", cmMat);
             return true;
         } else {
-            PrWarning("»ñÈ¡Ê§°Ü£¬¾Ş¸çÉãÏñÍ·ÊÇ·ñÒÑ¾­³õÊ¼»¯³É¹¦(Á¬½Ó³É¹¦?)");
+            PrWarning("è·å–å¤±è´¥ï¼Œå·¨å“¥æ‘„åƒå¤´æ˜¯å¦å·²ç»åˆå§‹åŒ–æˆåŠŸ(è¿æ¥æˆåŠŸ?)");
         }
     }
 

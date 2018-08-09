@@ -221,7 +221,7 @@ QPushButton#assessReportB:pressed
    <widget class="QToolButton" name="toolButton">
     <property name="geometry">
      <rect>
-      <x>1230</x>
+      <x>1210</x>
       <y>19</y>
       <width>180</width>
       <height>35</height>
@@ -258,6 +258,60 @@ QPushButton#assessReportB:pressed
      <enum>Qt::ToolButtonTextBesideIcon</enum>
     </property>
     <property name="autoRaise">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gtest">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>20</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>gTest</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exit">
+    <property name="geometry">
+     <rect>
+      <x>1404</x>
+      <y>3</y>
+      <width>32</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/stylePic/picture/exit.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="minmum">
+    <property name="geometry">
+     <rect>
+      <x>1404</x>
+      <y>37</y>
+      <width>32</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/stylePic/picture/minmum.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
      <bool>true</bool>
     </property>
    </widget>
@@ -468,6 +522,38 @@ QPushButton#assessReportB:pressed
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>exit</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1418</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1244</x>
+     <y>-59</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minmum</sender>
+   <signal>clicked()</signal>
+   <receiver>Summer</receiver>
+   <slot>minimum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1426</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1168</x>
+     <y>-15</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>create_irExamPage()</slot>
@@ -477,5 +563,6 @@ QPushButton#assessReportB:pressed
   <slot>create_assessReportPage()</slot>
   <slot>create_recuperatePlanPage()</slot>
   <slot>create_userManagerPage()</slot>
+  <slot>minimum()</slot>
  </slots>
 </ui>

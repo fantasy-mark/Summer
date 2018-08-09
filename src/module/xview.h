@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QFile>
 #include <QMutex>
@@ -47,15 +47,15 @@ public slots:
     cv::Mat get_cmTable();
 
 protected:
-	//±£´æÍ¼Ïñ
+	//ä¿å­˜å›¾åƒ
 	Mat view;
-	//±£´æÉ«¿¨
+	//ä¿å­˜è‰²å¡
     Mat cmMat = Mat(768, 32, CV_8UC3);
-	//±£´æÓ³Éä±í
+	//ä¿å­˜æ˜ å°„è¡¨
 	Mat cmTable = Mat(256, 1, CV_8UC3);
-	//ÓÃÓÚÏÔÊ¾Í¼Ïñ
+	//ç”¨äºæ˜¾ç¤ºå›¾åƒ
 	QImage img;
-	//ÓÃÓÚÏÔÊ¾É«¿¨
+	//ç”¨äºæ˜¾ç¤ºè‰²å¡
 	QImage cm;
 	QPainter pen;
 	QLabel ql;
@@ -70,7 +70,7 @@ private:
 //Copyright	: Yaqian Group
 //Author		: Mark_Huang ( hacker.do@163.com )
 //Date		: 2018.04.28
-//Description	: QObject::moveToThreadÌæ´úQThread::run, Ê¹ÓÃĞÅºÅ²Û»úÖÆ
+//Description	: QObject::moveToThreadæ›¿ä»£QThread::run, ä½¿ç”¨ä¿¡å·æ§½æœºåˆ¶
 //*****************************************************************************/
 //class DealFrame : public QThread
 //{
@@ -79,7 +79,7 @@ private:
 //public:
 //	~DealFrame();
 //	static DealFrame * Get();
-//	//Ïß³ÌÈë¿Ú
+//	//çº¿ç¨‹å…¥å£
 //	void run();
 //	void set_photoflag();
 //	bool is_pause();
@@ -88,7 +88,7 @@ private:
 //	int fps = 0;
 //
 //signals:
-//	void emit_frame(cv::Mat mat);	//signal²»ÄÜ×èÈû,·ñÔòmatÄÚ´æÒç³ö
+//	void emit_frame(cv::Mat mat);	//signalä¸èƒ½é˜»å¡,å¦åˆ™matå†…å­˜æº¢å‡º
 //
 //protected:
 //	DealFrame();

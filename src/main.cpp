@@ -1,5 +1,6 @@
-#include "summer.h"
+ï»¿#include "summer.h"
 #include <QApplication>
+#include <QTextCodec>
 
 #ifdef USING_GTEST
 #include "gtest/gtest.h"
@@ -10,6 +11,7 @@
 #include <QMessageBox>
 #include <QString>
 #include <QObject>
+#include <QtConcurrent>
 
 #include "xconfig.h"
 #include "xdev.h"
@@ -20,14 +22,27 @@
 #pragma comment(lib,"user32.lib")
 #endif
 
-void setup();
-void set_configFile();
+//void setup();
+//void set_configFile();
+void run_gTest()
+{
+    QTime time;
+    Pr("5ç§’åå¼€å§‹å•å…ƒæµ‹è¯•...");
+
+    time.start();
+    //éé˜»å¡æ‰§è¡Œ
+    while(time.elapsed() < 5000) {
+        QCoreApplication::processEvents(QEventLoop::AllEvents);
+    }
+
+    RUN_ALL_TESTS();
+}
 
 int main(int argc, char *argv[])
 {
 #if 0
 #ifdef WIN32
-    //ÓÃÓÚµ÷ÕûÏµÍ³·Ö±æÂÊ
+    //ç”¨äºè°ƒæ•´ç³»ç»Ÿåˆ†è¾¨ç‡
     DEVMODE DevMode;
     EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &DevMode);
     DevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
@@ -42,7 +57,7 @@ int main(int argc, char *argv[])
     //setup();
     Summer w;
 
-    //ÉèÖÃÔÚÄ³¸öÆÁÄ»ÏÔÊ¾UI
+    //è®¾ç½®åœ¨æŸä¸ªå±å¹•æ˜¾ç¤ºUI
     //QDesktopWidget * deskTop = QApplication::desktop();
     //MainWindow::Get()->setGeometry(deskTop->screenGeometry(1));
     w.setWindowFlags(Qt::FramelessWindowHint);
@@ -51,7 +66,7 @@ int main(int argc, char *argv[])
 #ifdef USING_GTEST
     testing::InitGoogleTest(&argc, argv);
 
-    RUN_ALL_TESTS();
+    QtConcurrent::run(run_gTest);
 #endif
 
     //qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "9223");
@@ -59,6 +74,7 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
+#if 0
 void setup()
 {
     set_configFile();
@@ -71,15 +87,16 @@ void set_configFile()
     if (! XConfig::Get()->load_XML(path)) {
         QFileDialog * fileDlg = new QFileDialog();
         fileDlg->setWindowFilePath(QDir::currentPath());
-        fileDlg->setWindowTitle(QStringLiteral("´ò¿ªÅäÖÃÎÄ¼ş"));
+        fileDlg->setWindowTitle(QStringLiteral("æ‰“å¼€é…ç½®æ–‡ä»¶"));
         fileDlg->setNameFilter(QStringLiteral("DOM(*.xml)"));
         //can select only one file
         fileDlg->setFileMode(QFileDialog::ExistingFile);
         if (fileDlg->exec()) {
             fileNames = fileDlg->selectedFiles();
             if (! XConfig::Get()->load_XML(fileNames[0]))
-                QMessageBox::warning(NULL, QStringLiteral("ÅäÖÃ"), QStringLiteral("ÅäÖÃÎÄ¼şÓĞÎó"));
+                QMessageBox::warning(NULL, QStringLiteral("é…ç½®"), QStringLiteral("é…ç½®æ–‡ä»¶æœ‰è¯¯"));
         }
     }
     //qDebug() << XConfig::Get()->globalConfig;
 }
+#endif

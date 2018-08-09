@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT  += core gui serialport printsupport network webenginewidgets webengine xml
+QT  += core gui serialport printsupport network webenginewidgets webengine xml concurrent
 
 #-------------------------------------------------
 # 是否进行单元测试

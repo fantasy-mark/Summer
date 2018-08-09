@@ -1,7 +1,8 @@
-#ifndef SUMMER_H
+﻿#ifndef SUMMER_H
 #define SUMMER_H
 
 #include <QWidget>
+#include <QSystemTrayIcon>
 
 #include "ui_t3l0.h"
 #include "ui_t3l1.h"
@@ -38,6 +39,7 @@ public:
     ~Summer();
 
     QListWidget * tabListWidget = NULL;
+    QSystemTrayIcon * mSysTrayIcon = NULL;
 
 public slots:
     void get_baseInfo();
@@ -60,6 +62,10 @@ public slots:
     void commit_baseInfo();
     void commit_selfCheck();
     void commit_irExam();
+
+    void run_gTest();
+    void minimum();
+    void on_activatedSysTrayIcon(QSystemTrayIcon::ActivationReason reason);
 
 private:
     Ui::Summer *ui;

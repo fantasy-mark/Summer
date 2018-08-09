@@ -1,10 +1,10 @@
-#include "xsec.h"
+ï»¿#include "xsec.h"
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.16
-	Description	: Í¨¹ıĞŞ¸ÄÎÄ¼şÍ·ÊµÏÖ¼Ó½âÃÜÓ°ÏñÎÄ¼ş
+	Description	: é€šè¿‡ä¿®æ”¹æ–‡ä»¶å¤´å®ç°åŠ è§£å¯†å½±åƒæ–‡ä»¶
  *****************************************************************************/
 XSec::XSec()
 {
@@ -18,11 +18,11 @@ XSec::~XSec()
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.28
-	Description	: ¼ÓÃÜÕÕÆ¬
+	Description	: åŠ å¯†ç…§ç‰‡
  *****************************************************************************/
 void XSec::en_sec(QString path)
 {
-	//ÓÃÓÚ¼ÓÃÜÎÄ¼ş
+	//ç”¨äºåŠ å¯†æ–‡ä»¶
 	QFile file(path);
 	if (!file.open(QFile::ReadWrite)) {
 		qDebug() << "Can't open file for writing";
@@ -39,11 +39,11 @@ void XSec::en_sec(QString path)
 	Copyright	: Yaqian Group
 	Author		: Mark_Huang ( hacker.do@163.com )
 	Date		: 2018.05.28
-	Description	: ½âÃÜÕÕÆ¬
+	Description	: è§£å¯†ç…§ç‰‡
  *****************************************************************************/
 void XSec::de_sec(QString path)
 {
-	//ÓÃÓÚ½âÃÜÎÄ¼ş
+	//ç”¨äºè§£å¯†æ–‡ä»¶
 	QFile file(path);
 	if (!file.open(QFile::ReadWrite)) {
 		qDebug() << "Can't open file for writing";
