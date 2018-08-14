@@ -24,6 +24,7 @@
 
 //void setup();
 //void set_configFile();
+#ifdef USING_GTEST
 void run_gTest()
 {
     QTime time;
@@ -37,6 +38,7 @@ void run_gTest()
 
     RUN_ALL_TESTS();
 }
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -73,30 +75,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-
-#if 0
-void setup()
-{
-    set_configFile();
-}
-
-void set_configFile()
-{
-    QStringList fileNames;
-    QString path = QDir::currentPath() + "/../Summer/resource/config.xml";
-    if (! XConfig::Get()->load_XML(path)) {
-        QFileDialog * fileDlg = new QFileDialog();
-        fileDlg->setWindowFilePath(QDir::currentPath());
-        fileDlg->setWindowTitle(QStringLiteral("打开配置文件"));
-        fileDlg->setNameFilter(QStringLiteral("DOM(*.xml)"));
-        //can select only one file
-        fileDlg->setFileMode(QFileDialog::ExistingFile);
-        if (fileDlg->exec()) {
-            fileNames = fileDlg->selectedFiles();
-            if (! XConfig::Get()->load_XML(fileNames[0]))
-                QMessageBox::warning(NULL, QStringLiteral("配置"), QStringLiteral("配置文件有误"));
-        }
-    }
-    //qDebug() << XConfig::Get()->globalConfig;
-}
-#endif

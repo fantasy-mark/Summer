@@ -43,13 +43,13 @@ void XImage::setup_dir(QString dirPath)
 
     for (int i = 0; i < currentFiles.size(); i++) {
         if (currentFiles[i].isNull()) continue;
+        if (currentFiles[i].contains(".ddt", Qt::CaseInsensitive)) continue;
         QListWidgetItem *new_item = new QListWidgetItem;
         new_item->setSizeHint(QSize(90, 120));
         new_item->setIcon(QIcon(path + currentFiles[i]));
 
-        //设置text是为了保存文件路径,并且隐藏
-        new_item->setHidden(true);
-        new_item->setText(path + currentFiles[i]);
+        //设置toolTip是为了保存文件路径,并且隐藏
+        new_item->setToolTip(path + currentFiles[i]);
 
         //把新加入图像放到最前
         this->addItem(new_item);
@@ -83,13 +83,13 @@ void XImage::add_image(const QString &path)
 	}
 
 	foreach(QString file, newFile) {
-		QListWidgetItem *new_item = new QListWidgetItem;
+        if (file.contains(".ddt", Qt::CaseInsensitive)) continue;
+        QListWidgetItem *new_item = new QListWidgetItem;
 		new_item->setSizeHint(QSize(90, 120));
 		new_item->setIcon(QIcon(path + file));
 
-		//设置text是为了保存文件路径,并且隐藏
-		new_item->setHidden(true);
-		new_item->setText(path + file); 
+        //设置toolTip是为了保存文件路径,并且隐藏
+        new_item->setToolTip(path + file);
 
 		this->addItem(new_item);
 	}
@@ -105,7 +105,7 @@ void XImage::del_image()
 {
 	QList<QListWidgetItem*> itemList = this->selectedItems();
     for (int i = 0; i < itemList.size(); i++) {
-		QFile file(itemList[i]->text());
+        QFile file(itemList[i]->toolTip());
 		if (file.exists()) {
 			file.remove();
 		}
@@ -128,7 +128,7 @@ void XImage::show_image()
 	QListWidgetItem * item = this->currentItem();
     if (item == NULL)
         return;
-	QString file_path = item->text();
+    QString file_path = item->toolTip();
 
     emit show_image(file_path);
 }

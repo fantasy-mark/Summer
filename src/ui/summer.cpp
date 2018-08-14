@@ -14,7 +14,9 @@
 #include "xreport.h"
 #include "xconfig.h"
 
+#ifdef USING_GTEST
 #include "gtest/gtest.h"
+#endif
 
 #include "ui_summer.h"
 
@@ -23,6 +25,14 @@ Summer::Summer(QWidget *parent) :
     ui(new Ui::Summer)
 {
     ui->setupUi(this);
+
+    //bool hasConfig = XConfig::Get()->setup("../Summer/config.json", false);
+    bool hasConfig = XConfig::Get()->setup();
+    if (! hasConfig) {
+        qDebug() << "parse config.json failed";
+    }
+    XConfig::Get()->configure();
+
     create_userManagerPage();
 
     ui->label->hide();
@@ -30,8 +40,9 @@ Summer::Summer(QWidget *parent) :
     ui->commit->hide();
 
     XReport::Get()->create_Report();
-
+#ifdef USING_GTEST
     connect(ui->gtest, SIGNAL(clicked()), this, SLOT(run_gTest()));
+#endif
 }
 
 Summer::~Summer()
@@ -39,10 +50,12 @@ Summer::~Summer()
     delete ui;
 }
 
+#ifdef USING_GTEST
 void Summer::run_gTest()
 {
     RUN_ALL_TESTS();
 }
+#endif
 
 void Summer::minimum()
 {
@@ -97,6 +110,20 @@ void Summer::show_devList()
     }
 
     return;
+}
+
+void Summer::show_editorMat()
+{
+    QString colorBar = XConfig::Get()->value("colorBar");
+    editorMat = imread(colorBar.toStdString(), CV_LOAD_IMAGE_UNCHANGED);
+#if 1
+    Mat dst;
+    rotate(editorMat, editorMat, ROTATE_90_CLOCKWISE);
+    cv::resize(editorMat, dst, Size(1024, 30));
+    imshow("all", dst);
+#endif
+    Mat imageROI = dst(Rect(0, 0, 331, 30));
+    imshow("colorBar", imageROI);
 }
 
 void Summer::connect_irDev()
@@ -765,7 +792,9 @@ void Summer::create_irExamPage()
     connect(irExamPage->cradleUp, SIGNAL(released()), XDev::Get(), SLOT(stop_cradle()));
     connect(irExamPage->cradleDown, SIGNAL(released()), XDev::Get(), SLOT(stop_cradle()));
 
+    show_editorMat();
     show_devList();
+    //irExamPage->editorColor->
     //显示色卡
     QString str = "Gray0to255|Gray255to0|IronBow|RainBow|GlowBow|Autumn|Winter|"
                   "HotMetal|Jet|RedSaturation|HighContrast|YaQian_HSV|Nice";

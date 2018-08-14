@@ -1,6 +1,9 @@
 ﻿#include "xdev.h"
 #include "xserial.h"
 #include "logsys.h"
+#include "comdef.h"
+#include <QDebug>
+#include "xconfig.h"
 
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -17,6 +20,8 @@ XDev::XDev()
     m_pTimer->setInterval(100);
     connect(m_pThread, SIGNAL(started()), m_pTimer, SLOT(start()));
     connect(m_pTimer, &QTimer::timeout, this, &XDev::timeOutSlot, Qt::DirectConnection);
+
+    m_pThread->start();
 }
 
 /*****************************************************************************
@@ -29,7 +34,6 @@ XDev::~XDev()
 {
     m_pThread->quit();
     m_pThread->wait();
-    //m_pThread->destroyed();
 
     free_irDev();
 }
@@ -37,7 +41,6 @@ XDev::~XDev()
 void XDev::setup()
 {
     //begin thread to run
-    m_pThread->start();
 }
 
 void XDev::run()
@@ -125,13 +128,6 @@ QStringList XDev::refresh_irDev()
     if (!MAG_IsInitialized(channelIndex)) {
         return { "No Init" };
     }
-#if 0
-    if (!MAG_IsLinked(channelIndex)) {
-        if(!MAG_LinkCamera(channelIndex, ip, timeout)) {
-            return { "No Link" };
-        }
-    }
-#endif
     if (!MAG_EnumCameras()) {
         return { "No Enum" };
     }
@@ -163,6 +159,7 @@ bool XDev::connect_irDev()
     }
     return true;
 }
+
 /*****************************************************************************
     Copyright	: Yaqian Group
     Author		: Mark_Huang ( hacker.do@163.com )
@@ -191,15 +188,14 @@ void CALLBACK newFrame(UINT intChannelIndex, int intCameraTemperature,
 
     //TODO 此处开始处理显示帧
     if (isBMPData) {
-        struct_CamInfo cameraInfo = XDev::Get()->get_cameraInfo();
-        Mat postMat = Mat(cameraInfo.intVideoHeight, cameraInfo.intVideoWidth, CV_8UC1);
-        memcpy(postMat.data, pData, cameraInfo.intVideoWidth * cameraInfo.intVideoHeight);
+        int w = XConfig::Get()->value("rawVideoW").toInt();
+        int h = XConfig::Get()->value("rawVideoH").toInt();
+        Mat postMat = Mat(h, w, CV_8UC1);
+        memcpy(postMat.data, pData, w * h);
         //原始图像
         rotate(postMat, postMat, ROTATE_180);
         emit XDev::Get()->magFrame(postMat);
     }
-
-    //Pr("processing");
 
     //处理下一帧
     MAG_TransferPulseImage(XDev::Get()->channelIndex);
@@ -221,9 +217,13 @@ bool XDev::play_irDev()
     if (MAG_IsProcessingImage(channelIndex))
         return true;
 
+    int w = XConfig::Get()->value("rawVideoW").toInt();
+    int h = XConfig::Get()->value("rawVideoH").toInt();
+    int bw = XConfig::Get()->value("barW").toInt();
+    int bh = XConfig::Get()->value("barH").toInt();
+
     MAG_GetCamInfo(channelIndex, &m_CamInfo, sizeof(m_CamInfo));
-    OutputPara paraOut = { m_CamInfo.intFPAWidth, m_CamInfo.intFPAHeight, m_CamInfo.intVideoWidth,
-                           m_CamInfo.intVideoHeight, 16, m_CamInfo.intVideoHeight  };	//参数5\6为色卡条的宽高
+    OutputPara paraOut = { w, h, w, h, bw, bh };	//参数5\6为色卡条的宽高
 
     DWORD streamType = STREAM_TEMPERATURE;
 
@@ -263,6 +263,10 @@ void XDev::photo_irDev()
 void XDev::stop_irDev()
 {
     MAG_StopProcessImage(channelIndex);
+    int w = XConfig::Get()->value("rawVideoW").toInt();
+    int h = XConfig::Get()->value("rawVideoH").toInt();
+    Mat postMat = Mat::zeros(h, w, CV_8UC1);
+    emit XDev::Get()->magFrame(postMat);
 }
 /*****************************************************************************
 	Copyright	: Yaqian Group
@@ -300,7 +304,26 @@ bool XDev::GetOutputColorBardata(unsigned char const** pData, BITMAPINFO const**
     return MAG_GetOutputColorBardata(channelIndex, pData, pInfo);
 }
 
+int XDev::GetTemperature(int x, int y)
+{
+    return MAG_GetTemperatureProbe(0, x, y, 5);
+}
 
+bool XDev::saveDDT(QString path)
+{
+    MAG_SaveDDT(channelIndex, (_bstr_t)path.toLocal8Bit().data());
+}
+
+bool XDev::loadDDT(QString path)
+{
+    int w = XConfig::Get()->value("videoW").toInt();
+    int h = XConfig::Get()->value("videoH").toInt();
+    int bw = XConfig::Get()->value("barW").toInt();
+    int bh = XConfig::Get()->value("barH").toInt();
+
+    OutputPara paraOut = { w, h, w, h, bw, bh };	//参数5\6为色卡条的宽高
+    return MAG_LoadDDT(channelIndex, &paraOut, (_bstr_t)path.toLocal8Bit().data(), newFrame, (void *)this);
+}
 
 /*****************************************************************************
 	Copyright	: Yaqian Group

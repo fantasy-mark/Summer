@@ -41,6 +41,8 @@ public:
     QListWidget * tabListWidget = NULL;
     QSystemTrayIcon * mSysTrayIcon = NULL;
 
+    Mat editorMat;
+
 public slots:
     void get_baseInfo();
     void get_selfCheck();
@@ -53,7 +55,10 @@ public slots:
     void create_irExamPage();
     void create_assessReportPage();
     void create_recuperatePlanPage();
+
     void show_devList();
+    void show_editorMat();
+
     void connect_irDev();
     void disconnect_irDev();
     void closeEvent(QCloseEvent * event);
@@ -63,7 +68,9 @@ public slots:
     void commit_selfCheck();
     void commit_irExam();
 
+#ifdef USING_GTEST
     void run_gTest();
+#endif
     void minimum();
     void on_activatedSysTrayIcon(QSystemTrayIcon::ActivationReason reason);
 

@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/stylePic">
+    <file>picture/bodyPhoto.png</file>
+    <file>picture/breastPhoto.png</file>
     <file>picture/exit.png</file>
     <file>picture/minmum.png</file>
     <file>picture/baseInfo/3.png</file>

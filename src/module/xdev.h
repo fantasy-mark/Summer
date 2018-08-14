@@ -40,6 +40,9 @@ public:
     void setup();
     void SetColorPalette(int index);
     bool GetOutputColorBardata(unsigned char const** pData, BITMAPINFO const** pInfo);
+    int GetTemperature(int x, int y);
+    bool saveDDT(QString path);
+    bool loadDDT(QString path);
 
 public slots:
     void run();

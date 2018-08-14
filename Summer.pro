@@ -7,9 +7,9 @@
 QT  += core gui serialport printsupport network webenginewidgets webengine xml concurrent
 
 #-------------------------------------------------
-# 是否进行单元测试
+# 鏄惁杩涜鍗曞厓娴嬭瘯
 #-------------------------------------------------
-CONFIG  += testlib
+#CONFIG  += testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,7 +18,7 @@ TARGET = TestSummer
 CONFIG += console c++11
 CONFIG -= app_bundle
 
-DEFINES += USING_GTEST
+#DEFINES += USING_GTEST
 
 LIBS += -L$$PWD/lib/ -lgtest
 }else{

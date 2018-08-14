@@ -1,9 +1,8 @@
 ﻿#pragma once
 
-#include <QMap>
 #include <QObject>
-#include <QDomDocument>
-#include <QTreeWidgetItem>
+#include <QTreeWidget>
+#include <QJsonObject>
 
 /*****************************************************************************
     Copyright	: Yaqian Group
@@ -16,13 +15,15 @@ class XConfig : public QObject
     Q_OBJECT
 
 public:
-    ~XConfig();
+    QJsonObject xconfig;
+    QTreeWidget * tree;
+
     static XConfig * Get();
-    QMap<QString, QString> globalConfig = {};
+    bool setup();
 
-    bool load_XML(QString fileName);
-    void list_DOM(QDomElement docElem);
+    QString value(const char * key);
+    void configure();
 
-private:
-    XConfig();
+    //TODO
+    void help() {}
 };

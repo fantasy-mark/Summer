@@ -1,0 +1,11 @@
+{
+	"copyRight"		: "mark_huang",
+	"rawVideoW"		: 288,
+	"rawVideoH"		: 384,
+	"expandRatio"	: 2,
+	"videoW"		: 576,
+	"videoH"		: 768,
+	"barW"			: 16,
+	"barH"			: 128,
+	"THELASTITEM"	: "DOT_ADD_COMMA"
+}

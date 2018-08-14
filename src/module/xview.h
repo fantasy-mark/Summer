@@ -24,23 +24,13 @@ class XView : public QOpenGLWidget
 public:
 	XView(QWidget *parent);
 	~XView();
-	void trackFeature();
-
-Mat pr_gray, gray, pre_frame;
-std::vector<Point2f> inPoints;
-std::vector<Point2f> fpts[2];
-
 
 public slots:
 	void play(cv::Mat);
-	void pause();
     void photoBody();
     void photoBreast();
 
 	void show_image(QString path);
-
-	void set_cmAlpha(int val);
-	void set_cmBeta(int val);
 
     bool set_colormap(int);
 
@@ -58,12 +48,13 @@ protected:
 	//用于显示色卡
 	QImage cm;
 	QPainter pen;
-	QLabel ql;
+
+    void leaveEvent(QEvent *);
+
 private:
 	QPoint m_currentPoint;
 	void mouseMoveEvent(QMouseEvent *);
 	void paintEvent(QPaintEvent *);
-	QLabel * Temp;
 };
 
 ///******************************************************************************
